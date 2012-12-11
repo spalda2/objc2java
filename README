@@ -24,8 +24,8 @@ Limitations:
 - i'm sure you'll find plenty of others
 
 Usage:
-Load the project to Eclipse (with ANTLR installed) build and run it with a parameter stating path to files to convert
-The path must end with '/' 
+Load the project to Eclipse (with ANTLR installed) build and run it with 2 parameters stating root dir to files to convert
+and files to produce. The paths must end with '/' 
 It's producing the best results (given the limitations) when it finds matching 
 <name>.mm/.m and <name>.h files (same <name> in the same directory).Then it merges interfaces into a single
 <name>.java file.
