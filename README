@@ -1,0 +1,44 @@
+
+Simple source code syntax converter from objc2java based on ANTLR lexer parser.
+
+Originally based on https://code.google.com/p/objc2j/ but basically rewritten from scratch
+so changed package and author names since i'm not sure the originally author (Andremoniy) would subscribe to it
+or even recognize it:) nevertheless i use this place to thank Andremoniy for giving me the idea.
+
+The antlr-master-3.4-completejar.jar this works with is a part of this repo.
+To make ANTLR 3.4 work with Eclipse 4.2.1 I had to build it on Mac from source.
+Once that'd been done it worked quite nicely.
+
+Limitations:
+- It does only what i need to ease my porting work from iOS/Mac to java
+- it doesn't create buildable code
+- it doesn't fully cope with C++ syntax (e.g. the gramma doesn't recognize some C++ declarations)
+- it doesn't bother with categories declarations as it expects the functions to be implemented somewhere
+- it doesn't merge categories either
+- it doesn't create separate files in case it finds more interfaces in one .mm/.m, .h file pairs
+- it doesn't cope with macro expansion and treats it as a C function call if it sees that left bracket follows
+	- leads to recognition exception if macro "parameter" contains anything else but expression
+- the gramma is just to keep me happy and
+	- doesn't include any operator precedence or any other stuff of that sort useless for this type of conversion
+	- due to the above it produces 3 warnings when compiled with ANTLR which i couldn't be bothered to fix:)
+- i'm sure you'll find plenty of others
+
+Usage:
+Load the project to Eclipse (with ANTLR installed) build and run it with a parameter stating path to files to convert
+The path must end with '/' 
+It's producing the best results (given the limitations) when it finds matching 
+<name>.mm/.m and <name>.h files (same <name> in the same directory).Then it merges interfaces into a single
+<name>.java file.
+And now the hard bit:
+After it converts you load the stuff to some java IDE your project and make it build:)
+
+Disclaimer:
+Anyone who tries to use it and gets frustrated please don't panic it's just a piece of code that can be amended:)
+
+License:
+You can do whatever you like with it. In case you want to help to improve it you'r welcome to contact me.
+In case anyone wants to play with gramma i'd recommend ANTLRWorks 1.4.3 < to debug and visualize it.
+
+Have fun
+
+
