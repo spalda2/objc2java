@@ -2,7 +2,6 @@ package cz.spalda2.objctojavacnv;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
 
 import org.antlr.runtime.RecognitionException;
 
@@ -11,6 +10,8 @@ import org.antlr.runtime.RecognitionException;
  * Date: 18.06.12
  * Time: 9:35
  */
+
+//TODO turn self in static functions to class name
 public class Converter {
 
     public static final boolean NOT_IFS = false;

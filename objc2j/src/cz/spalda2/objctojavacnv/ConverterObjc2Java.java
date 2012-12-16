@@ -55,7 +55,8 @@ public class ConverterObjc2Java {
     	//object->object methods
     	methodTranslation.put("isEqual", "equals");
     	//NSString -> String methods
-    	methodTranslation.put("isEqualToString", "equals");    	
+    	methodTranslation.put("isEqualToString", "equals");
+    	methodTranslation.put("NSAssert","Assert.assertTrue");
     };
 
     private static final Map<String, String> keywordTranslation;
@@ -507,7 +508,8 @@ public class ConverterObjc2Java {
 	            switch (tr.token.getType()) {
 	                case ObjcParser.NAME:
 	                	String name = tr.getChild(0).toString();
-	                	ret.append(name);
+	                	String translated = methodTranslation.get(name);
+	                	ret.append(translated != null ? translated : name);
 	                	break;
 		            case ObjcParser.PARAMS:
 		            	String params = parseMethodParams(tr);
@@ -1848,10 +1850,10 @@ public class ConverterObjc2Java {
         javaCode = javaCode.replaceAll(";(\\s|\n|\r)*;+", ";");
 
         //TODO there's a comment in parseValue about this
-        //remove this = null
+        //remove "this = null"
         javaCode = javaCode.replaceAll("this\\s*=\\s*null", "");
-        //remove this =
-        javaCode = javaCode.replaceAll("this\\s*=\\s*", "");
+        //remove "this ="?
+        //javaCode = javaCode.replaceAll("this\\s*=\\s*", "");
 
         File foutDir = new File(outDir);
         foutDir.mkdirs();
