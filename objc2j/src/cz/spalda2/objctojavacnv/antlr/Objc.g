@@ -127,6 +127,7 @@ code_internal
   | static_declaration_wrapper
   | variable_declaration_wrapper
   | comments
+  | ';'
 	;
 
 comments
@@ -159,7 +160,7 @@ implementation_wrapper
 implementation
 	:	'@implementation'  name  category?
 		implementation_body+
-		'@end'  ';'?
+		'@end'
 	; 	
 
 implementation_body
@@ -231,7 +232,8 @@ block_singleline_wrapper
   ;
   
 block_singleline
-	: synchronized_call_wrapper
+	: (clasical_method_call_predicate)=> classical_method_call_wrapper
+	| synchronized_call_wrapper
 	| do_stmt
 	|	if_stmt
 	| else_stmt
@@ -475,7 +477,8 @@ cast_expression
   ;
 
 simple_expression_value_access
-  : (simple_expression_value (access_wrapper name)* '(')=> simple_expression_value (access_wrapper name)* ('(' classical_method_params_push? ')')
+  : selector_wrapper '(' name ':'? ')'
+  | (simple_expression_value (access_wrapper name)* '(')=> simple_expression_value (access_wrapper name)* ('(' classical_method_params_push? ')')
   | simple_expression_value2 (access_wrapper name)*
   ;
   
@@ -484,8 +487,8 @@ simple_expression_value
 	| STRING_OBJC -> ^(STRING STRING_OBJC)
 	|	NUMBER_LITERAL -> ^(NUMBER NUMBER_LITERAL)
 	| BOOL_LITERAL -> ^(BOOL BOOL_LITERAL)
-  | '&'? name
-  | known_directives -> ^(DIRECTIVE known_directives)
+  | '&' name
+  | name
 	;
 
 simple_expression_value2
@@ -509,8 +512,12 @@ op_assign_wrapper
 op_assign
   : ('|=' | '&=' | '+=' | '-=' | '*=' | '=' | '<<=' | '>>=')
   ;
+
+selector_wrapper
+  : selector -> ^(DIRECTIVE selector)
+  ;
   
-known_directives
+selector
   : '@selector'
   ;
    
@@ -621,7 +628,11 @@ typedef_name
 
 forward_class_declaration
   : '@class' class_name ';' ->^(FORWARD_DECLARATION class_name)
-  ; 
+  | '@protocol' protocol_name ';' ->^(FORWARD_DECLARATION protocol_name)
+  | type_declaration_struct_simple ';' ->^(FORWARD_DECLARATION type_declaration_struct_simple)
+  | type_declaration_union_simple ';' ->^(FORWARD_DECLARATION type_declaration_union_simple)
+  | type_declaration_enum_simple ';' ->^(FORWARD_DECLARATION type_declaration_enum_simple)
+  ;
 
 class_name
   : ID -> ^(CLASS_NAME ID);
@@ -632,16 +643,8 @@ protocol_declaration
   ; 
 
 class_protocol_end
-  : class_protocol_end1
-  | class_protocol_end2;
-
-class_protocol_end1
   : declarations*
     '@end'
-  ;
-  
-class_protocol_end2
-  : ';'
   ;
   
 template: '<' template_internal '>';
@@ -752,19 +755,31 @@ type_declaration_protocol
   : 'id' '<' type_dec_internal '>' -> ^(TYPE_PLAIN type_dec_internal)
   ; 
 
+type_declaration_struct_simple
+  : 'struct' typedef_name ->^(STRUCT typedef_name)
+  ;
+
+type_declaration_union_simple
+  : 'union' typedef_name ->^(UNION typedef_name)
+  ;
+    
+type_declaration_enum_simple
+  : 'enum' typedef_name ->^(ENUM typedef_name)
+  ;
+
 type_declaration_struct
   : ('struct' typedef_name? '{')=> 'struct' typedef_name? struct_wrapper ->^(STRUCT_DEC typedef_name? struct_wrapper)
-  | 'struct' typedef_name ->^(STRUCT typedef_name)
+  | type_declaration_struct_simple
   ; 
 
 type_declaration_union
   : ('union' typedef_name? '{')=> 'union' typedef_name? struct_wrapper ->^(UNION_DEC typedef_name? struct_wrapper)
-  |  'union' typedef_name ->^(UNION typedef_name)
+  | type_declaration_union_simple
   ; 
 
 type_declaration_enum
   : ('enum' typedef_name? '{')=> 'enum' typedef_name? enum_wrapper ->^(ENUM_DEC typedef_name? enum_wrapper)
-  | 'enum' typedef_name ->^(ENUM typedef_name)
+  | type_declaration_enum_simple
   ;
 
 enum_wrapper
@@ -878,7 +893,7 @@ SINGLE_COMMENT
 // 	: '/*' .* '*/' ('\r'? '\n')? { skip(); };
 
 IF0_COMMENT options { greedy = false; }
-  : '#if 0' .* ('#else' | '#endif') ('\r'? '\n')? { skip(); };
+  : '#if 0' .* ('#endif') ('\r'? '\n')? { skip(); };
 
 DEFINE_LITERAL
   : '#define';
@@ -904,6 +919,7 @@ fragment EscapeSequence
   | 't'
   | '\'' 
   | '\\'
+  | '"'
   | UnicodeEscape
   )
   ;

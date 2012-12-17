@@ -11,7 +11,6 @@ import org.antlr.runtime.RecognitionException;
  * Time: 9:35
  */
 
-//TODO turn self in static functions to class name
 public class Converter {
 
     public static final boolean NOT_IFS = false;

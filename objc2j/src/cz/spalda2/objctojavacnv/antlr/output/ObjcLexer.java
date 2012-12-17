@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g 2012-12-09 16:16:22
+// $ANTLR 3.4 /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g 2012-12-17 03:13:57
 
 package cz.spalda2.objctojavacnv.antlr.output;
 
@@ -2158,14 +2158,14 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = SINGLE_COMMENT_LIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:867:3: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:867:5: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:882:3: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:882:5: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
             {
             match("//"); 
 
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:867:10: (~ ( '\\r' | '\\n' ) )*
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:882:10: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -2199,7 +2199,7 @@ public class ObjcLexer extends Lexer {
             } while (true);
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:867:26: ( ( '\\r' )? '\\n' )+
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:882:26: ( ( '\\r' )? '\\n' )+
             int cnt3=0;
             loop3:
             do {
@@ -2213,9 +2213,9 @@ public class ObjcLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:867:27: ( '\\r' )? '\\n'
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:882:27: ( '\\r' )? '\\n'
             	    {
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:867:27: ( '\\r' )?
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:882:27: ( '\\r' )?
             	    int alt2=2;
             	    int LA2_0 = input.LA(1);
 
@@ -2224,7 +2224,7 @@ public class ObjcLexer extends Lexer {
             	    }
             	    switch (alt2) {
             	        case 1 :
-            	            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:867:27: '\\r'
+            	            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:882:27: '\\r'
             	            {
             	            match('\r'); 
 
@@ -2265,14 +2265,14 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = MULTI_COMMENT_LIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:870:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:870:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:885:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:885:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
             {
             match("/*"); 
 
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:870:10: ( . )*
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:885:10: ( . )*
             loop4:
             do {
                 int alt4=2;
@@ -2297,7 +2297,7 @@ public class ObjcLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:870:10: .
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:885:10: .
             	    {
             	    matchAny(); 
 
@@ -2314,7 +2314,7 @@ public class ObjcLexer extends Lexer {
 
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:870:18: ( ( '\\r' )? '\\n' )?
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:885:18: ( ( '\\r' )? '\\n' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -2323,9 +2323,9 @@ public class ObjcLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:870:19: ( '\\r' )? '\\n'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:885:19: ( '\\r' )? '\\n'
                     {
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:870:19: ( '\\r' )?
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:885:19: ( '\\r' )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -2334,7 +2334,7 @@ public class ObjcLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:870:19: '\\r'
+                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:885:19: '\\r'
                             {
                             match('\r'); 
 
@@ -2368,14 +2368,14 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = IF0_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:881:3: ( '#if 0' ( . )* ( '#else' | '#endif' ) ( ( '\\r' )? '\\n' )? )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:881:5: '#if 0' ( . )* ( '#else' | '#endif' ) ( ( '\\r' )? '\\n' )?
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:3: ( '#if 0' ( . )* ( '#endif' ) ( ( '\\r' )? '\\n' )? )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:5: '#if 0' ( . )* ( '#endif' ) ( ( '\\r' )? '\\n' )?
             {
             match("#if 0"); 
 
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:881:13: ( . )*
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:13: ( . )*
             loop7:
             do {
                 int alt7=2;
@@ -2387,58 +2387,37 @@ public class ObjcLexer extends Lexer {
                     if ( (LA7_1=='e') ) {
                         int LA7_3 = input.LA(3);
 
-                        if ( (LA7_3=='l') ) {
+                        if ( (LA7_3=='n') ) {
                             int LA7_4 = input.LA(4);
 
-                            if ( (LA7_4=='s') ) {
-                                int LA7_6 = input.LA(5);
+                            if ( (LA7_4=='d') ) {
+                                int LA7_5 = input.LA(5);
 
-                                if ( (LA7_6=='e') ) {
-                                    alt7=2;
-                                }
-                                else if ( ((LA7_6 >= '\u0000' && LA7_6 <= 'd')||(LA7_6 >= 'f' && LA7_6 <= '\uFFFF')) ) {
-                                    alt7=1;
-                                }
+                                if ( (LA7_5=='i') ) {
+                                    int LA7_6 = input.LA(6);
 
-
-                            }
-                            else if ( ((LA7_4 >= '\u0000' && LA7_4 <= 'r')||(LA7_4 >= 't' && LA7_4 <= '\uFFFF')) ) {
-                                alt7=1;
-                            }
-
-
-                        }
-                        else if ( (LA7_3=='n') ) {
-                            int LA7_5 = input.LA(4);
-
-                            if ( (LA7_5=='d') ) {
-                                int LA7_7 = input.LA(5);
-
-                                if ( (LA7_7=='i') ) {
-                                    int LA7_9 = input.LA(6);
-
-                                    if ( (LA7_9=='f') ) {
+                                    if ( (LA7_6=='f') ) {
                                         alt7=2;
                                     }
-                                    else if ( ((LA7_9 >= '\u0000' && LA7_9 <= 'e')||(LA7_9 >= 'g' && LA7_9 <= '\uFFFF')) ) {
+                                    else if ( ((LA7_6 >= '\u0000' && LA7_6 <= 'e')||(LA7_6 >= 'g' && LA7_6 <= '\uFFFF')) ) {
                                         alt7=1;
                                     }
 
 
                                 }
-                                else if ( ((LA7_7 >= '\u0000' && LA7_7 <= 'h')||(LA7_7 >= 'j' && LA7_7 <= '\uFFFF')) ) {
+                                else if ( ((LA7_5 >= '\u0000' && LA7_5 <= 'h')||(LA7_5 >= 'j' && LA7_5 <= '\uFFFF')) ) {
                                     alt7=1;
                                 }
 
 
                             }
-                            else if ( ((LA7_5 >= '\u0000' && LA7_5 <= 'c')||(LA7_5 >= 'e' && LA7_5 <= '\uFFFF')) ) {
+                            else if ( ((LA7_4 >= '\u0000' && LA7_4 <= 'c')||(LA7_4 >= 'e' && LA7_4 <= '\uFFFF')) ) {
                                 alt7=1;
                             }
 
 
                         }
-                        else if ( ((LA7_3 >= '\u0000' && LA7_3 <= 'k')||LA7_3=='m'||(LA7_3 >= 'o' && LA7_3 <= '\uFFFF')) ) {
+                        else if ( ((LA7_3 >= '\u0000' && LA7_3 <= 'm')||(LA7_3 >= 'o' && LA7_3 <= '\uFFFF')) ) {
                             alt7=1;
                         }
 
@@ -2457,7 +2436,7 @@ public class ObjcLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:881:13: .
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:13: .
             	    {
             	    matchAny(); 
 
@@ -2470,89 +2449,37 @@ public class ObjcLexer extends Lexer {
             } while (true);
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:881:16: ( '#else' | '#endif' )
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:16: ( '#endif' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:17: '#endif'
+            {
+            match("#endif"); 
 
-            if ( (LA8_0=='#') ) {
-                int LA8_1 = input.LA(2);
 
-                if ( (LA8_1=='e') ) {
-                    int LA8_2 = input.LA(3);
 
-                    if ( (LA8_2=='l') ) {
+            }
+
+
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:27: ( ( '\\r' )? '\\n' )?
+            int alt9=2;
+            int LA9_0 = input.LA(1);
+
+            if ( (LA9_0=='\n'||LA9_0=='\r') ) {
+                alt9=1;
+            }
+            switch (alt9) {
+                case 1 :
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:28: ( '\\r' )? '\\n'
+                    {
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:28: ( '\\r' )?
+                    int alt8=2;
+                    int LA8_0 = input.LA(1);
+
+                    if ( (LA8_0=='\r') ) {
                         alt8=1;
                     }
-                    else if ( (LA8_2=='n') ) {
-                        alt8=2;
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 8, 2, input);
-
-                        throw nvae;
-
-                    }
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("", 8, 1, input);
-
-                    throw nvae;
-
-                }
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 8, 0, input);
-
-                throw nvae;
-
-            }
-            switch (alt8) {
-                case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:881:17: '#else'
-                    {
-                    match("#else"); 
-
-
-
-                    }
-                    break;
-                case 2 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:881:27: '#endif'
-                    {
-                    match("#endif"); 
-
-
-
-                    }
-                    break;
-
-            }
-
-
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:881:37: ( ( '\\r' )? '\\n' )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
-
-            if ( (LA10_0=='\n'||LA10_0=='\r') ) {
-                alt10=1;
-            }
-            switch (alt10) {
-                case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:881:38: ( '\\r' )? '\\n'
-                    {
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:881:38: ( '\\r' )?
-                    int alt9=2;
-                    int LA9_0 = input.LA(1);
-
-                    if ( (LA9_0=='\r') ) {
-                        alt9=1;
-                    }
-                    switch (alt9) {
+                    switch (alt8) {
                         case 1 :
-                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:881:38: '\\r'
+                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:28: '\\r'
                             {
                             match('\r'); 
 
@@ -2588,8 +2515,8 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = DEFINE_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:884:3: ( '#define' )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:884:5: '#define'
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:899:3: ( '#define' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:899:5: '#define'
             {
             match("#define"); 
 
@@ -2611,8 +2538,8 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = PREPROCESSOR_DECLARATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:887:2: ( '#' ~ ( 'd' ) (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+ )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:887:4: '#' ~ ( 'd' ) (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:902:2: ( '#' ~ ( 'd' ) (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+ )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:902:4: '#' ~ ( 'd' ) (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+
             {
             match('#'); 
 
@@ -2626,18 +2553,18 @@ public class ObjcLexer extends Lexer {
             }
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:887:15: (~ ( '\\r' | '\\n' ) )*
-            loop11:
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:902:15: (~ ( '\\r' | '\\n' ) )*
+            loop10:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt10=2;
+                int LA10_0 = input.LA(1);
 
-                if ( ((LA11_0 >= '\u0000' && LA11_0 <= '\t')||(LA11_0 >= '\u000B' && LA11_0 <= '\f')||(LA11_0 >= '\u000E' && LA11_0 <= '\uFFFF')) ) {
-                    alt11=1;
+                if ( ((LA10_0 >= '\u0000' && LA10_0 <= '\t')||(LA10_0 >= '\u000B' && LA10_0 <= '\f')||(LA10_0 >= '\u000E' && LA10_0 <= '\uFFFF')) ) {
+                    alt10=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt10) {
             	case 1 :
             	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
             	    {
@@ -2655,24 +2582,24 @@ public class ObjcLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop11;
+            	    break loop10;
                 }
             } while (true);
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:887:31: ( '\\r' | '\\n' )+
-            int cnt12=0;
-            loop12:
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:902:31: ( '\\r' | '\\n' )+
+            int cnt11=0;
+            loop11:
             do {
-                int alt12=2;
-                int LA12_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( (LA12_0=='\n'||LA12_0=='\r') ) {
-                    alt12=1;
+                if ( (LA11_0=='\n'||LA11_0=='\r') ) {
+                    alt11=1;
                 }
 
 
-                switch (alt12) {
+                switch (alt11) {
             	case 1 :
             	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
             	    {
@@ -2690,12 +2617,12 @@ public class ObjcLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt12 >= 1 ) break loop12;
+            	    if ( cnt11 >= 1 ) break loop11;
                         EarlyExitException eee =
-                            new EarlyExitException(12, input);
+                            new EarlyExitException(11, input);
                         throw eee;
                 }
-                cnt12++;
+                cnt11++;
             } while (true);
 
 
@@ -2717,44 +2644,44 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = NUMBER_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:890:17: ( ( '-' )? ( DIGIT )+ | '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+ )
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:905:17: ( ( '-' )? ( DIGIT )+ | '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+ )
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( (LA16_0=='-'||(LA16_0 >= '1' && LA16_0 <= '9')) ) {
-                alt16=1;
+            if ( (LA15_0=='-'||(LA15_0 >= '1' && LA15_0 <= '9')) ) {
+                alt15=1;
             }
-            else if ( (LA16_0=='0') ) {
-                int LA16_2 = input.LA(2);
+            else if ( (LA15_0=='0') ) {
+                int LA15_2 = input.LA(2);
 
-                if ( (LA16_2=='x') ) {
-                    alt16=2;
+                if ( (LA15_2=='x') ) {
+                    alt15=2;
                 }
                 else {
-                    alt16=1;
+                    alt15=1;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 16, 0, input);
+                    new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt16) {
+            switch (alt15) {
                 case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:890:19: ( '-' )? ( DIGIT )+
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:905:19: ( '-' )? ( DIGIT )+
                     {
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:890:19: ( '-' )?
-                    int alt13=2;
-                    int LA13_0 = input.LA(1);
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:905:19: ( '-' )?
+                    int alt12=2;
+                    int LA12_0 = input.LA(1);
 
-                    if ( (LA13_0=='-') ) {
-                        alt13=1;
+                    if ( (LA12_0=='-') ) {
+                        alt12=1;
                     }
-                    switch (alt13) {
+                    switch (alt12) {
                         case 1 :
-                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:890:19: '-'
+                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:905:19: '-'
                             {
                             match('-'); 
 
@@ -2764,14 +2691,62 @@ public class ObjcLexer extends Lexer {
                     }
 
 
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:890:24: ( DIGIT )+
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:905:24: ( DIGIT )+
+                    int cnt13=0;
+                    loop13:
+                    do {
+                        int alt13=2;
+                        int LA13_0 = input.LA(1);
+
+                        if ( ((LA13_0 >= '0' && LA13_0 <= '9')) ) {
+                            alt13=1;
+                        }
+
+
+                        switch (alt13) {
+                    	case 1 :
+                    	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
+                    	    {
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	        input.consume();
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt13 >= 1 ) break loop13;
+                                EarlyExitException eee =
+                                    new EarlyExitException(13, input);
+                                throw eee;
+                        }
+                        cnt13++;
+                    } while (true);
+
+
+                    }
+                    break;
+                case 2 :
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:906:4: '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+
+                    {
+                    match("0x"); 
+
+
+
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:906:9: ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+
                     int cnt14=0;
                     loop14:
                     do {
                         int alt14=2;
                         int LA14_0 = input.LA(1);
 
-                        if ( ((LA14_0 >= '0' && LA14_0 <= '9')) ) {
+                        if ( ((LA14_0 >= '0' && LA14_0 <= '9')||(LA14_0 >= 'A' && LA14_0 <= 'F')) ) {
                             alt14=1;
                         }
 
@@ -2780,7 +2755,7 @@ public class ObjcLexer extends Lexer {
                     	case 1 :
                     	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
                     	    {
-                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F') ) {
                     	        input.consume();
                     	    }
                     	    else {
@@ -2805,54 +2780,6 @@ public class ObjcLexer extends Lexer {
 
                     }
                     break;
-                case 2 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:891:4: '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+
-                    {
-                    match("0x"); 
-
-
-
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:891:9: ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+
-                    int cnt15=0;
-                    loop15:
-                    do {
-                        int alt15=2;
-                        int LA15_0 = input.LA(1);
-
-                        if ( ((LA15_0 >= '0' && LA15_0 <= '9')||(LA15_0 >= 'A' && LA15_0 <= 'F')) ) {
-                            alt15=1;
-                        }
-
-
-                        switch (alt15) {
-                    	case 1 :
-                    	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
-                    	    {
-                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F') ) {
-                    	        input.consume();
-                    	    }
-                    	    else {
-                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                    	        recover(mse);
-                    	        throw mse;
-                    	    }
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    if ( cnt15 >= 1 ) break loop15;
-                                EarlyExitException eee =
-                                    new EarlyExitException(15, input);
-                                throw eee;
-                        }
-                        cnt15++;
-                    } while (true);
-
-
-                    }
-                    break;
 
             }
             state.type = _type;
@@ -2869,22 +2796,22 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:893:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:893:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:908:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:908:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:893:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
-            int cnt17=0;
-            loop17:
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:908:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            int cnt16=0;
+            loop16:
             do {
-                int alt17=2;
-                int LA17_0 = input.LA(1);
+                int alt16=2;
+                int LA16_0 = input.LA(1);
 
-                if ( ((LA17_0 >= '\t' && LA17_0 <= '\n')||(LA17_0 >= '\f' && LA17_0 <= '\r')||LA17_0==' ') ) {
-                    alt17=1;
+                if ( ((LA16_0 >= '\t' && LA16_0 <= '\n')||(LA16_0 >= '\f' && LA16_0 <= '\r')||LA16_0==' ') ) {
+                    alt16=1;
                 }
 
 
-                switch (alt17) {
+                switch (alt16) {
             	case 1 :
             	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
             	    {
@@ -2902,12 +2829,12 @@ public class ObjcLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt17 >= 1 ) break loop17;
+            	    if ( cnt16 >= 1 ) break loop16;
                         EarlyExitException eee =
-                            new EarlyExitException(17, input);
+                            new EarlyExitException(16, input);
                         throw eee;
                 }
-                cnt17++;
+                cnt16++;
             } while (true);
 
 
@@ -2929,28 +2856,28 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = STRING_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:7: ( '\"' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )* '\"' )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:11: '\"' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )* '\"'
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:911:7: ( '\"' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )* '\"' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:911:11: '\"' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:15: ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )*
-            loop18:
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:911:15: ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )*
+            loop17:
             do {
-                int alt18=3;
-                int LA18_0 = input.LA(1);
+                int alt17=3;
+                int LA17_0 = input.LA(1);
 
-                if ( (LA18_0=='\\') ) {
-                    alt18=1;
+                if ( (LA17_0=='\\') ) {
+                    alt17=1;
                 }
-                else if ( ((LA18_0 >= ' ' && LA18_0 <= '!')||(LA18_0 >= '#' && LA18_0 <= '[')||(LA18_0 >= ']' && LA18_0 <= '\uFFFF')) ) {
-                    alt18=2;
+                else if ( ((LA17_0 >= ' ' && LA17_0 <= '!')||(LA17_0 >= '#' && LA17_0 <= '[')||(LA17_0 >= ']' && LA17_0 <= '\uFFFF')) ) {
+                    alt17=2;
                 }
 
 
-                switch (alt18) {
+                switch (alt17) {
             	case 1 :
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:17: EscapeSequence
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:911:17: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
@@ -2958,10 +2885,10 @@ public class ObjcLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) )
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:911:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) )
             	    {
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) )
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:896:61: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' )
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:911:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) )
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:911:61: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1) >= ' ' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -2980,7 +2907,7 @@ public class ObjcLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop18;
+            	    break loop17;
                 }
             } while (true);
 
@@ -3001,90 +2928,102 @@ public class ObjcLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:900:3: ( '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | UnicodeEscape ) )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:900:5: '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | UnicodeEscape )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:915:3: ( '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | '\"' | UnicodeEscape ) )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:915:5: '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | '\"' | UnicodeEscape )
             {
             match('\\'); 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:901:5: ( 'n' | 'r' | 't' | '\\'' | '\\\\' | UnicodeEscape )
-            int alt19=6;
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:916:5: ( 'n' | 'r' | 't' | '\\'' | '\\\\' | '\"' | UnicodeEscape )
+            int alt18=7;
             switch ( input.LA(1) ) {
             case 'n':
                 {
-                alt19=1;
+                alt18=1;
                 }
                 break;
             case 'r':
                 {
-                alt19=2;
+                alt18=2;
                 }
                 break;
             case 't':
                 {
-                alt19=3;
+                alt18=3;
                 }
                 break;
             case '\'':
                 {
-                alt19=4;
+                alt18=4;
                 }
                 break;
             case '\\':
                 {
-                alt19=5;
+                alt18=5;
+                }
+                break;
+            case '\"':
+                {
+                alt18=6;
                 }
                 break;
             case 'u':
                 {
-                alt19=6;
+                alt18=7;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 19, 0, input);
+                    new NoViableAltException("", 18, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt19) {
+            switch (alt18) {
                 case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:902:7: 'n'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:917:7: 'n'
                     {
                     match('n'); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:903:5: 'r'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:918:5: 'r'
                     {
                     match('r'); 
 
                     }
                     break;
                 case 3 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:904:5: 't'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:919:5: 't'
                     {
                     match('t'); 
 
                     }
                     break;
                 case 4 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:905:5: '\\''
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:920:5: '\\''
                     {
                     match('\''); 
 
                     }
                     break;
                 case 5 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:906:5: '\\\\'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:921:5: '\\\\'
                     {
                     match('\\'); 
 
                     }
                     break;
                 case 6 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:907:5: UnicodeEscape
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:5: '\"'
+                    {
+                    match('\"'); 
+
+                    }
+                    break;
+                case 7 :
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:923:5: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
@@ -3108,8 +3047,8 @@ public class ObjcLexer extends Lexer {
     // $ANTLR start "UnicodeEscape"
     public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:912:7: ( 'u' HexDigit HexDigit HexDigit HexDigit )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:912:13: 'u' HexDigit HexDigit HexDigit HexDigit
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:928:7: ( 'u' HexDigit HexDigit HexDigit HexDigit )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:928:13: 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('u'); 
 
@@ -3138,7 +3077,7 @@ public class ObjcLexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:916:3: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:932:3: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
             // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -3166,8 +3105,8 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = STRING_OBJC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:919:2: ( '@' STRING_LITERAL )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:919:4: '@' STRING_LITERAL
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:935:2: ( '@' STRING_LITERAL )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:935:4: '@' STRING_LITERAL
             {
             match('@'); 
 
@@ -3190,43 +3129,43 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = BOOL_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:3: ( ( 'YES' | 'NO' | 'true' | 'false' ) )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:5: ( 'YES' | 'NO' | 'true' | 'false' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:938:3: ( ( 'YES' | 'NO' | 'true' | 'false' ) )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:938:5: ( 'YES' | 'NO' | 'true' | 'false' )
             {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:5: ( 'YES' | 'NO' | 'true' | 'false' )
-            int alt20=4;
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:938:5: ( 'YES' | 'NO' | 'true' | 'false' )
+            int alt19=4;
             switch ( input.LA(1) ) {
             case 'Y':
                 {
-                alt20=1;
+                alt19=1;
                 }
                 break;
             case 'N':
                 {
-                alt20=2;
+                alt19=2;
                 }
                 break;
             case 't':
                 {
-                alt20=3;
+                alt19=3;
                 }
                 break;
             case 'f':
                 {
-                alt20=4;
+                alt19=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 20, 0, input);
+                    new NoViableAltException("", 19, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt20) {
+            switch (alt19) {
                 case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:6: 'YES'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:938:6: 'YES'
                     {
                     match("YES"); 
 
@@ -3235,7 +3174,7 @@ public class ObjcLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:14: 'NO'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:938:14: 'NO'
                     {
                     match("NO"); 
 
@@ -3244,7 +3183,7 @@ public class ObjcLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:21: 'true'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:938:21: 'true'
                     {
                     match("true"); 
 
@@ -3253,7 +3192,7 @@ public class ObjcLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:30: 'false'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:938:30: 'false'
                     {
                     match("false"); 
 
@@ -3281,24 +3220,24 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:925:3: ( LETTER ( DIGIT | LETTER )* )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:925:5: LETTER ( DIGIT | LETTER )*
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:941:3: ( LETTER ( DIGIT | LETTER )* )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:941:5: LETTER ( DIGIT | LETTER )*
             {
             mLETTER(); 
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:925:12: ( DIGIT | LETTER )*
-            loop21:
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:941:12: ( DIGIT | LETTER )*
+            loop20:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt20=2;
+                int LA20_0 = input.LA(1);
 
-                if ( ((LA21_0 >= '0' && LA21_0 <= '9')||(LA21_0 >= 'A' && LA21_0 <= 'Z')||LA21_0=='_'||(LA21_0 >= 'a' && LA21_0 <= 'z')) ) {
-                    alt21=1;
+                if ( ((LA20_0 >= '0' && LA20_0 <= '9')||(LA20_0 >= 'A' && LA20_0 <= 'Z')||LA20_0=='_'||(LA20_0 >= 'a' && LA20_0 <= 'z')) ) {
+                    alt20=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt20) {
             	case 1 :
             	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
             	    {
@@ -3316,7 +3255,7 @@ public class ObjcLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop20;
                 }
             } while (true);
 
@@ -3335,7 +3274,7 @@ public class ObjcLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:927:17: ( '0' .. '9' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:943:17: ( '0' .. '9' )
             // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -3361,7 +3300,7 @@ public class ObjcLexer extends Lexer {
     // $ANTLR start "LETTER"
     public final void mLETTER() throws RecognitionException {
         try {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:928:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:944:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
             // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -3386,9 +3325,9 @@ public class ObjcLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:1:8: ( T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | SINGLE_COMMENT_LIT | MULTI_COMMENT_LIT | IF0_COMMENT | DEFINE_LITERAL | PREPROCESSOR_DECLARATION | NUMBER_LITERAL | WHITESPACE | STRING_LITERAL | STRING_OBJC | BOOL_LITERAL | ID )
-        int alt22=97;
-        alt22 = dfa22.predict(input);
-        switch (alt22) {
+        int alt21=97;
+        alt21 = dfa21.predict(input);
+        switch (alt21) {
             case 1 :
                 // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:1:10: T__110
                 {
@@ -4171,8 +4110,8 @@ public class ObjcLexer extends Lexer {
     }
 
 
-    protected DFA22 dfa22 = new DFA22(this);
-    static final String DFA22_eotS =
+    protected DFA21 dfa21 = new DFA21(this);
+    static final String DFA21_eotS =
         "\1\uffff\1\56\1\uffff\1\63\2\uffff\1\65\1\70\1\uffff\1\74\3\uffff"+
         "\1\77\1\101\1\104\2\uffff\1\54\2\uffff\1\122\15\54\1\uffff\1\154"+
         "\6\uffff\1\54\21\uffff\1\165\5\uffff\1\167\13\uffff\1\54\1\u0083"+
@@ -4184,11 +4123,11 @@ public class ObjcLexer extends Lexer {
         "\1\54\1\u0083\2\uffff\1\54\1\u00e0\4\54\1\u00e5\1\54\1\u00e7\3\uffff"+
         "\1\54\2\uffff\2\54\1\u00ee\1\u00ef\1\uffff\1\u00f0\1\u00f1\1\u00f2"+
         "\1\54\1\uffff\1\54\2\uffff\1\161\1\uffff\2\54\1\u00f9\5\uffff\1"+
-        "\u00fa\1\54\2\uffff\1\54\1\u00ff\2\uffff\1\u0100\2\uffff\1\u0103"+
-        "\5\uffff\1\u00f6\1\uffff\1\161\2\u00f6";
-    static final String DFA22_eofS =
-        "\u0109\uffff";
-    static final String DFA22_minS =
+        "\u00fa\1\54\2\uffff\1\54\1\u00fe\2\uffff\1\u00ff\1\uffff\1\u0101"+
+        "\5\uffff\1\u00f6\1\161\1\u00f6";
+    static final String DFA21_eofS =
+        "\u0106\uffff";
+    static final String DFA21_minS =
         "\1\11\1\75\1\40\1\46\2\uffff\1\75\1\53\1\uffff\1\55\3\uffff\1\74"+
         "\2\75\1\uffff\1\42\1\117\2\uffff\1\50\1\162\1\141\1\145\1\154\1"+
         "\141\1\157\1\144\1\157\1\145\1\150\1\162\1\156\1\150\1\uffff\1\75"+
@@ -4206,9 +4145,9 @@ public class ObjcLexer extends Lexer {
         "\154\2\uffff\1\156\1\60\2\uffff\1\156\1\60\1\143\1\164\1\150\1\145"+
         "\1\60\1\156\1\60\1\0\2\uffff\1\111\2\uffff\1\165\1\164\2\60\1\uffff"+
         "\3\60\1\146\1\uffff\1\145\1\uffff\3\0\1\116\1\145\1\60\5\uffff\1"+
-        "\60\1\144\1\0\1\uffff\1\105\1\60\2\uffff\1\60\2\0\1\60\2\uffff\2"+
-        "\0\1\uffff\3\0\1\12\1\0";
-    static final String DFA22_maxS =
+        "\60\1\144\1\0\1\uffff\1\105\1\60\2\uffff\1\60\1\0\1\60\2\uffff\1"+
+        "\0\1\uffff\3\0\1\12";
+    static final String DFA21_maxS =
         "\1\176\1\75\1\uffff\1\75\2\uffff\2\75\1\uffff\1\76\3\uffff\2\75"+
         "\1\76\1\uffff\1\164\1\123\2\uffff\1\50\1\162\2\157\1\170\2\157\1"+
         "\156\1\157\1\145\1\167\1\171\1\156\1\150\1\uffff\1\174\2\uffff\1"+
@@ -4227,9 +4166,9 @@ public class ObjcLexer extends Lexer {
         "\1\143\1\164\1\150\1\145\1\172\1\156\1\172\1\uffff\2\uffff\1\111"+
         "\2\uffff\1\165\1\164\2\172\1\uffff\3\172\1\146\1\uffff\1\145\1\uffff"+
         "\3\uffff\1\116\1\145\1\172\5\uffff\1\172\1\144\1\uffff\1\uffff\1"+
-        "\105\1\172\2\uffff\1\172\2\uffff\1\172\2\uffff\2\uffff\1\uffff\3"+
-        "\uffff\1\15\1\uffff";
-    static final String DFA22_acceptS =
+        "\105\1\172\2\uffff\1\172\1\uffff\1\172\2\uffff\1\uffff\1\uffff\3"+
+        "\uffff\1\15";
+    static final String DFA21_acceptS =
         "\4\uffff\1\7\1\10\2\uffff\1\16\1\uffff\1\23\1\24\1\25\3\uffff\1"+
         "\40\2\uffff\1\64\1\65\16\uffff\1\121\1\uffff\1\125\1\126\2\uffff"+
         "\1\134\1\135\1\uffff\1\141\1\2\1\1\1\uffff\1\136\1\4\1\6\1\5\1\12"+
@@ -4242,13 +4181,13 @@ public class ObjcLexer extends Lexer {
         "\1\101\2\uffff\1\106\14\uffff\1\52\1\uffff\1\57\1\60\2\uffff\1\71"+
         "\3\uffff\1\76\1\77\2\uffff\1\102\1\107\12\uffff\1\53\1\54\1\uffff"+
         "\1\70\1\72\4\uffff\1\111\4\uffff\1\116\1\uffff\1\120\6\uffff\1\100"+
-        "\1\110\1\112\1\113\1\114\3\uffff\1\131\2\uffff\1\74\1\115\4\uffff"+
-        "\1\73\1\117\2\uffff\1\63\5\uffff";
-    static final String DFA22_specialS =
-        "\50\uffff\1\10\106\uffff\1\2\56\uffff\1\17\35\uffff\1\16\31\uffff"+
-        "\1\3\21\uffff\1\6\1\4\1\20\12\uffff\1\5\6\uffff\1\15\1\12\3\uffff"+
-        "\1\11\1\13\1\uffff\1\0\1\14\1\7\1\uffff\1\1}>";
-    static final String[] DFA22_transitionS = {
+        "\1\110\1\112\1\113\1\114\3\uffff\1\131\2\uffff\1\74\1\115\3\uffff"+
+        "\1\73\1\117\1\uffff\1\63\4\uffff";
+    static final String DFA21_specialS =
+        "\50\uffff\1\5\106\uffff\1\0\56\uffff\1\10\35\uffff\1\12\31\uffff"+
+        "\1\15\21\uffff\1\6\1\2\1\1\12\uffff\1\13\6\uffff\1\14\3\uffff\1"+
+        "\7\1\uffff\1\11\1\3\1\4\1\uffff}>";
+    static final String[] DFA21_transitionS = {
             "\2\52\1\uffff\2\52\22\uffff\1\52\1\1\1\2\1\50\2\uffff\1\3\1"+
             "\uffff\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\47\12\51\1\13\1\14\1"+
             "\15\1\16\1\17\1\20\1\21\15\54\1\22\12\54\1\53\1\54\1\23\1\uffff"+
@@ -4501,62 +4440,57 @@ public class ObjcLexer extends Lexer {
             "",
             "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\32\54",
             "\1\u00fb",
-            "\12\u00ea\1\u00e9\2\u00ea\1\u00e9\25\u00ea\1\u00e8\110\u00ea"+
-            "\1\u00fc\1\u00ea\1\u00fd\uff91\u00ea",
+            "\12\u00ea\1\u00e9\2\u00ea\1\u00e9\25\u00ea\1\u00e8\112\u00ea"+
+            "\1\u00fc\uff91\u00ea",
             "",
-            "\1\u00fe",
+            "\1\u00fd",
             "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\32\54",
             "",
             "",
             "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\32\54",
-            "\12\u00ea\1\u00e9\2\u00ea\1\u00e9\25\u00ea\1\u00e8\117\u00ea"+
-            "\1\u0101\uff8c\u00ea",
             "\12\u00ea\1\u00e9\2\u00ea\1\u00e9\25\u00ea\1\u00e8\100\u00ea"+
-            "\1\u0102\uff9b\u00ea",
+            "\1\u0100\uff9b\u00ea",
             "\12\54\7\uffff\32\54\4\uffff\1\54\1\uffff\32\54",
             "",
             "",
-            "\12\u00ea\1\u00e9\2\u00ea\1\u00e9\25\u00ea\1\u00e8\101\u00ea"+
-            "\1\u0104\uff9a\u00ea",
             "\12\u00ea\1\u00e9\2\u00ea\1\u00e9\25\u00ea\1\u00e8\105\u00ea"+
-            "\1\u0105\uff96\u00ea",
+            "\1\u0102\uff96\u00ea",
             "",
-            "\12\u00ea\1\u0107\2\u00ea\1\u0106\25\u00ea\1\u00e8\uffdc\u00ea",
             "\12\u00ea\1\u00e9\2\u00ea\1\u00e9\25\u00ea\1\u00e8\102\u00ea"+
-            "\1\u0108\uff99\u00ea",
-            "\12\u00f6\1\u0107\2\u00f6\1\u00e9\ufff2\u00f6",
-            "\1\u00e9\2\uffff\1\u00e9",
-            "\12\u00ea\1\u0107\2\u00ea\1\u0106\25\u00ea\1\u00e8\uffdc\u00ea"
+            "\1\u0103\uff99\u00ea",
+            "\12\u00ea\1\u0105\2\u00ea\1\u0104\25\u00ea\1\u00e8\uffdc\u00ea",
+            "\12\u00f6\1\u0105\2\u00f6\1\u00e9\ufff2\u00f6",
+            "\1\u00e9\2\uffff\1\u00e9"
     };
 
-    static final short[] DFA22_eot = DFA.unpackEncodedString(DFA22_eotS);
-    static final short[] DFA22_eof = DFA.unpackEncodedString(DFA22_eofS);
-    static final char[] DFA22_min = DFA.unpackEncodedStringToUnsignedChars(DFA22_minS);
-    static final char[] DFA22_max = DFA.unpackEncodedStringToUnsignedChars(DFA22_maxS);
-    static final short[] DFA22_accept = DFA.unpackEncodedString(DFA22_acceptS);
-    static final short[] DFA22_special = DFA.unpackEncodedString(DFA22_specialS);
-    static final short[][] DFA22_transition;
+    static final short[] DFA21_eot = DFA.unpackEncodedString(DFA21_eotS);
+    static final short[] DFA21_eof = DFA.unpackEncodedString(DFA21_eofS);
+    static final char[] DFA21_min = DFA.unpackEncodedStringToUnsignedChars(DFA21_minS);
+    static final char[] DFA21_max = DFA.unpackEncodedStringToUnsignedChars(DFA21_maxS);
+    static final short[] DFA21_accept = DFA.unpackEncodedString(DFA21_acceptS);
+    static final short[] DFA21_special = DFA.unpackEncodedString(DFA21_specialS);
+    static final short[][] DFA21_transition;
 
     static {
-        int numStates = DFA22_transitionS.length;
-        DFA22_transition = new short[numStates][];
+        int numStates = DFA21_transitionS.length;
+        DFA21_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA22_transition[i] = DFA.unpackEncodedString(DFA22_transitionS[i]);
+            DFA21_transition[i] = DFA.unpackEncodedString(DFA21_transitionS[i]);
         }
     }
 
-    class DFA22 extends DFA {
+    class DFA21 extends DFA {
 
-        public DFA22(BaseRecognizer recognizer) {
+        public DFA21(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 22;
-            this.eot = DFA22_eot;
-            this.eof = DFA22_eof;
-            this.min = DFA22_min;
-            this.max = DFA22_max;
-            this.accept = DFA22_accept;
-            this.special = DFA22_special;
-            this.transition = DFA22_transition;
+            this.decisionNumber = 21;
+            this.eot = DFA21_eot;
+            this.eof = DFA21_eof;
+            this.min = DFA21_min;
+            this.max = DFA21_max;
+            this.accept = DFA21_accept;
+            this.special = DFA21_special;
+            this.transition = DFA21_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | SINGLE_COMMENT_LIT | MULTI_COMMENT_LIT | IF0_COMMENT | DEFINE_LITERAL | PREPROCESSOR_DECLARATION | NUMBER_LITERAL | WHITESPACE | STRING_LITERAL | STRING_OBJC | BOOL_LITERAL | ID );";
@@ -4566,232 +4500,186 @@ public class ObjcLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA22_260 = input.LA(1);
+                        int LA21_111 = input.LA(1);
 
                         s = -1;
-                        if ( (LA22_260=='\r') ) {s = 262;}
+                        if ( (LA21_111=='f') ) {s = 158;}
 
-                        else if ( (LA22_260=='\n') ) {s = 263;}
-
-                        else if ( (LA22_260=='#') ) {s = 232;}
-
-                        else if ( ((LA22_260 >= '\u0000' && LA22_260 <= '\t')||(LA22_260 >= '\u000B' && LA22_260 <= '\f')||(LA22_260 >= '\u000E' && LA22_260 <= '\"')||(LA22_260 >= '$' && LA22_260 <= '\uFFFF')) ) {s = 234;}
-
-                        else s = 246;
+                        else if ( ((LA21_111 >= '\u0000' && LA21_111 <= 'e')||(LA21_111 >= 'g' && LA21_111 <= '\uFFFF')) ) {s = 113;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA22_264 = input.LA(1);
+                        int LA21_234 = input.LA(1);
 
                         s = -1;
-                        if ( (LA22_264=='\r') ) {s = 262;}
+                        if ( (LA21_234=='#') ) {s = 232;}
 
-                        else if ( (LA22_264=='\n') ) {s = 263;}
+                        else if ( (LA21_234=='\n'||LA21_234=='\r') ) {s = 233;}
 
-                        else if ( (LA22_264=='#') ) {s = 232;}
+                        else if ( ((LA21_234 >= '\u0000' && LA21_234 <= '\t')||(LA21_234 >= '\u000B' && LA21_234 <= '\f')||(LA21_234 >= '\u000E' && LA21_234 <= '\"')||(LA21_234 >= '$' && LA21_234 <= '\uFFFF')) ) {s = 234;}
 
-                        else if ( ((LA22_264 >= '\u0000' && LA22_264 <= '\t')||(LA22_264 >= '\u000B' && LA22_264 <= '\f')||(LA22_264 >= '\u000E' && LA22_264 <= '\"')||(LA22_264 >= '$' && LA22_264 <= '\uFFFF')) ) {s = 234;}
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA21_233 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA21_233 >= '\u0000' && LA21_233 <= '\t')||(LA21_233 >= '\u000B' && LA21_233 <= '\f')||(LA21_233 >= '\u000E' && LA21_233 <= '\uFFFF')) ) {s = 246;}
+
+                        else if ( (LA21_233=='\n'||LA21_233=='\r') ) {s = 233;}
+
+                        else s = 113;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA21_259 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA21_259=='\r') ) {s = 260;}
+
+                        else if ( (LA21_259=='\n') ) {s = 261;}
+
+                        else if ( (LA21_259=='#') ) {s = 232;}
+
+                        else if ( ((LA21_259 >= '\u0000' && LA21_259 <= '\t')||(LA21_259 >= '\u000B' && LA21_259 <= '\f')||(LA21_259 >= '\u000E' && LA21_259 <= '\"')||(LA21_259 >= '$' && LA21_259 <= '\uFFFF')) ) {s = 234;}
 
                         else s = 246;
 
                         if ( s>=0 ) return s;
                         break;
-                    case 2 : 
-                        int LA22_111 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA22_111=='f') ) {s = 158;}
-
-                        else if ( ((LA22_111 >= '\u0000' && LA22_111 <= 'e')||(LA22_111 >= 'g' && LA22_111 <= '\uFFFF')) ) {s = 113;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA22_214 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA22_214=='#') ) {s = 232;}
-
-                        else if ( (LA22_214=='\n'||LA22_214=='\r') ) {s = 233;}
-
-                        else if ( ((LA22_214 >= '\u0000' && LA22_214 <= '\t')||(LA22_214 >= '\u000B' && LA22_214 <= '\f')||(LA22_214 >= '\u000E' && LA22_214 <= '\"')||(LA22_214 >= '$' && LA22_214 <= '\uFFFF')) ) {s = 234;}
-
-                        if ( s>=0 ) return s;
-                        break;
                     case 4 : 
-                        int LA22_233 = input.LA(1);
+                        int LA21_260 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA22_233 >= '\u0000' && LA22_233 <= '\t')||(LA22_233 >= '\u000B' && LA22_233 <= '\f')||(LA22_233 >= '\u000E' && LA22_233 <= '\uFFFF')) ) {s = 246;}
+                        if ( (LA21_260=='\n') ) {s = 261;}
 
-                        else if ( (LA22_233=='\n'||LA22_233=='\r') ) {s = 233;}
+                        else if ( ((LA21_260 >= '\u0000' && LA21_260 <= '\t')||(LA21_260 >= '\u000B' && LA21_260 <= '\f')||(LA21_260 >= '\u000E' && LA21_260 <= '\uFFFF')) ) {s = 246;}
+
+                        else if ( (LA21_260=='\r') ) {s = 233;}
 
                         else s = 113;
 
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA22_245 = input.LA(1);
+                        int LA21_40 = input.LA(1);
 
                         s = -1;
-                        if ( (LA22_245=='l') ) {s = 252;}
+                        if ( (LA21_40=='i') ) {s = 111;}
 
-                        else if ( (LA22_245=='n') ) {s = 253;}
+                        else if ( (LA21_40=='d') ) {s = 112;}
 
-                        else if ( (LA22_245=='#') ) {s = 232;}
-
-                        else if ( (LA22_245=='\n'||LA22_245=='\r') ) {s = 233;}
-
-                        else if ( ((LA22_245 >= '\u0000' && LA22_245 <= '\t')||(LA22_245 >= '\u000B' && LA22_245 <= '\f')||(LA22_245 >= '\u000E' && LA22_245 <= '\"')||(LA22_245 >= '$' && LA22_245 <= 'k')||LA22_245=='m'||(LA22_245 >= 'o' && LA22_245 <= '\uFFFF')) ) {s = 234;}
+                        else if ( ((LA21_40 >= '\u0000' && LA21_40 <= 'c')||(LA21_40 >= 'e' && LA21_40 <= 'h')||(LA21_40 >= 'j' && LA21_40 <= '\uFFFF')) ) {s = 113;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA22_232 = input.LA(1);
+                        int LA21_232 = input.LA(1);
 
                         s = -1;
-                        if ( (LA22_232=='e') ) {s = 245;}
+                        if ( (LA21_232=='e') ) {s = 245;}
 
-                        else if ( (LA22_232=='#') ) {s = 232;}
+                        else if ( (LA21_232=='#') ) {s = 232;}
 
-                        else if ( (LA22_232=='\n'||LA22_232=='\r') ) {s = 233;}
+                        else if ( (LA21_232=='\n'||LA21_232=='\r') ) {s = 233;}
 
-                        else if ( ((LA22_232 >= '\u0000' && LA22_232 <= '\t')||(LA22_232 >= '\u000B' && LA22_232 <= '\f')||(LA22_232 >= '\u000E' && LA22_232 <= '\"')||(LA22_232 >= '$' && LA22_232 <= 'd')||(LA22_232 >= 'f' && LA22_232 <= '\uFFFF')) ) {s = 234;}
+                        else if ( ((LA21_232 >= '\u0000' && LA21_232 <= '\t')||(LA21_232 >= '\u000B' && LA21_232 <= '\f')||(LA21_232 >= '\u000E' && LA21_232 <= '\"')||(LA21_232 >= '$' && LA21_232 <= 'd')||(LA21_232 >= 'f' && LA21_232 <= '\uFFFF')) ) {s = 234;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA22_262 = input.LA(1);
+                        int LA21_256 = input.LA(1);
 
                         s = -1;
-                        if ( (LA22_262=='\n') ) {s = 263;}
+                        if ( (LA21_256=='i') ) {s = 258;}
 
-                        else if ( ((LA22_262 >= '\u0000' && LA22_262 <= '\t')||(LA22_262 >= '\u000B' && LA22_262 <= '\f')||(LA22_262 >= '\u000E' && LA22_262 <= '\uFFFF')) ) {s = 246;}
+                        else if ( (LA21_256=='#') ) {s = 232;}
 
-                        else if ( (LA22_262=='\r') ) {s = 233;}
+                        else if ( (LA21_256=='\n'||LA21_256=='\r') ) {s = 233;}
 
-                        else s = 113;
+                        else if ( ((LA21_256 >= '\u0000' && LA21_256 <= '\t')||(LA21_256 >= '\u000B' && LA21_256 <= '\f')||(LA21_256 >= '\u000E' && LA21_256 <= '\"')||(LA21_256 >= '$' && LA21_256 <= 'h')||(LA21_256 >= 'j' && LA21_256 <= '\uFFFF')) ) {s = 234;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA22_40 = input.LA(1);
+                        int LA21_158 = input.LA(1);
 
                         s = -1;
-                        if ( (LA22_40=='i') ) {s = 111;}
+                        if ( (LA21_158==' ') ) {s = 188;}
 
-                        else if ( (LA22_40=='d') ) {s = 112;}
-
-                        else if ( ((LA22_40 >= '\u0000' && LA22_40 <= 'c')||(LA22_40 >= 'e' && LA22_40 <= 'h')||(LA22_40 >= 'j' && LA22_40 <= '\uFFFF')) ) {s = 113;}
+                        else if ( ((LA21_158 >= '\u0000' && LA21_158 <= '\u001F')||(LA21_158 >= '!' && LA21_158 <= '\uFFFF')) ) {s = 113;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA22_257 = input.LA(1);
+                        int LA21_258 = input.LA(1);
 
                         s = -1;
-                        if ( (LA22_257=='e') ) {s = 260;}
+                        if ( (LA21_258=='f') ) {s = 259;}
 
-                        else if ( (LA22_257=='#') ) {s = 232;}
+                        else if ( (LA21_258=='#') ) {s = 232;}
 
-                        else if ( (LA22_257=='\n'||LA22_257=='\r') ) {s = 233;}
+                        else if ( (LA21_258=='\n'||LA21_258=='\r') ) {s = 233;}
 
-                        else if ( ((LA22_257 >= '\u0000' && LA22_257 <= '\t')||(LA22_257 >= '\u000B' && LA22_257 <= '\f')||(LA22_257 >= '\u000E' && LA22_257 <= '\"')||(LA22_257 >= '$' && LA22_257 <= 'd')||(LA22_257 >= 'f' && LA22_257 <= '\uFFFF')) ) {s = 234;}
+                        else if ( ((LA21_258 >= '\u0000' && LA21_258 <= '\t')||(LA21_258 >= '\u000B' && LA21_258 <= '\f')||(LA21_258 >= '\u000E' && LA21_258 <= '\"')||(LA21_258 >= '$' && LA21_258 <= 'e')||(LA21_258 >= 'g' && LA21_258 <= '\uFFFF')) ) {s = 234;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 10 : 
-                        int LA22_253 = input.LA(1);
+                        int LA21_188 = input.LA(1);
 
                         s = -1;
-                        if ( (LA22_253=='d') ) {s = 258;}
+                        if ( (LA21_188=='0') ) {s = 214;}
 
-                        else if ( (LA22_253=='#') ) {s = 232;}
-
-                        else if ( (LA22_253=='\n'||LA22_253=='\r') ) {s = 233;}
-
-                        else if ( ((LA22_253 >= '\u0000' && LA22_253 <= '\t')||(LA22_253 >= '\u000B' && LA22_253 <= '\f')||(LA22_253 >= '\u000E' && LA22_253 <= '\"')||(LA22_253 >= '$' && LA22_253 <= 'c')||(LA22_253 >= 'e' && LA22_253 <= '\uFFFF')) ) {s = 234;}
+                        else if ( ((LA21_188 >= '\u0000' && LA21_188 <= '/')||(LA21_188 >= '1' && LA21_188 <= '\uFFFF')) ) {s = 113;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 11 : 
-                        int LA22_258 = input.LA(1);
+                        int LA21_245 = input.LA(1);
 
                         s = -1;
-                        if ( (LA22_258=='i') ) {s = 261;}
+                        if ( (LA21_245=='n') ) {s = 252;}
 
-                        else if ( (LA22_258=='#') ) {s = 232;}
+                        else if ( (LA21_245=='#') ) {s = 232;}
 
-                        else if ( (LA22_258=='\n'||LA22_258=='\r') ) {s = 233;}
+                        else if ( (LA21_245=='\n'||LA21_245=='\r') ) {s = 233;}
 
-                        else if ( ((LA22_258 >= '\u0000' && LA22_258 <= '\t')||(LA22_258 >= '\u000B' && LA22_258 <= '\f')||(LA22_258 >= '\u000E' && LA22_258 <= '\"')||(LA22_258 >= '$' && LA22_258 <= 'h')||(LA22_258 >= 'j' && LA22_258 <= '\uFFFF')) ) {s = 234;}
+                        else if ( ((LA21_245 >= '\u0000' && LA21_245 <= '\t')||(LA21_245 >= '\u000B' && LA21_245 <= '\f')||(LA21_245 >= '\u000E' && LA21_245 <= '\"')||(LA21_245 >= '$' && LA21_245 <= 'm')||(LA21_245 >= 'o' && LA21_245 <= '\uFFFF')) ) {s = 234;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 12 : 
-                        int LA22_261 = input.LA(1);
+                        int LA21_252 = input.LA(1);
 
                         s = -1;
-                        if ( (LA22_261=='f') ) {s = 264;}
+                        if ( (LA21_252=='d') ) {s = 256;}
 
-                        else if ( (LA22_261=='#') ) {s = 232;}
+                        else if ( (LA21_252=='#') ) {s = 232;}
 
-                        else if ( (LA22_261=='\n'||LA22_261=='\r') ) {s = 233;}
+                        else if ( (LA21_252=='\n'||LA21_252=='\r') ) {s = 233;}
 
-                        else if ( ((LA22_261 >= '\u0000' && LA22_261 <= '\t')||(LA22_261 >= '\u000B' && LA22_261 <= '\f')||(LA22_261 >= '\u000E' && LA22_261 <= '\"')||(LA22_261 >= '$' && LA22_261 <= 'e')||(LA22_261 >= 'g' && LA22_261 <= '\uFFFF')) ) {s = 234;}
+                        else if ( ((LA21_252 >= '\u0000' && LA21_252 <= '\t')||(LA21_252 >= '\u000B' && LA21_252 <= '\f')||(LA21_252 >= '\u000E' && LA21_252 <= '\"')||(LA21_252 >= '$' && LA21_252 <= 'c')||(LA21_252 >= 'e' && LA21_252 <= '\uFFFF')) ) {s = 234;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 13 : 
-                        int LA22_252 = input.LA(1);
+                        int LA21_214 = input.LA(1);
 
                         s = -1;
-                        if ( (LA22_252=='s') ) {s = 257;}
+                        if ( (LA21_214=='#') ) {s = 232;}
 
-                        else if ( (LA22_252=='#') ) {s = 232;}
+                        else if ( (LA21_214=='\n'||LA21_214=='\r') ) {s = 233;}
 
-                        else if ( (LA22_252=='\n'||LA22_252=='\r') ) {s = 233;}
-
-                        else if ( ((LA22_252 >= '\u0000' && LA22_252 <= '\t')||(LA22_252 >= '\u000B' && LA22_252 <= '\f')||(LA22_252 >= '\u000E' && LA22_252 <= '\"')||(LA22_252 >= '$' && LA22_252 <= 'r')||(LA22_252 >= 't' && LA22_252 <= '\uFFFF')) ) {s = 234;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 14 : 
-                        int LA22_188 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA22_188=='0') ) {s = 214;}
-
-                        else if ( ((LA22_188 >= '\u0000' && LA22_188 <= '/')||(LA22_188 >= '1' && LA22_188 <= '\uFFFF')) ) {s = 113;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 15 : 
-                        int LA22_158 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA22_158==' ') ) {s = 188;}
-
-                        else if ( ((LA22_158 >= '\u0000' && LA22_158 <= '\u001F')||(LA22_158 >= '!' && LA22_158 <= '\uFFFF')) ) {s = 113;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 16 : 
-                        int LA22_234 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA22_234=='#') ) {s = 232;}
-
-                        else if ( (LA22_234=='\n'||LA22_234=='\r') ) {s = 233;}
-
-                        else if ( ((LA22_234 >= '\u0000' && LA22_234 <= '\t')||(LA22_234 >= '\u000B' && LA22_234 <= '\f')||(LA22_234 >= '\u000E' && LA22_234 <= '\"')||(LA22_234 >= '$' && LA22_234 <= '\uFFFF')) ) {s = 234;}
+                        else if ( ((LA21_214 >= '\u0000' && LA21_214 <= '\t')||(LA21_214 >= '\u000B' && LA21_214 <= '\f')||(LA21_214 >= '\u000E' && LA21_214 <= '\"')||(LA21_214 >= '$' && LA21_214 <= '\uFFFF')) ) {s = 234;}
 
                         if ( s>=0 ) return s;
                         break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 22, _s, input);
+                new NoViableAltException(getDescription(), 21, _s, input);
             error(nvae);
             throw nvae;
         }

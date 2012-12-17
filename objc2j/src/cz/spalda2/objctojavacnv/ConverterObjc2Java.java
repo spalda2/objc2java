@@ -34,6 +34,7 @@ public class ConverterObjc2Java {
 	//TODO the way we work with the below 2 vars assumes no nested classes and/or methods which is fine for objc
 	String iCurrentClassName = null;
 	String iCurrentMethodName = null;
+	String iCurrentMethodModifier = "";
 	int iCurrentMethodMark = 0; //position of currently processed method implementation in iJavaCode
 	int iCurrentMethodBlockCount = 0;
 	
@@ -56,7 +57,7 @@ public class ConverterObjc2Java {
     	methodTranslation.put("isEqual", "equals");
     	//NSString -> String methods
     	methodTranslation.put("isEqualToString", "equals");
-    	methodTranslation.put("NSAssert","Assert.assertTrue");
+    	methodTranslation.put("NSAssert","Assert.assertFalse");
     };
 
     private static final Map<String, String> keywordTranslation;
@@ -115,10 +116,12 @@ public class ConverterObjc2Java {
     	//it could be xxx_COMMENT and such not explicitly caught anywhere
     	if (CommonTree.class.isInstance(node)) {
     		CommonTree tr = (CommonTree)node;
-        	if (tr.token.getType() == ObjcParser.IF0_COMMENT) {
+    		int type = tr.token.getType();
+        	if (type == ObjcParser.IF0_COMMENT) {
         		ret.append("\n/*").append(((CommonTree)node).getChild(0).toString()).append("\n*/");
+        		newLines(1,ret);
         		return;
-        	} else if (tr.token.getType() == ObjcParser.SINGLE_COMMENT) {
+        	} else if (type == ObjcParser.SINGLE_COMMENT || type == ObjcParser.MULTI_COMMENT) {
         		ret.append(tr.getChild(0).toString()); //this will append \n as well as a part of da comment
         		newLines(0,ret); //add desired number of \t
         		return;
@@ -419,12 +422,19 @@ public class ConverterObjc2Java {
 	                	if (className == null) {
 	                		value = parseValue(tr);
 	                		//don't append here => we might want to omit the call altogether
+		                	//turn self/this in static functions to class name
+		                	if (iCurrentMethodModifier.startsWith("static") && value.equals("this")) {
+		                		value = iCurrentClassName;
+		                	}
 	                	}
 	                    break;
 	                case ObjcParser.METHOD_NAME:
 	                	if (className != null) {
 	                		//we found alloc => translate to new
 	                		ret.append("new ").append(className);
+	                		if (tree.getFirstChildWithType(ObjcParser.METHOD_PARAMS) == null) {
+	                			ret.append("()");
+	                		}
 	                	} else {
 	                		String name = ((CommonTree) child).getChild(0).toString();
 	                		if (value.equals("super") && iCurrentClassName.equals(iCurrentMethodName) && name.startsWith("init")) {
@@ -965,8 +975,9 @@ public class ConverterObjc2Java {
     	if (type != ObjcLexer.SWITCH_STMT) {
     		return;
     	}
+    	boolean blocks = false;
         for (Object child : tree.getChildren()) {
-        	if (isNodeWithChildern(child)) {
+        	if (CommonTree.class.isInstance(child)) {
 	        	CommonTree tr = (CommonTree) child;
 	            switch (tr.token.getType()) {
 	                case ObjcParser.VALUE:
@@ -977,18 +988,31 @@ public class ConverterObjc2Java {
 	                	break;
 	                case ObjcParser.CASE_STMT:
 	                	//CASE_STMT->NAME|NUMBER->value
+	                	if (blocks) {
+		                	iBlockCount--;
+		                	blocks = false;
+	                	}
 	                	newLines(1,ret);
 	                	String value = ((CommonTree)tr.getChild(0)).getChild(0).toString();
-	                	ret.append("case ").append(value).append(" :");
+	                	ret.append("case ").append(value).append(':');
 	                	break;
 	                case ObjcParser.DEFAULT_STMT:
+	                	if (blocks) {
+		                	iBlockCount--;
+		                	blocks = false;
+	                	}
 	                	newLines(1,ret);
-	                	ret.append("default :");
+	                	ret.append("default:");
+	                	break;
 	                case ObjcParser.BLOCK_MULTI:
 	                	processBlock(tr,ret);
 	                	break;
 	                case ObjcParser.BLOCK_SINGLE:
-	                	newLines(1,ret);
+	                	if (!blocks) {
+		                	iBlockCount++;
+	                		newLines(1,ret);
+		                	blocks = true;
+	                	}
 	                	processInnerBlock(tr,ret);
 	                	break;
 	                default:
@@ -999,6 +1023,9 @@ public class ConverterObjc2Java {
 	        	processPlainNode(child,ret);
 	        }
         }
+    	if (blocks) {
+            iBlockCount--;    		
+    	}
         iBlockCount--;
         newLines(1,ret);
         ret.append('}');
@@ -1133,6 +1160,7 @@ public class ConverterObjc2Java {
     }
     
     static class MethodInfo {
+    	int retMark = 0; //not used at the moment
     }
     
     static class PropertyInfo extends MethodInfo {
@@ -1395,11 +1423,24 @@ public class ConverterObjc2Java {
 		            		modifier = "static ";	            			
 	            		}
 	            		break;
+	                case ObjcParser.ENUM:
+	                	retMark = iJavaCode.length();
+	                	processEnum(tr,iJavaCode,null);
+	                	break;
+	            	case ObjcParser.STRUCT:
+	            	case ObjcParser.UNION:
+	                	retMark = iJavaCode.length();
+	            		processStructUnion(tr,iJavaCode,null);
+	            		break;
 	                case ObjcParser.TYPE_PLAIN:
 	                	retMark = iJavaCode.length();
 	                	parseTypePlain(tr, iJavaCode);
 	                	break;
 	                case ObjcParser.METHOD_NAME:
+	                	if (retMark == 0) {
+	                		//panic!!:)
+	                		break;
+	                	}
 	            		name = tr.getChild(0).toString();
 	            		InterfaceInfo info = interfaces.get(iCurrentClassName);
 	            		//info.iMethods holds original method name
@@ -1424,6 +1465,7 @@ public class ConverterObjc2Java {
 	            			}
 	            		}
             			iCurrentMethodName = name;
+            			iCurrentMethodModifier = modifier;
             			iJavaCode.append(" ").append(name);
 	            		if (tree.getFirstChildWithType(ObjcParser.METHOD_PARAMS) == null) {
 	            			//no params
@@ -1569,7 +1611,8 @@ public class ConverterObjc2Java {
 	                		ctr = (CommonTree)ob;
 	                	} else {
 		                	String name = tr.getChild(0).toString();
-		                	iJavaCode.append("extends ").append(name).append(' ');
+		                	String translated = keywordTranslation.get(name);
+		                	iJavaCode.append("extends ").append(translated != null ? translated : name).append(' ');
 	                		ctr =(CommonTree) tr.getFirstChildWithType(ObjcParser.IMPLEMENTS_INTERFACES);
 	                	}
 	                	addIMPLEMENTS_INTERFACESandFinishHeader(ctr,iJavaCode);
@@ -1594,11 +1637,16 @@ public class ConverterObjc2Java {
 	                	//only remember then to be able to set a scope properly
 	                	CommonTree ntr = (CommonTree)tr.getFirstChildWithType(ObjcParser.METHOD_NAME);
 	                	String methodName = ntr.getChild(0).toString();
-	                	info.iMethods.put(methodName, new MethodInfo()); //TODO this isn't ideal as it makes all method of the same name public
-	                	// signature regardless but what the hell....
+	                	//if we've got a property of the same name already in it we will not replace it
+	                	//TODO this isn't ideal as it makes all method of the same name public signature regardless but what the hell....
+	                	if (info.iMethods.get(methodName) == null) {
+	                		info.iMethods.put(methodName, new MethodInfo()); 
+	                	}
 	                	break;
 	                default:
+	    	        	iIgnorePlainNodesCurrledBrackets = true;
 	                	parseFallthroughNode(tr,iJavaCode);
+	    	        	iIgnorePlainNodesCurrledBrackets = false;
 	                	break;
 	            }
 	        } else {
@@ -1771,7 +1819,8 @@ public class ConverterObjc2Java {
         	newLines(1,iJavaCodeGlobal);
         	iJavaCodeGlobal.append('}');
         	iBlockCount = 0;
-        	newLines(2,iJavaCodeGlobal);	
+        	newLines(2,iJavaCodeGlobal);
+        	//try to find a class of the same name as the processed file
         	InterfaceInfo info = interfaces.get(iGlobalScope);
         	if (info == null) {
         		//insert in front of methods of the 1st class we find
@@ -1800,10 +1849,10 @@ public class ConverterObjc2Java {
     	newLines(2,iJavaCodeGlobal);
     	iBlockCount = 1;
     	newLines(0,iJavaCodeGlobal);
-    	iJavaCodeGlobal.append("public static ").append("Global {");
+    	iJavaCodeGlobal.append("public static class ").append("Global {");
     	iBlockCount++;
     	newLines(1,iJavaCodeGlobal);
-    	iGlobalScope = fileName + "_Global";
+    	iGlobalScope = fileName;
 //    	InterfaceInfo info = new InterfaceInfo();
 //    	info.retMark = iJavaCodeGlobal.length();
 //    	interfaces.put(iGlobalScope, info);
