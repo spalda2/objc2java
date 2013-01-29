@@ -58,6 +58,10 @@ public class ConverterObjc2Java {
     	//NSString -> String methods
     	methodTranslation.put("isEqualToString", "equals");
     	methodTranslation.put("NSAssert","Assert.assertFalse");
+    	methodTranslation.put("assert","Assert.assertFalse");
+    	methodTranslation.put("stringWithFormat", "format");
+    	methodTranslation.put("stringByAppendingString","concat");
+    	methodTranslation.put("stringByAppendingFormat"," + String.format");
     };
 
     private static final Map<String, String> keywordTranslation;
@@ -81,7 +85,9 @@ public class ConverterObjc2Java {
     	keywordTranslation.put("BOOL", "boolean");
     	keywordTranslation.put("self", "this");
     	keywordTranslation.put("->", ".");
+    	keywordTranslation.put("&", "");
     	keywordTranslation.put("extern", "public");
+    	keywordTranslation.put("const", "final");
     	keywordTranslation.put("@try", "try");
     	keywordTranslation.put("@throw", "throw");
     	keywordTranslation.put("@catch", "catch");
@@ -96,7 +102,47 @@ public class ConverterObjc2Java {
     	keywordTranslation.put("@synchronized", "synchronized");
     	keywordTranslation.put("@class", "");
     	keywordTranslation.put("\"C\"", "");
+    	//Android specific translation
+    	keywordTranslation.put("viewDidLoad", "@Override\nonCreate");
+    	keywordTranslation.put("viewWillAppear", "@Override\nonStart");
+    	keywordTranslation.put("viewDidAppear", "@Override\nonResume");
+    	keywordTranslation.put("viewWillDisappear", "@Override\nonPause");
+    	keywordTranslation.put("viewDidDisappear", "@Override\nonStop");
+    	keywordTranslation.put("viewDidUnload", "@Override\nonDestroy");
+    	//MH specific translation
+    	keywordTranslation.put("MHSystem_File","File");
     };
+
+    String translateMethod(String name) {
+		String tname = methodTranslation.get(name);
+		if (tname != null) {
+			int i = tname.indexOf('\n');
+			if (i > -1) {
+				tname = tname.substring(i + 1);
+			}
+			name = tname;
+		}
+		return name;
+    }
+    
+    String translateKeyword(String name) {
+		String tname = keywordTranslation.get(name);
+		if (tname != null) {
+			int i = tname.indexOf('\n');
+			if (i > -1) {
+				tname = tname.substring(i + 1);
+			}
+			name = tname;
+		}
+		//MH specific bit=>replace '_' by '.' to change global stuff into a member of a class
+		//don't replace '_' after 2 consecutive capital letters
+		int i = name.indexOf('_');
+		while (i > 0 && name.substring(i - 1, i + 1).matches("[a-z0-9]_")) {
+			name = name.substring(0,i) + '.' + name.substring(i + 1);
+			i = name.indexOf('_');
+		}
+		return name;
+    }
 
     void newLines(int count,StringBuffer ret) {
 		while (count-- > 0) {
@@ -130,14 +176,18 @@ public class ConverterObjc2Java {
     	if (node != null) {
     		if (isNodeWithChildern(node)) {
         		CommonTree tree = (CommonTree)node;
+        		int i = 0;
     	        for (Object child : tree.getChildren()) {
     	        	if (isNodeWithChildern(child)) {
     		        	CommonTree tr = (CommonTree) child;
     		            parseFallthroughNode(tr,ret);
     		        } else {
-	                	//ret.append(' ');
+    		        	if (i > 0) {
+    		        		ret.append(' ');
+    		        	}
     		        	processPlainNode(child,ret);
     		        }
+    	        	i++;
     	        }
     		} else {
             	//ret.append(' ');
@@ -147,10 +197,7 @@ public class ConverterObjc2Java {
     }
 
     void processFragment(Object node, String str, StringBuffer ret) {
-		String translated = keywordTranslation.get(str);
-		if (translated != null) {
-			str = translated;
-		}
+		str = translateKeyword(str);
     	if (iIgnorePlainNodesBrackets && str.matches("[()]")) {
     		return;
     	}
@@ -213,12 +260,7 @@ public class ConverterObjc2Java {
     void parseTypePlain(CommonTree tree, StringBuffer ret) {
     	
     	iIgnorePlainNodesBrackets = true;
-        for (Object child : tree.getChildren()) {
-        	if (isNodeWithChildern(child)) {
-	        } else {
-	        	processPlainNode(child,ret);
-            }
-        }
+        parseFallthroughNode(tree,ret);
     	iIgnorePlainNodesBrackets = false;
     }
 
@@ -308,10 +350,10 @@ public class ConverterObjc2Java {
 	            case ObjcParser.NAME:
 	            case ObjcParser.STRING:
 	            case ObjcParser.BOOL:
-	            case ObjcParser.NUMBER:
 	            case ObjcParser.ACCESS:
                 	processPlainNode(tr.getChild(0),ret);
                 	break;
+	            case ObjcParser.NUMBER:
                 default:
                 	parseFallthroughNode(tr,ret);
                 	break;
@@ -445,15 +487,10 @@ public class ConverterObjc2Java {
 	    	                    	ret.append("()");
 	    	            		}
 		                	} else {
-		                		translatedName = keywordTranslation.get(name);
-		                		if (translatedName == null) {
-		                			translatedName = name;
-		                		}
+		                		String oname = name;
+		                		translatedName = translateKeyword(name);
 		                		String n = translatedName;
-		                		name = methodTranslation.get(translatedName);
-		                		if (name != null) {
-		                			translatedName = name;
-		                		}
+		                		translatedName = translateMethod(translatedName);
 		                		if (!translatedName.startsWith("<<")) { //"<<" => need swap value for parameter
 		                			//empty => omit the method name, == '-' omit the call alltogether
 		                			if (translatedName.length() == 0) {
@@ -468,15 +505,17 @@ public class ConverterObjc2Java {
 		                				//if empty translatedName => method call translates to value only
 		                				if (translatedName.length() > 0) {
 		                					if (translatedName.startsWith(" =")) {
-			                					ret.append(translatedName);		                						
+			                					ret.append(translatedName);
+		                					} else if (translatedName.startsWith(" +")) {
+			                					ret.append(translatedName);
 		                					} else {
 			                					ret.append('.');
 			                					name = translatedName;
 					    	            		if (tree.getFirstChildWithType(ObjcParser.METHOD_PARAMS) == null) {
 					    	            			//no params
 					    	            			name += "()";
-					    	            			n = methodTranslation.get(name);
-					    	            			ret.append(n != null ? n : name);
+					    	            			n = translateMethod(name);
+					    	            			ret.append(n);
 					    	            		} else {
 					    	            			ret.append(translatedName);
 					    	            		}
@@ -487,6 +526,10 @@ public class ConverterObjc2Java {
 		                					ret.append("/*TODO CONV possible constructor*/");
 		                				}
 			                		}
+		                			if (!translatedName.equals(oname)) {
+		                				//preserve original name via comment
+	                					ret.append("/*" + oname + "*/");		                				
+		                			}
 		                			translatedName = null;
 		                		}
 		                	}
@@ -518,8 +561,8 @@ public class ConverterObjc2Java {
 	            switch (tr.token.getType()) {
 	                case ObjcParser.NAME:
 	                	String name = tr.getChild(0).toString();
-	                	String translated = methodTranslation.get(name);
-	                	ret.append(translated != null ? translated : name);
+	                	name = translateMethod(name);
+	                	ret.append(name);
 	                	break;
 		            case ObjcParser.PARAMS:
 		            	String params = parseMethodParams(tr);
@@ -656,8 +699,8 @@ public class ConverterObjc2Java {
 	                	if (tr.getChildCount() > 2) {
 	                		//pick operator and value
 	                		str = tr.getChild(1).toString();
-	                		String translation = keywordTranslation.get(str);
-		                	ret.append(' ').append(translation != null ? translation : str).append(' ');
+	                		str = translateKeyword(str);
+		                	ret.append(' ').append(str).append(' ');
 		                	parseValueInternal((CommonTree)tr.getChild(2),ret);
 	                	}
 	                	ret.append(';');
@@ -826,6 +869,41 @@ public class ConverterObjc2Java {
     	return processVarOrField(tree,ret);
     }
     
+    void processArrayInit(CommonTree tree, StringBuffer ret, boolean onTheSameLine) {
+		ret.append(" {");
+		if (!onTheSameLine) {
+			iBlockCount++;
+		}
+		newLines(1,ret);
+		int i = 0;
+        for (Object val : tree.getChildren()) {
+        	CommonTree tr = (CommonTree)val;
+        	if (tr.token.getType() == ObjcParser.ARRAY_INIT) {
+        		if (tr.getChildIndex() > 0) {
+        			ret.append(',');
+        		}
+        		processArrayInit(tr,ret,true);
+        	} else {
+	        	String valStr = parseValue(tr);
+	        	if (valStr.length() > 0) {
+	        		if (i++ > 0) {
+	        			ret.append(',');
+	        			if (!onTheSameLine) {
+	        				newLines(1,ret);
+	        			}
+	        		}
+	        		ret.append(valStr);
+	        	}
+        	}
+        }
+		if (!onTheSameLine) {
+			iBlockCount--;
+			newLines(1,ret);
+		}
+		ret.append('}');
+
+    }
+    
     String processVarOrField(CommonTree tree, StringBuffer ret) {
     	//this could be classical function decl as well
     	int type = tree.token.getType();
@@ -843,23 +921,7 @@ public class ConverterObjc2Java {
 	        	CommonTree tr = (CommonTree) child;
 	            switch (tr.token.getType()) {
                 	case ObjcParser.ARRAY_INIT:
-                		ret.append(" {");
-                		iBlockCount++;
-                		newLines(1,ret);
-                		int i = 0;
-                        for (Object val : tr.getChildren()) {
-                        	String valStr = parseValue((CommonTree)val);
-                        	if (valStr.length() > 0) {
-                        		if (i++ > 0) {
-                        			ret.append(',');
-                                    newLines(1,ret);
-                        		}
-                        		ret.append(valStr);
-                        	}
-                        }
-                		iBlockCount--;
-                		newLines(1,ret);
-                		ret.append('}');
+                		processArrayInit(tr,ret,false);
                 		break;
 	                case ObjcParser.ENUM_DEC:
 	                	processEnum(tr,ret,name);
@@ -891,6 +953,7 @@ public class ConverterObjc2Java {
 		            	break;
 		            case ObjcParser.FIELD_NAME:
 		            	name = tr.getChild(0).toString();
+		            	name = translateKeyword(name);
 	                default:
 	                	parseFallthroughNode(tr,ret);
 	                	break;
@@ -994,6 +1057,7 @@ public class ConverterObjc2Java {
 	                	}
 	                	newLines(1,ret);
 	                	String value = ((CommonTree)tr.getChild(0)).getChild(0).toString();
+	                	value = translateKeyword(value);
 	                	ret.append("case ").append(value).append(':');
 	                	break;
 	                case ObjcParser.DEFAULT_STMT:
@@ -1165,6 +1229,7 @@ public class ConverterObjc2Java {
     
     static class PropertyInfo extends MethodInfo {
     	String iName; //!= null only if name is different from property => need to replace variable
+    	boolean iReadOnly;
     	int iGetVarStart;
     	int iGetVarEnd;
     	int iSetVarStart;
@@ -1229,37 +1294,45 @@ public class ConverterObjc2Java {
     	newLines(2,ret);
         String type = null;
         String name = null;
+        boolean readOnly = false;
         for (Object child : tree.getChildren()) {
-            switch (((CommonTree) child).token.getType()) {
-                case ObjcParser.TYPE_PLAIN:
-                	StringBuffer b = new StringBuffer();
-	            	parseTypePlain((CommonTree) child,b);
-                    type = b.toString();
-                    break;
-                case ObjcParser.FIELD_NAME:
-                    name = ((CommonTree) child).getChild(0).toString();
-                    break;
-            }
+        	if (CommonTree.class.isInstance(child)) {
+	            switch (((CommonTree) child).token.getType()) {
+	                case ObjcParser.TYPE_PLAIN:
+	                	StringBuffer b = new StringBuffer();
+		            	parseTypePlain((CommonTree) child,b);
+	                    type = b.toString();
+	                    break;
+	                case ObjcParser.FIELD_NAME:
+	                    name = ((CommonTree) child).getChild(0).toString();
+	                    break;
+	                case ObjcParser.NAME:
+	                	if (((CommonTree) child).getChild(0).toString().equals("readonly")) {
+	                		readOnly = true;
+	                	}
+	            }
+        	}
         }
         PropertyInfo info = new PropertyInfo();
+        info.iReadOnly = readOnly;
         
         ret.append("//TODO CONV conversion from @property");
         newLines(1,ret);
         //add both getter & setter
-        String transType = keywordTranslation.get(type);
-        type = transType != null ? transType : type;
+        type = translateKeyword(type);
         ret.append("public ").append(type).append(" ");
         ret.append(name);
         ret.append("() {return ");
         info.iGetVarStart = ret.length();
         info.iGetVarEnd = info.iGetVarStart + name.length();
         ret.append(name).append(";}");
-        newLines(1,ret);
-        ret.append("public void set").append(name).append("(").append(type).append(" a").append(name).append(") {");
-        info.iSetVarStart = ret.length();
-        info.iSetVarEnd = info.iSetVarStart + name.length();
-        ret.append(name).append(" = a").append(name).append(";}");
-        
+        if (!readOnly) {
+	        newLines(1,ret);
+	        ret.append("public void set").append(name).append("(").append(type).append(" a").append(name).append(") {");
+	        info.iSetVarStart = ret.length();
+	        info.iSetVarEnd = info.iSetVarStart + name.length();
+	        ret.append(name).append(" = a").append(name).append(";}");
+        }        
         InterfaceInfo inf = interfaces.get(iCurrentClassName);
         //this must not be null as we are inside of an interface righ now
         inf.iMethods.put(name, info);
@@ -1442,6 +1515,21 @@ public class ConverterObjc2Java {
 	                		break;
 	                	}
 	            		name = tr.getChild(0).toString();
+	            		String tname = keywordTranslation.get(name);
+	            		if (tname != null) {
+	            			int i = tname.indexOf('\n');
+	            			if (i > -1) {
+	            				String s = tname.substring(0, i);
+		            			iJavaCode.insert(retMark,s);
+	            				retMark += s.length();
+	            				int l = iJavaCode.length();
+	            				newLines(1,iJavaCode);
+	            				retMark += (iJavaCode.length() - l);
+		            			name = tname.substring(i + 1);
+	            			} else {
+	            				name = tname;
+	            			}
+	            		}
 	            		InterfaceInfo info = interfaces.get(iCurrentClassName);
 	            		//info.iMethods holds original method name
 	            		String scope = ""; //default
@@ -1611,21 +1699,24 @@ public class ConverterObjc2Java {
 	                		ctr = (CommonTree)ob;
 	                	} else {
 		                	String name = tr.getChild(0).toString();
-		                	String translated = keywordTranslation.get(name);
-		                	iJavaCode.append("extends ").append(translated != null ? translated : name).append(' ');
+		                	name = translateKeyword(name);
+		                	iJavaCode.append("extends ").append(name).append(' ');
 	                		ctr =(CommonTree) tr.getFirstChildWithType(ObjcParser.IMPLEMENTS_INTERFACES);
 	                	}
 	                	addIMPLEMENTS_INTERFACESandFinishHeader(ctr,iJavaCode);
 	                	break;
 	                case ObjcParser.GROUP_MODIFIER:
 	                	scope = tr.getChild(0).toString();
-	                	scope = keywordTranslation.get(scope);
+	                	scope = translateKeyword(scope) + ' ';
 	                	break;
 	                case ObjcParser.TYPEDEF:
 	                	processTypedef(tr,iJavaCode);
 	                	break;
 	                case ObjcParser.VARIABLE:
 	                case ObjcParser.FIELD:
+	                	if (scope != null) {
+	                		iJavaCode.append(scope);
+	                	}
 	                	processVarOrField(tr,iJavaCode);
 	                	break;
 	                case ObjcParser.PROPERTY:
@@ -1637,6 +1728,7 @@ public class ConverterObjc2Java {
 	                	//only remember then to be able to set a scope properly
 	                	CommonTree ntr = (CommonTree)tr.getFirstChildWithType(ObjcParser.METHOD_NAME);
 	                	String methodName = ntr.getChild(0).toString();
+	                	methodName = translateKeyword(methodName);
 	                	//if we've got a property of the same name already in it we will not replace it
 	                	//TODO this isn't ideal as it makes all method of the same name public signature regardless but what the hell....
 	                	if (info.iMethods.get(methodName) == null) {
@@ -1802,7 +1894,9 @@ public class ConverterObjc2Java {
 				    	int diff = pi.iName.length() - (pi.iGetVarEnd - pi.iGetVarStart);
 						iJavaCode.replace(pi.iGetVarStart, pi.iGetVarEnd, pi.iName);
 						//set is behind get
-						iJavaCode.replace(pi.iSetVarStart + diff, pi.iSetVarEnd + diff, pi.iName);
+						if (!pi.iReadOnly) {
+							iJavaCode.replace(pi.iSetVarStart + diff, pi.iSetVarEnd + diff, pi.iName);
+						}
 						int mark = info.retMark; 
 						info.retMark = pi.iSetVarEnd + diff + 1;
 						revisitInterfaceMarks(diff, info);

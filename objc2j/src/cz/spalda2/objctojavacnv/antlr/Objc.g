@@ -18,6 +18,7 @@ tokens {
   CATCH_STMT;
   CODE;
   CONTINUE_STMT;
+  CHAR;
 	DEFAULT_STMT;
 	DEFINE;
 	DIRECTIVE;
@@ -159,12 +160,13 @@ implementation_wrapper
  	
 implementation
 	:	'@implementation'  name  category?
-		implementation_body+
+		implementation_body*
 		'@end'
 	; 	
 
 implementation_body
-  : implementation_method_wrapper
+  : (clasical_method_call_predicate)=> classical_method_call_wrapper
+  | implementation_method_wrapper
   | directives
   | define_declaration
 	| typedef_declaration_wrapper
@@ -188,6 +190,7 @@ static_declaration_wrapper
 
 block_call_predicate
   : '^('
+  | ('^' '{')
   ;
   
 block_call_wrapper
@@ -195,7 +198,8 @@ block_call_wrapper
   ;
 
 block_call
-  : ('^(' block_params? ')') block_multiline_wrapper
+  : ('^' '{' block_internal* '}') -> ^(BLOCK_MULTI '{' block_internal* '}')
+  | ('^(' block_params? ')') block_multiline_wrapper 
   ;
 
 synchronized_call_wrapper
@@ -252,6 +256,9 @@ block_singleline
 
 block_internal
   : (clasical_method_call_predicate)=> classical_method_call_wrapper
+  | (object_access_simple_wrapper increment_decrement)=> object_access_simple_wrapper increment_decrement
+  | (object_access op_assign) => variable_assignment_wrapper
+  | variable_declaration_wrapper
   | synchronized_call_wrapper
   | try_stmt_wrapper
 	|	throw_stmt_wrapper
@@ -268,9 +275,7 @@ block_internal
 	| continue_stmt
 	|	goto_stmt
 	| block_multiline_wrapper
-  | variable_declaration_wrapper
   | method_msg
-  | variable_assignment_wrapper
   | comments
 	;
 
@@ -297,8 +302,8 @@ for_classic_stmt
 for_stmt_body
   : (name ';')=> name for_classic_stmt ')' block
   | (name 'in')=> name for_in_stmt ')' block
+  | (object_access op_assign) => variable_assignment_wrapper for_classic_stmt ')' block
   | field_declaration_simple ((op_assign_wrapper element_value for_classic_stmt) | for_in_stmt) ')' block
-  | variable_assignment_wrapper for_classic_stmt ')' block
   ;
 
 for_stmt
@@ -370,7 +375,7 @@ name
 
 name_number
   : ID -> ^(NAME ID)
-  | NUMBER_LITERAL -> ^(NUMBER NUMBER_LITERAL)
+  | '-'? NUMBER_LITERAL -> ^(NUMBER '-'? NUMBER_LITERAL)
   ;
   
 variable_declaration_wrapper
@@ -385,6 +390,11 @@ variable_assignment
   : object_access_wrapper op_assign_wrapper element_value
   ;
 
+variable_increment
+  : (object_access_wrapper increment_decrement) => object_access_wrapper increment_decrement
+  | increment_decrement object_access_wrapper
+  ;
+  
 method_implementation
   : method_modifier_wrapper method_implementation_common;
   
@@ -416,7 +426,7 @@ method_params_push
 	:	method_param_push (((prefix ':') | ',') method_param_push)* -> ^(METHOD_PARAMS method_param_push+);
 
 method_param_push
-  : element_value -> ^(METHOD_PARAM element_value)
+  : element_value multi_comment? -> ^(METHOD_PARAM element_value multi_comment?)
   ; 
 
 method_msg
@@ -435,8 +445,13 @@ element_value_or_semicolon
   : (';' | element_value)
   ;
   
+array_init
+  : '{' array_init? '}' (',' '{' array_init? '}')* -> ^(ARRAY_INIT array_init*)
+  | element_value (',' element_value)*
+  ;
+  
 element_value_or_array_init
-  : '{' element_value (',' element_value)* '}' -> ^(ARRAY_INIT element_value+)
+  : '{' array_init? '}' -> ^(ARRAY_INIT array_init?)
   | element_value
   ;
   
@@ -454,7 +469,7 @@ cast_unary_expression1
   ;
 
 op2_unary_expression_or_questionmark_if_stmt
-  : (op2_wrapper cast_unary_expression2)
+  : (op2_wrapper cast_unary_expression1)
   | questionmark_if_stmt
   ;
 
@@ -465,35 +480,31 @@ cast_unary_expression
   | increment_decrement cast_expression
   ;
 
-cast_unary_expression2
-  : cast_unary_expression
-//  | (op2_wrapper cast_unary_expression2)
-  ;
-  
 cast_expression
   : (type_cast_wrapper)=> type_cast_wrapper simple_expression_value_access
-  | ('(' type_cast_wrapper)=> '(' type_cast_wrapper simple_expression_value_access ')' (access_wrapper name)+
+  | ('(' type_cast_wrapper simple_expression_value_access ')' access_wrapper)=> '(' type_cast_wrapper simple_expression_value_access ')' (access_wrapper name)+
   | simple_expression_value_access
   ;
 
 simple_expression_value_access
-  : selector_wrapper '(' name ':'? ')'
+  : selector_wrapper '(' name (':' (name ':')*)? ')'
   | (simple_expression_value (access_wrapper name)* '(')=> simple_expression_value (access_wrapper name)* ('(' classical_method_params_push? ')')
   | simple_expression_value2 (access_wrapper name)*
   ;
   
 simple_expression_value
-	:	STRING_LITERAL -> ^(STRING STRING_LITERAL)
+  : ('&'? name '[')=> '&'? name '[' element_value ']' -> ^(ARRAY_VALUE name element_value)
+  | (('&'|'*') name) => ('&'|'*') name
+	|	STRING_LITERAL -> ^(STRING STRING_LITERAL)
 	| STRING_OBJC -> ^(STRING STRING_OBJC)
+	| CHAR_LITERAL -> ^(CHAR CHAR_LITERAL)
 	|	NUMBER_LITERAL -> ^(NUMBER NUMBER_LITERAL)
 	| BOOL_LITERAL -> ^(BOOL BOOL_LITERAL)
-  | '&' name
   | name
 	;
 
 simple_expression_value2
-  : (name '[')=> name '[' element_value ']' -> ^(ARRAY_VALUE name element_value)
-  | block_call_wrapper
+  : (block_call_predicate) => block_call_wrapper
   | simple_expression_value
   | method_msg
   | '(' element_value ')'
@@ -503,14 +514,14 @@ op2_wrapper
   : op2 -> ^(OP op2)
   ;
   
-op2	:	('|' | '&' | '<<' | '>>' | '+' | '-' | '*' | '&&' | '||' | '<' | '>' | '<=' | '>=' | '==' | '!=' | '^' | '=');
+op2	:	('|' | '&' | '<<' | '>>' | '+' | '-' | '*' | '&&' | '||' | '<' | '>' | '<=' | '>=' | '==' | '!=' | '^' | '=' | '/');
 
 op_assign_wrapper
   : op_assign -> ^(OP op_assign)
   ;
 
 op_assign
-  : ('|=' | '&=' | '+=' | '-=' | '*=' | '=' | '<<=' | '>>=')
+  : ('|=' | '&=' | '+=' | '-=' | '*=' | '=' | '<<=' | '>>=' | '/=')
   ;
 
 selector_wrapper
@@ -543,14 +554,39 @@ access_wrapper
 	:	access ->^(ACCESS access)
 	;
 
+object_access_simple_wrapper
+  : object_access_simple -> ^(OBJECT_ACCESS object_access_simple)
+  ;
+
+object_access_simple
+  : name (access_wrapper name)*
+  ;
+  
 object_access_wrapper
-	:	object_access -> ^(OBJECT_ACCESS object_access)
-	;
+  : object_access -> ^(OBJECT_ACCESS object_access)
+  ;
 
 object_access
-	:	name ')'? (access_wrapper name ')'? )*
+	: cast_lvalue
 	;
 	
+cast_lvalue
+  : (type_cast_wrapper)=> type_cast_wrapper lvalue_access
+  | ('(' type_cast_wrapper)=> '(' type_cast_wrapper lvalue_access ')' (access_wrapper name)+
+  | lvalue_access
+  ;
+
+lvalue_access
+  : lvalue (access_wrapper name)*
+  ;
+  
+lvalue
+  : ('&'? name '[')=> '&'? name '[' element_value ']' -> ^(ARRAY_VALUE name element_value)
+  | ('&'|'*') name
+  | name
+  ;
+  
+
 break_stmt
   : 'break' ';' -> ^(BREAK_STMT)
   ;
@@ -570,7 +606,7 @@ extern_declaration
   
 declarations
   : optional_prefix? method_declaration -> ^(METHOD method_declaration)
-  | property_prefix optional_prefix? field_declaration -> ^(PROPERTY field_declaration)
+  | property_prefix optional_prefix? field_declaration -> ^(PROPERTY property_prefix field_declaration)
   | comments
   ;
   
@@ -585,7 +621,7 @@ ns_inline
   : 'NS_INLINE';  
 
 property_prefix
-  : '@property' '(' name ('=' name)? (',' name ('=' name)?)* ')'; 
+  : '@property' '(' name ('=' name)? (',' name ('=' name ':'?)?)* ')'; 
 
 /* This stupid ANTLR gets confused when parsing [obj retain] since it's got 'retain' as a keyword here huh...
 hence the above with a name only 
@@ -687,7 +723,7 @@ fields_body
   ;
   
 body_item
-  : group_modifier_wrapper? (typedef_declaration_wrapper | field_declaration_wrapper)
+  : group_modifier_wrapper? field_modifiers? (typedef_declaration_wrapper | field_declaration_wrapper)
   | comments
   ;
 
@@ -697,6 +733,10 @@ group_modifier_wrapper
 group_modifier
   : '@private' | '@protected' | '@public';  
     
+field_modifiers
+  : 'IBOutlet'
+  ;
+  
 interface_name
   : ID category? -> ^(INTERFACE_NAME ID category?);
 
@@ -744,7 +784,7 @@ type_declaration
   ; 
 
 type_declaration_plane
-  : 'const'? 'unsigned'? type_dec 'const'? -> ^(TYPE_PLAIN type_dec)
+  : 'volatile'? 'const'? 'unsigned'? type_dec ('const' '*'?)? -> ^(TYPE_PLAIN 'volatile'? type_dec 'const'?)
   ; 
 
 type_decl_protocol_predicate
@@ -811,7 +851,7 @@ type_dec_wrapper
   : type_dec -> ^(TYPE_PLAIN type_dec)
   ;
   
-type_dec: type_dec_internal '*'* ('['  NUMBER_LITERAL? ']')*
+type_dec: type_dec_internal '*'* (array_size)*
   ;
   
 type_dec_internal
@@ -830,7 +870,7 @@ field_name
   : ID array_size* (field_crap)? -> ^(FIELD_NAME ID array_size*);     
 
 array_size
-  : '[' NUMBER_LITERAL? ']';
+  : '[' (NUMBER_LITERAL | ID)? ']';
 
 field_crap
   : ':' NUMBER_LITERAL;
@@ -902,13 +942,17 @@ PREPROCESSOR_DECLARATION
 	: '#' ~('d') ~('\r' | '\n')* ('\r' | '\n')+ { skip(); }
 	; 	
 
-NUMBER_LITERAL  : '-'? DIGIT+ 
-	| '0x' ('A'|'B'|'C'|'D'|'E'|'F'|DIGIT)+;
+NUMBER_LITERAL  : (DIGIT+ ('.' DIGIT+)? 'f'?)
+	| ('0x' (('a'..'f')|('A'..'F')|DIGIT)+);
 
 WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+  { $channel = HIDDEN; } ;
 
 STRING_LITERAL
       :   '"' ( EscapeSequence | (options {greedy=false;} : ~('\u0000'..'\u001f' | '\\' | '"' ) ) )* '"'
+      ;
+
+CHAR_LITERAL
+      :   '\'' ( EscapeSequence | (' '..'z')) '\''
       ;
 
 fragment EscapeSequence 

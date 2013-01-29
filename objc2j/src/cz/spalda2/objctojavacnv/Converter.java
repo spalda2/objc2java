@@ -31,6 +31,7 @@ public class Converter {
                 convertInternal(f.getAbsolutePath(),pOut);
             }
             if (f.getName().endsWith(".m") || f.getName().endsWith(".mm")) {
+            	System.out.println(f.getAbsolutePath());
                 try {
                 	String name = f.getName();
                 	name = name.replaceAll("\\..+", "");
