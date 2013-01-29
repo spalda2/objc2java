@@ -20,7 +20,7 @@ Limitations:
 	- leads to recognition exception if macro "parameter" contains anything else but expression
 - the gramma is just to keep me happy and
 	- doesn't include any operator precedence or any other stuff of that sort useless for this type of conversion
-	- due to the above it produces 3 warnings when compiled with ANTLR which i couldn't be bothered to fix:)
+	- due to the above it produces 5 warnings when compiled with ANTLR which i couldn't be bothered to fix:)
 - i'm sure you'll find plenty of others
 
 Usage:

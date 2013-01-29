@@ -84,6 +84,7 @@ public class ConverterObjc2Java {
     	keywordTranslation.put("NSMutableArray", "Vector<Object>");
     	keywordTranslation.put("BOOL", "boolean");
     	keywordTranslation.put("self", "this");
+    	keywordTranslation.put("IBAction", "void");    	
     	keywordTranslation.put("->", ".");
     	keywordTranslation.put("&", "");
     	keywordTranslation.put("extern", "public");
@@ -1520,11 +1521,12 @@ public class ConverterObjc2Java {
 	            			int i = tname.indexOf('\n');
 	            			if (i > -1) {
 	            				String s = tname.substring(0, i);
-		            			iJavaCode.insert(retMark,s);
-	            				retMark += s.length();
-	            				int l = iJavaCode.length();
+	            				String fr = iJavaCode.substring(retMark);
+	            				iJavaCode.delete(retMark,iJavaCode.length());
+		            			iJavaCode.append(s);
 	            				newLines(1,iJavaCode);
-	            				retMark += (iJavaCode.length() - l);
+	            				retMark = iJavaCode.length();
+	            				iJavaCode.append(fr);
 		            			name = tname.substring(i + 1);
 	            			} else {
 	            				name = tname;
