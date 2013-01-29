@@ -16,6 +16,7 @@ Limitations:
 - it doesn't bother with categories declarations as it expects the functions to be implemented somewhere
 - it doesn't merge categories either
 - it doesn't create separate files in case it finds more interfaces in one .mm/.m, .h file pairs
+- it only copes with 1 line #define
 - it doesn't cope with macro expansion and treats it as a C function call if it sees that left bracket follows
 	- leads to recognition exception if macro "parameter" contains anything else but expression
 - the gramma is just to keep me happy and

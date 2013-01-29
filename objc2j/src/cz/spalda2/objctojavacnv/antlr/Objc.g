@@ -911,7 +911,8 @@ prefix  : ID -> ^(PARAM_PREFIX ID);
 
 //works for 1 line defines only
 define_declaration
-  :  DEFINE_LITERAL name element_value -> ^(DEFINE name element_value)
+  : (DEFINE_LITERAL name element_value)=>DEFINE_LITERAL name element_value -> ^(DEFINE name element_value)
+  | DEFINE_LITERAL name  -> ^(DEFINE name)
   ;
   
 /*------------------------------------------------------------------

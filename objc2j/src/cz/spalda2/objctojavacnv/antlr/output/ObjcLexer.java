@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g 2013-01-29 02:35:28
+// $ANTLR 3.4 /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g 2013-01-30 00:00:55
 
 package cz.spalda2.objctojavacnv.antlr.output;
 
@@ -2254,14 +2254,14 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = SINGLE_COMMENT_LIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:3: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:5: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:923:3: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:923:5: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
             {
             match("//"); 
 
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:10: (~ ( '\\r' | '\\n' ) )*
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:923:10: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -2295,7 +2295,7 @@ public class ObjcLexer extends Lexer {
             } while (true);
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:26: ( ( '\\r' )? '\\n' )+
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:923:26: ( ( '\\r' )? '\\n' )+
             int cnt3=0;
             loop3:
             do {
@@ -2309,9 +2309,9 @@ public class ObjcLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:27: ( '\\r' )? '\\n'
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:923:27: ( '\\r' )? '\\n'
             	    {
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:27: ( '\\r' )?
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:923:27: ( '\\r' )?
             	    int alt2=2;
             	    int LA2_0 = input.LA(1);
 
@@ -2320,7 +2320,7 @@ public class ObjcLexer extends Lexer {
             	    }
             	    switch (alt2) {
             	        case 1 :
-            	            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:922:27: '\\r'
+            	            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:923:27: '\\r'
             	            {
             	            match('\r'); 
 
@@ -2361,14 +2361,14 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = MULTI_COMMENT_LIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:925:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:925:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:926:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:926:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
             {
             match("/*"); 
 
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:925:10: ( . )*
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:926:10: ( . )*
             loop4:
             do {
                 int alt4=2;
@@ -2393,7 +2393,7 @@ public class ObjcLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:925:10: .
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:926:10: .
             	    {
             	    matchAny(); 
 
@@ -2410,7 +2410,7 @@ public class ObjcLexer extends Lexer {
 
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:925:18: ( ( '\\r' )? '\\n' )?
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:926:18: ( ( '\\r' )? '\\n' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -2419,9 +2419,9 @@ public class ObjcLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:925:19: ( '\\r' )? '\\n'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:926:19: ( '\\r' )? '\\n'
                     {
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:925:19: ( '\\r' )?
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:926:19: ( '\\r' )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -2430,7 +2430,7 @@ public class ObjcLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:925:19: '\\r'
+                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:926:19: '\\r'
                             {
                             match('\r'); 
 
@@ -2464,14 +2464,14 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = IF0_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:936:3: ( '#if 0' ( . )* ( '#endif' ) ( ( '\\r' )? '\\n' )? )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:936:5: '#if 0' ( . )* ( '#endif' ) ( ( '\\r' )? '\\n' )?
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:937:3: ( '#if 0' ( . )* ( '#endif' ) ( ( '\\r' )? '\\n' )? )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:937:5: '#if 0' ( . )* ( '#endif' ) ( ( '\\r' )? '\\n' )?
             {
             match("#if 0"); 
 
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:936:13: ( . )*
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:937:13: ( . )*
             loop7:
             do {
                 int alt7=2;
@@ -2532,7 +2532,7 @@ public class ObjcLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:936:13: .
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:937:13: .
             	    {
             	    matchAny(); 
 
@@ -2545,8 +2545,8 @@ public class ObjcLexer extends Lexer {
             } while (true);
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:936:16: ( '#endif' )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:936:17: '#endif'
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:937:16: ( '#endif' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:937:17: '#endif'
             {
             match("#endif"); 
 
@@ -2555,7 +2555,7 @@ public class ObjcLexer extends Lexer {
             }
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:936:27: ( ( '\\r' )? '\\n' )?
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:937:27: ( ( '\\r' )? '\\n' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2564,9 +2564,9 @@ public class ObjcLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:936:28: ( '\\r' )? '\\n'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:937:28: ( '\\r' )? '\\n'
                     {
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:936:28: ( '\\r' )?
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:937:28: ( '\\r' )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -2575,7 +2575,7 @@ public class ObjcLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:936:28: '\\r'
+                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:937:28: '\\r'
                             {
                             match('\r'); 
 
@@ -2611,8 +2611,8 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = DEFINE_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:939:3: ( '#define' )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:939:5: '#define'
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:940:3: ( '#define' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:940:5: '#define'
             {
             match("#define"); 
 
@@ -2634,8 +2634,8 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = PREPROCESSOR_DECLARATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:942:2: ( '#' ~ ( 'd' ) (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+ )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:942:4: '#' ~ ( 'd' ) (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:943:2: ( '#' ~ ( 'd' ) (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+ )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:943:4: '#' ~ ( 'd' ) (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+
             {
             match('#'); 
 
@@ -2649,7 +2649,7 @@ public class ObjcLexer extends Lexer {
             }
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:942:15: (~ ( '\\r' | '\\n' ) )*
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:943:15: (~ ( '\\r' | '\\n' ) )*
             loop10:
             do {
                 int alt10=2;
@@ -2683,7 +2683,7 @@ public class ObjcLexer extends Lexer {
             } while (true);
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:942:31: ( '\\r' | '\\n' )+
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:943:31: ( '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -2740,7 +2740,7 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = NUMBER_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:945:17: ( ( ( DIGIT )+ ( '.' ( DIGIT )+ )? ( 'f' )? ) | ( '0x' ( ( 'a' .. 'f' ) | ( 'A' .. 'F' ) | DIGIT )+ ) )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:17: ( ( ( DIGIT )+ ( '.' ( DIGIT )+ )? ( 'f' )? ) | ( '0x' ( ( 'a' .. 'f' ) | ( 'A' .. 'F' ) | DIGIT )+ ) )
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2766,12 +2766,12 @@ public class ObjcLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:945:19: ( ( DIGIT )+ ( '.' ( DIGIT )+ )? ( 'f' )? )
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:19: ( ( DIGIT )+ ( '.' ( DIGIT )+ )? ( 'f' )? )
                     {
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:945:19: ( ( DIGIT )+ ( '.' ( DIGIT )+ )? ( 'f' )? )
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:945:20: ( DIGIT )+ ( '.' ( DIGIT )+ )? ( 'f' )?
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:19: ( ( DIGIT )+ ( '.' ( DIGIT )+ )? ( 'f' )? )
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:20: ( DIGIT )+ ( '.' ( DIGIT )+ )? ( 'f' )?
                     {
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:945:20: ( DIGIT )+
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:20: ( DIGIT )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -2810,7 +2810,7 @@ public class ObjcLexer extends Lexer {
                     } while (true);
 
 
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:945:27: ( '.' ( DIGIT )+ )?
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:27: ( '.' ( DIGIT )+ )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -2819,11 +2819,11 @@ public class ObjcLexer extends Lexer {
                     }
                     switch (alt14) {
                         case 1 :
-                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:945:28: '.' ( DIGIT )+
+                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:28: '.' ( DIGIT )+
                             {
                             match('.'); 
 
-                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:945:32: ( DIGIT )+
+                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:32: ( DIGIT )+
                             int cnt13=0;
                             loop13:
                             do {
@@ -2868,7 +2868,7 @@ public class ObjcLexer extends Lexer {
                     }
 
 
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:945:41: ( 'f' )?
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:41: ( 'f' )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -2877,7 +2877,7 @@ public class ObjcLexer extends Lexer {
                     }
                     switch (alt15) {
                         case 1 :
-                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:945:41: 'f'
+                            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:41: 'f'
                             {
                             match('f'); 
 
@@ -2893,16 +2893,16 @@ public class ObjcLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:4: ( '0x' ( ( 'a' .. 'f' ) | ( 'A' .. 'F' ) | DIGIT )+ )
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:947:4: ( '0x' ( ( 'a' .. 'f' ) | ( 'A' .. 'F' ) | DIGIT )+ )
                     {
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:4: ( '0x' ( ( 'a' .. 'f' ) | ( 'A' .. 'F' ) | DIGIT )+ )
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:5: '0x' ( ( 'a' .. 'f' ) | ( 'A' .. 'F' ) | DIGIT )+
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:947:4: ( '0x' ( ( 'a' .. 'f' ) | ( 'A' .. 'F' ) | DIGIT )+ )
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:947:5: '0x' ( ( 'a' .. 'f' ) | ( 'A' .. 'F' ) | DIGIT )+
                     {
                     match("0x"); 
 
 
 
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:946:10: ( ( 'a' .. 'f' ) | ( 'A' .. 'F' ) | DIGIT )+
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:947:10: ( ( 'a' .. 'f' ) | ( 'A' .. 'F' ) | DIGIT )+
                     int cnt16=0;
                     loop16:
                     do {
@@ -2962,10 +2962,10 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:948:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:948:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:949:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:949:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:948:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:949:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             int cnt18=0;
             loop18:
             do {
@@ -3022,12 +3022,12 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = STRING_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:951:7: ( '\"' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )* '\"' )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:951:11: '\"' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )* '\"'
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:952:7: ( '\"' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )* '\"' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:952:11: '\"' ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:951:15: ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )*
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:952:15: ( EscapeSequence | ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) ) )*
             loop19:
             do {
                 int alt19=3;
@@ -3043,7 +3043,7 @@ public class ObjcLexer extends Lexer {
 
                 switch (alt19) {
             	case 1 :
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:951:17: EscapeSequence
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:952:17: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
@@ -3051,10 +3051,10 @@ public class ObjcLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:951:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) )
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:952:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) )
             	    {
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:951:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) )
-            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:951:61: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' )
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:952:34: ( options {greedy=false; } :~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' ) )
+            	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:952:61: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\"' )
             	    {
             	    if ( (input.LA(1) >= ' ' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -3096,12 +3096,12 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = CHAR_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:955:7: ( '\\'' ( EscapeSequence | ( ' ' .. 'z' ) ) '\\'' )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:955:11: '\\'' ( EscapeSequence | ( ' ' .. 'z' ) ) '\\''
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:956:7: ( '\\'' ( EscapeSequence | ( ' ' .. 'z' ) ) '\\'' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:956:11: '\\'' ( EscapeSequence | ( ' ' .. 'z' ) ) '\\''
             {
             match('\''); 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:955:16: ( EscapeSequence | ( ' ' .. 'z' ) )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:956:16: ( EscapeSequence | ( ' ' .. 'z' ) )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -3141,7 +3141,7 @@ public class ObjcLexer extends Lexer {
             }
             switch (alt20) {
                 case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:955:18: EscapeSequence
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:956:18: EscapeSequence
                     {
                     mEscapeSequence(); 
 
@@ -3149,7 +3149,7 @@ public class ObjcLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:955:35: ( ' ' .. 'z' )
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:956:35: ( ' ' .. 'z' )
                     {
                     if ( (input.LA(1) >= ' ' && input.LA(1) <= 'z') ) {
                         input.consume();
@@ -3183,12 +3183,12 @@ public class ObjcLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:959:3: ( '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | '\"' | UnicodeEscape ) )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:959:5: '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | '\"' | UnicodeEscape )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:960:3: ( '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | '\"' | UnicodeEscape ) )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:960:5: '\\\\' ( 'n' | 'r' | 't' | '\\'' | '\\\\' | '\"' | UnicodeEscape )
             {
             match('\\'); 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:960:5: ( 'n' | 'r' | 't' | '\\'' | '\\\\' | '\"' | UnicodeEscape )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:961:5: ( 'n' | 'r' | 't' | '\\'' | '\\\\' | '\"' | UnicodeEscape )
             int alt21=7;
             switch ( input.LA(1) ) {
             case 'n':
@@ -3236,49 +3236,49 @@ public class ObjcLexer extends Lexer {
 
             switch (alt21) {
                 case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:961:7: 'n'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:962:7: 'n'
                     {
                     match('n'); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:962:5: 'r'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:963:5: 'r'
                     {
                     match('r'); 
 
                     }
                     break;
                 case 3 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:963:5: 't'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:964:5: 't'
                     {
                     match('t'); 
 
                     }
                     break;
                 case 4 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:964:5: '\\''
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:965:5: '\\''
                     {
                     match('\''); 
 
                     }
                     break;
                 case 5 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:965:5: '\\\\'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:966:5: '\\\\'
                     {
                     match('\\'); 
 
                     }
                     break;
                 case 6 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:966:5: '\"'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:967:5: '\"'
                     {
                     match('\"'); 
 
                     }
                     break;
                 case 7 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:967:5: UnicodeEscape
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:968:5: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
@@ -3302,8 +3302,8 @@ public class ObjcLexer extends Lexer {
     // $ANTLR start "UnicodeEscape"
     public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:972:7: ( 'u' HexDigit HexDigit HexDigit HexDigit )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:972:13: 'u' HexDigit HexDigit HexDigit HexDigit
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:973:7: ( 'u' HexDigit HexDigit HexDigit HexDigit )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:973:13: 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('u'); 
 
@@ -3332,7 +3332,7 @@ public class ObjcLexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:976:3: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:977:3: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
             // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -3360,8 +3360,8 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = STRING_OBJC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:979:2: ( '@' STRING_LITERAL )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:979:4: '@' STRING_LITERAL
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:980:2: ( '@' STRING_LITERAL )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:980:4: '@' STRING_LITERAL
             {
             match('@'); 
 
@@ -3384,10 +3384,10 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = BOOL_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:982:3: ( ( 'YES' | 'NO' | 'true' | 'false' ) )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:982:5: ( 'YES' | 'NO' | 'true' | 'false' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:983:3: ( ( 'YES' | 'NO' | 'true' | 'false' ) )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:983:5: ( 'YES' | 'NO' | 'true' | 'false' )
             {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:982:5: ( 'YES' | 'NO' | 'true' | 'false' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:983:5: ( 'YES' | 'NO' | 'true' | 'false' )
             int alt22=4;
             switch ( input.LA(1) ) {
             case 'Y':
@@ -3420,7 +3420,7 @@ public class ObjcLexer extends Lexer {
 
             switch (alt22) {
                 case 1 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:982:6: 'YES'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:983:6: 'YES'
                     {
                     match("YES"); 
 
@@ -3429,7 +3429,7 @@ public class ObjcLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:982:14: 'NO'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:983:14: 'NO'
                     {
                     match("NO"); 
 
@@ -3438,7 +3438,7 @@ public class ObjcLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:982:21: 'true'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:983:21: 'true'
                     {
                     match("true"); 
 
@@ -3447,7 +3447,7 @@ public class ObjcLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:982:30: 'false'
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:983:30: 'false'
                     {
                     match("false"); 
 
@@ -3475,13 +3475,13 @@ public class ObjcLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:985:3: ( LETTER ( DIGIT | LETTER )* )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:985:5: LETTER ( DIGIT | LETTER )*
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:986:3: ( LETTER ( DIGIT | LETTER )* )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:986:5: LETTER ( DIGIT | LETTER )*
             {
             mLETTER(); 
 
 
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:985:12: ( DIGIT | LETTER )*
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:986:12: ( DIGIT | LETTER )*
             loop23:
             do {
                 int alt23=2;
@@ -3529,7 +3529,7 @@ public class ObjcLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:987:17: ( '0' .. '9' )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:988:17: ( '0' .. '9' )
             // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -3555,7 +3555,7 @@ public class ObjcLexer extends Lexer {
     // $ANTLR start "LETTER"
     public final void mLETTER() throws RecognitionException {
         try {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:988:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:989:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
             // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {

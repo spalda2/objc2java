@@ -87,6 +87,7 @@ public class ConverterObjc2Java {
     	keywordTranslation.put("IBAction", "void");    	
     	keywordTranslation.put("->", ".");
     	keywordTranslation.put("&", "");
+    	keywordTranslation.put("\n", "");
     	keywordTranslation.put("extern", "public");
     	keywordTranslation.put("const", "final");
     	keywordTranslation.put("@try", "try");
@@ -643,9 +644,24 @@ public class ConverterObjc2Java {
     }
     
     void processDefine(CommonTree tree, StringBuffer ret) {
-    	//TODO turn into int field for now
     	tree.token.setType(ObjcParser.FIELD);
-    	CommonTree tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "int "));
+    	CommonTree value = (CommonTree)tree.getFirstChildWithType(ObjcLexer.VALUE);
+    	if (value == null) {
+    		//ignore the define
+    		return;
+    	}
+    	CommonTree tr = null;
+    	Object node = value.getFirstChildWithType(ObjcLexer.NUMBER);
+    	if (node != null) {
+    		tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "int "));
+    	} else {
+        	node = value.getFirstChildWithType(ObjcLexer.BOOL);    		
+        	if (node != null) {
+        		tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "boolean "));
+        	} else {
+        		tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "String "));
+        	}
+    	}
     	tree.insertChild(0, tr); //before name
     	tr = new CommonTree(new CommonToken(ObjcLexer.OP, " = "));
     	tree.insertChild(2, tr); //after name

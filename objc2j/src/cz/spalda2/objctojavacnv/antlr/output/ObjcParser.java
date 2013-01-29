@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g 2013-01-29 02:35:27
+// $ANTLR 3.4 /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g 2013-01-30 00:00:54
 
 package cz.spalda2.objctojavacnv.antlr.output;
 
@@ -2483,7 +2483,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: 196, 200, block_internal
+                    // elements: 200, block_internal, 196
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -5964,7 +5964,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: element_value, block
+            // elements: block, element_value
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6086,7 +6086,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_block.add(block181.getTree());
 
             // AST REWRITE
-            // elements: block, element_value
+            // elements: element_value, block
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6341,7 +6341,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: block, catch_stmt, finally_stmt
+            // elements: finally_stmt, block, catch_stmt
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6491,7 +6491,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_block.add(block194.getTree());
 
             // AST REWRITE
-            // elements: name, block, name
+            // elements: name, name, block
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -7704,7 +7704,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_block_multiline_wrapper.add(block_multiline_wrapper222.getTree());
 
             // AST REWRITE
-            // elements: method_implementation, block_multiline_wrapper
+            // elements: block_multiline_wrapper, method_implementation
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -8509,7 +8509,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: multi_comment, element_value
+            // elements: element_value, multi_comment
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -8663,7 +8663,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: method_name, method_params_push, element_value
+            // elements: element_value, method_name, method_params_push
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -10812,7 +10812,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: name, element_value
+                    // elements: element_value, name
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -13344,7 +13344,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: name, element_value
+                    // elements: element_value, name
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -13970,7 +13970,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_field_declaration.add(field_declaration383.getTree());
 
                     // AST REWRITE
-                    // elements: field_declaration, property_prefix
+                    // elements: property_prefix, field_declaration
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -17483,7 +17483,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: ID, category
+            // elements: category, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -17754,7 +17754,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: implements_interfaces, ID
+            // elements: ID, implements_interfaces
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -18293,7 +18293,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_field_name.add(field_name501.getTree());
 
             // AST REWRITE
-            // elements: field_name, type_declaration
+            // elements: type_declaration, field_name
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -18559,7 +18559,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_param_name.add(param_name508.getTree());
 
             // AST REWRITE
-            // elements: param_name, classical_type_declaration
+            // elements: classical_type_declaration, param_name
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -19487,7 +19487,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: 194, type_dec, 172
+            // elements: 172, 194, type_dec
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -20150,7 +20150,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_struct_wrapper.add(struct_wrapper552.getTree());
 
                     // AST REWRITE
-                    // elements: typedef_name, struct_wrapper
+                    // elements: struct_wrapper, typedef_name
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -20540,7 +20540,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_enum_wrapper.add(enum_wrapper560.getTree());
 
                     // AST REWRITE
-                    // elements: typedef_name, enum_wrapper
+                    // elements: enum_wrapper, typedef_name
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -20844,7 +20844,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: op_assign_wrapper, element_value, name
+                    // elements: name, element_value, op_assign_wrapper
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -20868,14 +20868,14 @@ public TreeAdaptor getTreeAdaptor() {
                         adaptor.addChild(root_1, stream_name.nextTree());
 
                         // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:832:70: ( op_assign_wrapper element_value )?
-                        if ( stream_op_assign_wrapper.hasNext()||stream_element_value.hasNext() ) {
+                        if ( stream_element_value.hasNext()||stream_op_assign_wrapper.hasNext() ) {
                             adaptor.addChild(root_1, stream_op_assign_wrapper.nextTree());
 
                             adaptor.addChild(root_1, stream_element_value.nextTree());
 
                         }
-                        stream_op_assign_wrapper.reset();
                         stream_element_value.reset();
+                        stream_op_assign_wrapper.reset();
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -21889,7 +21889,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: array_size, ID
+            // elements: ID, array_size
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -22971,7 +22971,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_param_name.add(param_name619.getTree());
 
             // AST REWRITE
-            // elements: param_name, 119, 133, type_declaration, prefix, 118
+            // elements: param_name, 119, type_declaration, prefix, 118, 133
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -23235,7 +23235,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "define_declaration"
-    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:913:1: define_declaration : DEFINE_LITERAL name element_value -> ^( DEFINE name element_value ) ;
+    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:913:1: define_declaration : ( ( DEFINE_LITERAL name element_value )=> DEFINE_LITERAL name element_value -> ^( DEFINE name element_value ) | DEFINE_LITERAL name -> ^( DEFINE name ) );
     public final ObjcParser.define_declaration_return define_declaration() throws RecognitionException {
         ObjcParser.define_declaration_return retval = new ObjcParser.define_declaration_return();
         retval.start = input.LT(1);
@@ -23244,74 +23244,133 @@ public TreeAdaptor getTreeAdaptor() {
         Object root_0 = null;
 
         Token DEFINE_LITERAL622=null;
+        Token DEFINE_LITERAL625=null;
         ObjcParser.name_return name623 =null;
 
         ObjcParser.element_value_return element_value624 =null;
 
+        ObjcParser.name_return name626 =null;
+
 
         Object DEFINE_LITERAL622_tree=null;
+        Object DEFINE_LITERAL625_tree=null;
         RewriteRuleTokenStream stream_DEFINE_LITERAL=new RewriteRuleTokenStream(adaptor,"token DEFINE_LITERAL");
         RewriteRuleSubtreeStream stream_element_value=new RewriteRuleSubtreeStream(adaptor,"rule element_value");
         RewriteRuleSubtreeStream stream_name=new RewriteRuleSubtreeStream(adaptor,"rule name");
         try {
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:914:3: ( DEFINE_LITERAL name element_value -> ^( DEFINE name element_value ) )
-            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:914:6: DEFINE_LITERAL name element_value
-            {
-            DEFINE_LITERAL622=(Token)match(input,DEFINE_LITERAL,FOLLOW_DEFINE_LITERAL_in_define_declaration5783); if (state.failed) return retval; 
-            if ( state.backtracking==0 ) stream_DEFINE_LITERAL.add(DEFINE_LITERAL622);
+            // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:914:3: ( ( DEFINE_LITERAL name element_value )=> DEFINE_LITERAL name element_value -> ^( DEFINE name element_value ) | DEFINE_LITERAL name -> ^( DEFINE name ) )
+            int alt146=2;
+            alt146 = dfa146.predict(input);
+            switch (alt146) {
+                case 1 :
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:914:5: ( DEFINE_LITERAL name element_value )=> DEFINE_LITERAL name element_value
+                    {
+                    DEFINE_LITERAL622=(Token)match(input,DEFINE_LITERAL,FOLLOW_DEFINE_LITERAL_in_define_declaration5790); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_DEFINE_LITERAL.add(DEFINE_LITERAL622);
 
 
-            pushFollow(FOLLOW_name_in_define_declaration5785);
-            name623=name();
+                    pushFollow(FOLLOW_name_in_define_declaration5792);
+                    name623=name();
 
-            state._fsp--;
-            if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_name.add(name623.getTree());
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_name.add(name623.getTree());
 
-            pushFollow(FOLLOW_element_value_in_define_declaration5787);
-            element_value624=element_value();
+                    pushFollow(FOLLOW_element_value_in_define_declaration5794);
+                    element_value624=element_value();
 
-            state._fsp--;
-            if (state.failed) return retval;
-            if ( state.backtracking==0 ) stream_element_value.add(element_value624.getTree());
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_element_value.add(element_value624.getTree());
 
-            // AST REWRITE
-            // elements: element_value, name
-            // token labels: 
-            // rule labels: retval
-            // token list labels: 
-            // rule list labels: 
-            // wildcard labels: 
-            if ( state.backtracking==0 ) {
+                    // AST REWRITE
+                    // elements: name, element_value
+                    // token labels: 
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    // wildcard labels: 
+                    if ( state.backtracking==0 ) {
 
-            retval.tree = root_0;
-            RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+                    retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
-            root_0 = (Object)adaptor.nil();
-            // 914:40: -> ^( DEFINE name element_value )
-            {
-                // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:914:43: ^( DEFINE name element_value )
-                {
-                Object root_1 = (Object)adaptor.nil();
-                root_1 = (Object)adaptor.becomeRoot(
-                (Object)adaptor.create(DEFINE, "DEFINE")
-                , root_1);
+                    root_0 = (Object)adaptor.nil();
+                    // 914:76: -> ^( DEFINE name element_value )
+                    {
+                        // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:914:79: ^( DEFINE name element_value )
+                        {
+                        Object root_1 = (Object)adaptor.nil();
+                        root_1 = (Object)adaptor.becomeRoot(
+                        (Object)adaptor.create(DEFINE, "DEFINE")
+                        , root_1);
 
-                adaptor.addChild(root_1, stream_name.nextTree());
+                        adaptor.addChild(root_1, stream_name.nextTree());
 
-                adaptor.addChild(root_1, stream_element_value.nextTree());
+                        adaptor.addChild(root_1, stream_element_value.nextTree());
 
-                adaptor.addChild(root_0, root_1);
-                }
+                        adaptor.addChild(root_0, root_1);
+                        }
+
+                    }
+
+
+                    retval.tree = root_0;
+                    }
+
+                    }
+                    break;
+                case 2 :
+                    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:915:5: DEFINE_LITERAL name
+                    {
+                    DEFINE_LITERAL625=(Token)match(input,DEFINE_LITERAL,FOLLOW_DEFINE_LITERAL_in_define_declaration5810); if (state.failed) return retval; 
+                    if ( state.backtracking==0 ) stream_DEFINE_LITERAL.add(DEFINE_LITERAL625);
+
+
+                    pushFollow(FOLLOW_name_in_define_declaration5812);
+                    name626=name();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) stream_name.add(name626.getTree());
+
+                    // AST REWRITE
+                    // elements: name
+                    // token labels: 
+                    // rule labels: retval
+                    // token list labels: 
+                    // rule list labels: 
+                    // wildcard labels: 
+                    if ( state.backtracking==0 ) {
+
+                    retval.tree = root_0;
+                    RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
+
+                    root_0 = (Object)adaptor.nil();
+                    // 915:26: -> ^( DEFINE name )
+                    {
+                        // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:915:29: ^( DEFINE name )
+                        {
+                        Object root_1 = (Object)adaptor.nil();
+                        root_1 = (Object)adaptor.becomeRoot(
+                        (Object)adaptor.create(DEFINE, "DEFINE")
+                        , root_1);
+
+                        adaptor.addChild(root_1, stream_name.nextTree());
+
+                        adaptor.addChild(root_0, root_1);
+                        }
+
+                    }
+
+
+                    retval.tree = root_0;
+                    }
+
+                    }
+                    break;
 
             }
-
-
-            retval.tree = root_0;
-            }
-
-            }
-
             retval.stop = input.LT(-1);
 
 
@@ -23567,17 +23626,17 @@ public TreeAdaptor getTreeAdaptor() {
         if (state.failed) return ;
 
         // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:491:30: ( access_wrapper name )*
-        loop146:
+        loop147:
         do {
-            int alt146=2;
-            int LA146_0 = input.LA(1);
+            int alt147=2;
+            int LA147_0 = input.LA(1);
 
-            if ( ((LA146_0 >= 129 && LA146_0 <= 130)) ) {
-                alt146=1;
+            if ( ((LA147_0 >= 129 && LA147_0 <= 130)) ) {
+                alt147=1;
             }
 
 
-            switch (alt146) {
+            switch (alt147) {
         	case 1 :
         	    // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:491:31: access_wrapper name
         	    {
@@ -23597,7 +23656,7 @@ public TreeAdaptor getTreeAdaptor() {
         	    break;
 
         	default :
-        	    break loop146;
+        	    break loop147;
             }
         } while (true);
 
@@ -23615,13 +23674,13 @@ public TreeAdaptor getTreeAdaptor() {
         // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:496:6: ( '&' )? name '['
         {
         // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:496:6: ( '&' )?
-        int alt147=2;
-        int LA147_0 = input.LA(1);
+        int alt148=2;
+        int LA148_0 = input.LA(1);
 
-        if ( (LA147_0==116) ) {
-            alt147=1;
+        if ( (LA148_0==116) ) {
+            alt148=1;
         }
-        switch (alt147) {
+        switch (alt148) {
             case 1 :
                 // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:496:6: '&'
                 {
@@ -23746,13 +23805,13 @@ public TreeAdaptor getTreeAdaptor() {
         // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:584:6: ( '&' )? name '['
         {
         // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:584:6: ( '&' )?
-        int alt148=2;
-        int LA148_0 = input.LA(1);
+        int alt149=2;
+        int LA149_0 = input.LA(1);
 
-        if ( (LA148_0==116) ) {
-            alt148=1;
+        if ( (LA149_0==116) ) {
+            alt149=1;
         }
-        switch (alt148) {
+        switch (alt149) {
             case 1 :
                 // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:584:6: '&'
                 {
@@ -23865,13 +23924,13 @@ public TreeAdaptor getTreeAdaptor() {
         match(input,189,FOLLOW_189_in_synpred25_Objc5085); if (state.failed) return ;
 
         // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:811:15: ( typedef_name )?
-        int alt149=2;
-        int LA149_0 = input.LA(1);
+        int alt150=2;
+        int LA150_0 = input.LA(1);
 
-        if ( (LA149_0==ID) ) {
-            alt149=1;
+        if ( (LA150_0==ID) ) {
+            alt150=1;
         }
-        switch (alt149) {
+        switch (alt150) {
             case 1 :
                 // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:811:15: typedef_name
                 {
@@ -23902,13 +23961,13 @@ public TreeAdaptor getTreeAdaptor() {
         match(input,192,FOLLOW_192_in_synpred26_Objc5130); if (state.failed) return ;
 
         // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:816:14: ( typedef_name )?
-        int alt150=2;
-        int LA150_0 = input.LA(1);
+        int alt151=2;
+        int LA151_0 = input.LA(1);
 
-        if ( (LA150_0==ID) ) {
-            alt150=1;
+        if ( (LA151_0==ID) ) {
+            alt151=1;
         }
-        switch (alt150) {
+        switch (alt151) {
             case 1 :
                 // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:816:14: typedef_name
                 {
@@ -23939,13 +23998,13 @@ public TreeAdaptor getTreeAdaptor() {
         match(input,177,FOLLOW_177_in_synpred27_Objc5175); if (state.failed) return ;
 
         // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:821:13: ( typedef_name )?
-        int alt151=2;
-        int LA151_0 = input.LA(1);
+        int alt152=2;
+        int LA152_0 = input.LA(1);
 
-        if ( (LA151_0==ID) ) {
-            alt151=1;
+        if ( (LA152_0==ID) ) {
+            alt152=1;
         }
-        switch (alt151) {
+        switch (alt152) {
             case 1 :
                 // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:821:13: typedef_name
                 {
@@ -23967,6 +24026,30 @@ public TreeAdaptor getTreeAdaptor() {
 
     }
     // $ANTLR end synpred27_Objc
+
+    // $ANTLR start synpred28_Objc
+    public final void synpred28_Objc_fragment() throws RecognitionException {
+        // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:914:5: ( DEFINE_LITERAL name element_value )
+        // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:914:6: DEFINE_LITERAL name element_value
+        {
+        match(input,DEFINE_LITERAL,FOLLOW_DEFINE_LITERAL_in_synpred28_Objc5783); if (state.failed) return ;
+
+        pushFollow(FOLLOW_name_in_synpred28_Objc5785);
+        name();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        pushFollow(FOLLOW_element_value_in_synpred28_Objc5787);
+        element_value();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+    }
+    // $ANTLR end synpred28_Objc
 
     // Delegated rules
 
@@ -24166,6 +24249,20 @@ public TreeAdaptor getTreeAdaptor() {
         state.failed=false;
         return success;
     }
+    public final boolean synpred28_Objc() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred28_Objc_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred11_Objc() {
         state.backtracking++;
         int start = input.mark();
@@ -24355,6 +24452,7 @@ public TreeAdaptor getTreeAdaptor() {
     protected DFA52 dfa52 = new DFA52(this);
     protected DFA58 dfa58 = new DFA58(this);
     protected DFA60 dfa60 = new DFA60(this);
+    protected DFA146 dfa146 = new DFA146(this);
     static final String DFA17_eotS =
         "\134\uffff";
     static final String DFA17_eofS =
@@ -38584,6 +38682,605 @@ public TreeAdaptor getTreeAdaptor() {
         }
 
     }
+    static final String DFA146_eotS =
+        "\171\uffff";
+    static final String DFA146_eofS =
+        "\2\uffff\1\24\4\uffff\1\134\161\uffff";
+    static final String DFA146_minS =
+        "\1\27\1\57\3\13\2\uffff\1\27\46\uffff\1\0\14\uffff\1\0\32\uffff"+
+        "\3\0\21\uffff\1\0\4\uffff\1\0\4\uffff\1\0\2\uffff\1\0\1\uffff";
+    static final String DFA146_maxS =
+        "\1\27\1\57\1\u00c9\1\u00a9\1\u00c9\2\uffff\1\u00c7\46\uffff\1\0"+
+        "\14\uffff\1\0\32\uffff\3\0\21\uffff\1\0\4\uffff\1\0\4\uffff\1\0"+
+        "\2\uffff\1\0\1\uffff";
+    static final String DFA146_acceptS =
+        "\5\uffff\2\1\1\uffff\14\1\1\2\32\uffff\14\1\1\uffff\32\1\3\uffff"+
+        "\21\1\1\uffff\4\1\1\uffff\4\1\1\uffff\2\1\1\uffff\1\1";
+    static final String DFA146_specialS =
+        "\2\uffff\1\0\1\1\1\2\2\uffff\1\3\46\uffff\1\4\14\uffff\1\5\32\uffff"+
+        "\1\6\1\7\1\10\21\uffff\1\11\4\uffff\1\12\4\uffff\1\13\2\uffff\1"+
+        "\14\1\uffff}>";
+    static final String[] DFA146_transitionS = {
+            "\1\1",
+            "\1\2",
+            "\1\15\5\uffff\1\13\5\uffff\1\24\27\uffff\1\7\21\uffff\1\24"+
+            "\2\uffff\1\14\16\uffff\1\24\4\uffff\1\11\1\12\26\uffff\1\21"+
+            "\3\uffff\1\6\1\uffff\1\4\1\uffff\1\10\1\uffff\1\24\1\23\2\uffff"+
+            "\1\3\1\23\6\uffff\1\24\14\uffff\3\24\1\uffff\2\24\4\uffff\1"+
+            "\24\1\uffff\1\5\1\uffff\1\24\4\uffff\1\20\1\uffff\1\16\1\17"+
+            "\2\uffff\1\24\4\uffff\2\24\2\uffff\1\24\2\uffff\2\24\1\uffff"+
+            "\3\24\1\uffff\4\24\6\uffff\1\22",
+            "\1\67\5\uffff\1\65\35\uffff\1\61\24\uffff\1\66\23\uffff\1\63"+
+            "\1\64\32\uffff\1\60\1\uffff\1\56\1\uffff\1\62\46\uffff\1\57"+
+            "\6\uffff\1\72\1\uffff\1\70\1\71",
+            "\1\117\5\uffff\1\115\35\uffff\1\104\24\uffff\1\116\23\uffff"+
+            "\1\113\1\114\26\uffff\1\123\3\uffff\1\112\1\uffff\1\75\1\uffff"+
+            "\1\73\2\uffff\1\125\2\uffff\1\110\1\125\37\uffff\1\111\6\uffff"+
+            "\1\122\1\uffff\1\120\1\121\2\uffff\1\77\4\uffff\1\107\3\uffff"+
+            "\1\74\2\uffff\1\101\1\102\1\uffff\1\103\1\uffff\1\105\2\uffff"+
+            "\1\106\1\100\1\76\6\uffff\1\124",
+            "",
+            "",
+            "\1\145\27\uffff\1\157\21\uffff\1\161\21\uffff\1\160\35\uffff"+
+            "\1\170\1\uffff\1\170\1\167\1\uffff\1\130\1\uffff\1\164\1\uffff"+
+            "\1\132\1\131\2\uffff\1\132\1\131\1\uffff\2\127\1\170\2\uffff"+
+            "\1\162\2\170\1\uffff\6\170\1\uffff\1\133\1\uffff\1\136\1\166"+
+            "\1\163\1\uffff\1\135\1\143\4\uffff\1\137\3\uffff\1\165\4\uffff"+
+            "\1\126\1\uffff\1\170\3\uffff\1\152\4\uffff\1\142\1\144\2\uffff"+
+            "\1\150\2\uffff\1\154\1\155\1\uffff\1\156\1\147\1\140\1\uffff"+
+            "\1\146\1\141\1\153\1\151\2\uffff\1\170\1\uffff\1\170",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "\1\uffff",
+            "",
+            "",
+            "",
+            "",
+            "\1\uffff",
+            "",
+            "",
+            "\1\uffff",
+            ""
+    };
+
+    static final short[] DFA146_eot = DFA.unpackEncodedString(DFA146_eotS);
+    static final short[] DFA146_eof = DFA.unpackEncodedString(DFA146_eofS);
+    static final char[] DFA146_min = DFA.unpackEncodedStringToUnsignedChars(DFA146_minS);
+    static final char[] DFA146_max = DFA.unpackEncodedStringToUnsignedChars(DFA146_maxS);
+    static final short[] DFA146_accept = DFA.unpackEncodedString(DFA146_acceptS);
+    static final short[] DFA146_special = DFA.unpackEncodedString(DFA146_specialS);
+    static final short[][] DFA146_transition;
+
+    static {
+        int numStates = DFA146_transitionS.length;
+        DFA146_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA146_transition[i] = DFA.unpackEncodedString(DFA146_transitionS[i]);
+        }
+    }
+
+    class DFA146 extends DFA {
+
+        public DFA146(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 146;
+            this.eot = DFA146_eot;
+            this.eof = DFA146_eof;
+            this.min = DFA146_min;
+            this.max = DFA146_max;
+            this.accept = DFA146_accept;
+            this.special = DFA146_special;
+            this.transition = DFA146_transition;
+        }
+        public String getDescription() {
+            return "913:1: define_declaration : ( ( DEFINE_LITERAL name element_value )=> DEFINE_LITERAL name element_value -> ^( DEFINE name element_value ) | DEFINE_LITERAL name -> ^( DEFINE name ) );";
+        }
+        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
+            TokenStream input = (TokenStream)_input;
+        	int _s = s;
+            switch ( s ) {
+                    case 0 : 
+                        int LA146_2 = input.LA(1);
+
+                         
+                        int index146_2 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (LA146_2==126) ) {s = 3;}
+
+                        else if ( (LA146_2==118) ) {s = 4;}
+
+                        else if ( (LA146_2==159) && (synpred28_Objc())) {s = 5;}
+
+                        else if ( (LA146_2==116) && (synpred28_Objc())) {s = 6;}
+
+                        else if ( (LA146_2==ID) ) {s = 7;}
+
+                        else if ( (LA146_2==120) && (synpred28_Objc())) {s = 8;}
+
+                        else if ( (LA146_2==STRING_LITERAL) && (synpred28_Objc())) {s = 9;}
+
+                        else if ( (LA146_2==STRING_OBJC) && (synpred28_Objc())) {s = 10;}
+
+                        else if ( (LA146_2==CHAR_LITERAL) && (synpred28_Objc())) {s = 11;}
+
+                        else if ( (LA146_2==NUMBER_LITERAL) && (synpred28_Objc())) {s = 12;}
+
+                        else if ( (LA146_2==BOOL_LITERAL) && (synpred28_Objc())) {s = 13;}
+
+                        else if ( (LA146_2==168) && (synpred28_Objc())) {s = 14;}
+
+                        else if ( (LA146_2==169) && (synpred28_Objc())) {s = 15;}
+
+                        else if ( (LA146_2==166) && (synpred28_Objc())) {s = 16;}
+
+                        else if ( (LA146_2==112) && (synpred28_Objc())) {s = 17;}
+
+                        else if ( (LA146_2==201) && (synpred28_Objc())) {s = 18;}
+
+                        else if ( (LA146_2==123||LA146_2==127) && (synpred28_Objc())) {s = 19;}
+
+                        else if ( (LA146_2==EOF||LA146_2==DEFINE_LITERAL||LA146_2==MULTI_COMMENT_LIT||LA146_2==SINGLE_COMMENT_LIT||LA146_2==122||LA146_2==134||(LA146_2 >= 147 && LA146_2 <= 149)||(LA146_2 >= 151 && LA146_2 <= 152)||LA146_2==157||LA146_2==161||LA146_2==172||(LA146_2 >= 177 && LA146_2 <= 178)||LA146_2==181||(LA146_2 >= 184 && LA146_2 <= 185)||(LA146_2 >= 187 && LA146_2 <= 189)||(LA146_2 >= 191 && LA146_2 <= 194)) ) {s = 20;}
+
+                         
+                        input.seek(index146_2);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA146_3 = input.LA(1);
+
+                         
+                        int index146_3 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (LA146_3==118) ) {s = 46;}
+
+                        else if ( (LA146_3==159) && (synpred28_Objc())) {s = 47;}
+
+                        else if ( (LA146_3==116) && (synpred28_Objc())) {s = 48;}
+
+                        else if ( (LA146_3==ID) && (synpred28_Objc())) {s = 49;}
+
+                        else if ( (LA146_3==120) && (synpred28_Objc())) {s = 50;}
+
+                        else if ( (LA146_3==STRING_LITERAL) && (synpred28_Objc())) {s = 51;}
+
+                        else if ( (LA146_3==STRING_OBJC) && (synpred28_Objc())) {s = 52;}
+
+                        else if ( (LA146_3==CHAR_LITERAL) && (synpred28_Objc())) {s = 53;}
+
+                        else if ( (LA146_3==NUMBER_LITERAL) && (synpred28_Objc())) {s = 54;}
+
+                        else if ( (LA146_3==BOOL_LITERAL) && (synpred28_Objc())) {s = 55;}
+
+                        else if ( (LA146_3==168) && (synpred28_Objc())) {s = 56;}
+
+                        else if ( (LA146_3==169) && (synpred28_Objc())) {s = 57;}
+
+                        else if ( (LA146_3==166) && (synpred28_Objc())) {s = 58;}
+
+                         
+                        input.seek(index146_3);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA146_4 = input.LA(1);
+
+                         
+                        int index146_4 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (LA146_4==120) ) {s = 59;}
+
+                        else if ( (LA146_4==181) && (synpred28_Objc())) {s = 60;}
+
+                        else if ( (LA146_4==118) && (synpred28_Objc())) {s = 61;}
+
+                        else if ( (LA146_4==194) && (synpred28_Objc())) {s = 62;}
+
+                        else if ( (LA146_4==172) && (synpred28_Objc())) {s = 63;}
+
+                        else if ( (LA146_4==193) && (synpred28_Objc())) {s = 64;}
+
+                        else if ( (LA146_4==184) && (synpred28_Objc())) {s = 65;}
+
+                        else if ( (LA146_4==185) && (synpred28_Objc())) {s = 66;}
+
+                        else if ( (LA146_4==187) && (synpred28_Objc())) {s = 67;}
+
+                        else if ( (LA146_4==ID) && (synpred28_Objc())) {s = 68;}
+
+                        else if ( (LA146_4==189) && (synpred28_Objc())) {s = 69;}
+
+                        else if ( (LA146_4==192) && (synpred28_Objc())) {s = 70;}
+
+                        else if ( (LA146_4==177) && (synpred28_Objc())) {s = 71;}
+
+                        else if ( (LA146_4==126) && (synpred28_Objc())) {s = 72;}
+
+                        else if ( (LA146_4==159) && (synpred28_Objc())) {s = 73;}
+
+                        else if ( (LA146_4==116) && (synpred28_Objc())) {s = 74;}
+
+                        else if ( (LA146_4==STRING_LITERAL) && (synpred28_Objc())) {s = 75;}
+
+                        else if ( (LA146_4==STRING_OBJC) && (synpred28_Objc())) {s = 76;}
+
+                        else if ( (LA146_4==CHAR_LITERAL) && (synpred28_Objc())) {s = 77;}
+
+                        else if ( (LA146_4==NUMBER_LITERAL) && (synpred28_Objc())) {s = 78;}
+
+                        else if ( (LA146_4==BOOL_LITERAL) && (synpred28_Objc())) {s = 79;}
+
+                        else if ( (LA146_4==168) && (synpred28_Objc())) {s = 80;}
+
+                        else if ( (LA146_4==169) && (synpred28_Objc())) {s = 81;}
+
+                        else if ( (LA146_4==166) && (synpred28_Objc())) {s = 82;}
+
+                        else if ( (LA146_4==112) && (synpred28_Objc())) {s = 83;}
+
+                        else if ( (LA146_4==201) && (synpred28_Objc())) {s = 84;}
+
+                        else if ( (LA146_4==123||LA146_4==127) && (synpred28_Objc())) {s = 85;}
+
+                         
+                        input.seek(index146_4);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA146_7 = input.LA(1);
+
+                         
+                        int index146_7 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (LA146_7==166) ) {s = 86;}
+
+                        else if ( ((LA146_7 >= 129 && LA146_7 <= 130)) ) {s = 87;}
+
+                        else if ( (LA146_7==118) ) {s = 88;}
+
+                        else if ( (LA146_7==123||LA146_7==127) && (synpred28_Objc())) {s = 89;}
+
+                        else if ( (LA146_7==122||LA146_7==126) && (synpred28_Objc())) {s = 90;}
+
+                        else if ( (LA146_7==145) && (synpred28_Objc())) {s = 91;}
+
+                        else if ( (LA146_7==EOF) && (synpred28_Objc())) {s = 92;}
+
+                        else if ( (LA146_7==151) && (synpred28_Objc())) {s = 93;}
+
+                        else if ( (LA146_7==147) && (synpred28_Objc())) {s = 94;}
+
+                        else if ( (LA146_7==157) && (synpred28_Objc())) {s = 95;}
+
+                        else if ( (LA146_7==189) && (synpred28_Objc())) {s = 96;}
+
+                        else if ( (LA146_7==192) && (synpred28_Objc())) {s = 97;}
+
+                        else if ( (LA146_7==177) && (synpred28_Objc())) {s = 98;}
+
+                        else if ( (LA146_7==152) && (synpred28_Objc())) {s = 99;}
+
+                        else if ( (LA146_7==178) && (synpred28_Objc())) {s = 100;}
+
+                        else if ( (LA146_7==DEFINE_LITERAL) && (synpred28_Objc())) {s = 101;}
+
+                        else if ( (LA146_7==191) && (synpred28_Objc())) {s = 102;}
+
+                        else if ( (LA146_7==188) && (synpred28_Objc())) {s = 103;}
+
+                        else if ( (LA146_7==181) && (synpred28_Objc())) {s = 104;}
+
+                        else if ( (LA146_7==194) && (synpred28_Objc())) {s = 105;}
+
+                        else if ( (LA146_7==172) ) {s = 106;}
+
+                        else if ( (LA146_7==193) && (synpred28_Objc())) {s = 107;}
+
+                        else if ( (LA146_7==184) && (synpred28_Objc())) {s = 108;}
+
+                        else if ( (LA146_7==185) && (synpred28_Objc())) {s = 109;}
+
+                        else if ( (LA146_7==187) && (synpred28_Objc())) {s = 110;}
+
+                        else if ( (LA146_7==ID) ) {s = 111;}
+
+                        else if ( (LA146_7==SINGLE_COMMENT_LIT) && (synpred28_Objc())) {s = 112;}
+
+                        else if ( (LA146_7==MULTI_COMMENT_LIT) && (synpred28_Objc())) {s = 113;}
+
+                        else if ( (LA146_7==134) && (synpred28_Objc())) {s = 114;}
+
+                        else if ( (LA146_7==149) && (synpred28_Objc())) {s = 115;}
+
+                        else if ( (LA146_7==120) ) {s = 116;}
+
+                        else if ( (LA146_7==161) && (synpred28_Objc())) {s = 117;}
+
+                        else if ( (LA146_7==148) && (synpred28_Objc())) {s = 118;}
+
+                        else if ( (LA146_7==116) ) {s = 119;}
+
+                        else if ( (LA146_7==113||LA146_7==115||LA146_7==131||(LA146_7 >= 135 && LA146_7 <= 136)||(LA146_7 >= 138 && LA146_7 <= 143)||LA146_7==168||LA146_7==197||LA146_7==199) && (synpred28_Objc())) {s = 120;}
+
+                         
+                        input.seek(index146_7);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA146_46 = input.LA(1);
+
+                         
+                        int index146_46 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (synpred28_Objc()) ) {s = 120;}
+
+                        else if ( (true) ) {s = 20;}
+
+                         
+                        input.seek(index146_46);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA146_59 = input.LA(1);
+
+                         
+                        int index146_59 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (synpred28_Objc()) ) {s = 120;}
+
+                        else if ( (true) ) {s = 20;}
+
+                         
+                        input.seek(index146_59);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA146_86 = input.LA(1);
+
+                         
+                        int index146_86 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (synpred28_Objc()) ) {s = 120;}
+
+                        else if ( (true) ) {s = 20;}
+
+                         
+                        input.seek(index146_86);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA146_87 = input.LA(1);
+
+                         
+                        int index146_87 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (synpred28_Objc()) ) {s = 120;}
+
+                        else if ( (true) ) {s = 20;}
+
+                         
+                        input.seek(index146_87);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
+                        int LA146_88 = input.LA(1);
+
+                         
+                        int index146_88 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (synpred28_Objc()) ) {s = 120;}
+
+                        else if ( (true) ) {s = 20;}
+
+                         
+                        input.seek(index146_88);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA146_106 = input.LA(1);
+
+                         
+                        int index146_106 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (synpred28_Objc()) ) {s = 120;}
+
+                        else if ( (true) ) {s = 20;}
+
+                         
+                        input.seek(index146_106);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 10 : 
+                        int LA146_111 = input.LA(1);
+
+                         
+                        int index146_111 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (synpred28_Objc()) ) {s = 120;}
+
+                        else if ( (true) ) {s = 20;}
+
+                         
+                        input.seek(index146_111);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 11 : 
+                        int LA146_116 = input.LA(1);
+
+                         
+                        int index146_116 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (synpred28_Objc()) ) {s = 120;}
+
+                        else if ( (true) ) {s = 20;}
+
+                         
+                        input.seek(index146_116);
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 12 : 
+                        int LA146_119 = input.LA(1);
+
+                         
+                        int index146_119 = input.index();
+                        input.rewind();
+
+                        s = -1;
+                        if ( (synpred28_Objc()) ) {s = 120;}
+
+                        else if ( (true) ) {s = 20;}
+
+                         
+                        input.seek(index146_119);
+
+                        if ( s>=0 ) return s;
+                        break;
+            }
+            if (state.backtracking>0) {state.failed=true; return -1;}
+
+            NoViableAltException nvae =
+                new NoViableAltException(getDescription(), 146, _s, input);
+            error(nvae);
+            throw nvae;
+        }
+
+    }
  
 
     public static final BitSet FOLLOW_code_internal_in_code478 = new BitSet(new long[]{0x0000800000800002L,0x0040000000080002L,0xBB26100021880040L,0x0000000000000007L});
@@ -39200,9 +39897,11 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_param_name_in_method_param5711 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ID_in_param_name5744 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ID_in_prefix5763 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DEFINE_LITERAL_in_define_declaration5783 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_name_in_define_declaration5785 = new BitSet(new long[]{0x0000800000020800L,0xC951000003000010L,0x0000034080000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_element_value_in_define_declaration5787 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DEFINE_LITERAL_in_define_declaration5790 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_name_in_define_declaration5792 = new BitSet(new long[]{0x0000800000020800L,0xC951000003000010L,0x0000034080000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_element_value_in_define_declaration5794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DEFINE_LITERAL_in_define_declaration5810 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_name_in_define_declaration5812 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_clasical_method_call_predicate_in_synpred1_Objc741 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_clasical_method_call_predicate_in_synpred2_Objc1166 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_clasical_method_call_predicate_in_synpred3_Objc1262 = new BitSet(new long[]{0x0000000000000002L});
@@ -39255,5 +39954,8 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_177_in_synpred27_Objc5175 = new BitSet(new long[]{0x0000800000000000L,0x0000000000000000L,0x0000000000000000L,0x0000000000000010L});
     public static final BitSet FOLLOW_typedef_name_in_synpred27_Objc5177 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000000L,0x0000000000000010L});
     public static final BitSet FOLLOW_196_in_synpred27_Objc5180 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DEFINE_LITERAL_in_synpred28_Objc5783 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_name_in_synpred28_Objc5785 = new BitSet(new long[]{0x0000800000020800L,0xC951000003000010L,0x0000034080000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_element_value_in_synpred28_Objc5787 = new BitSet(new long[]{0x0000000000000002L});
 
 }
