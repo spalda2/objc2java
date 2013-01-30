@@ -446,12 +446,12 @@ element_value_or_semicolon
   ;
   
 array_init
-  : '{' array_init? '}' (',' '{' array_init? '}')* -> ^(ARRAY_INIT array_init*)
-  | element_value (',' element_value)*
+//options {greedy=false;}
+  : element_value_or_array_init (',' element_value_or_array_init)*
   ;
   
 element_value_or_array_init
-  : '{' array_init? '}' -> ^(ARRAY_INIT array_init?)
+  : '{' array_init? '}'  -> ^(ARRAY_INIT array_init?)
   | element_value
   ;
   

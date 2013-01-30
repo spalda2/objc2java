@@ -51,8 +51,12 @@ public class ConverterObjc2Java {
     	methodTranslation.put("autorelease", "");
     	methodTranslation.put("isKindOfClass", "<<isInstance"); //<< => swap value and parameter
     	methodTranslation.put("class()", "class");
+    	methodTranslation.put("integerValue", "intValue");
     	//dictionary->map methods
     	methodTranslation.put("objectForKey", "get");
+    	//array->map methods
+//    	methodTranslation.put("objectAtIndex", "[");
+    	methodTranslation.put("objectAtIndex", "get");
     	//object->object methods
     	methodTranslation.put("isEqual", "equals");
     	//NSString -> String methods
@@ -139,6 +143,14 @@ public class ConverterObjc2Java {
 		//MH specific bit=>replace '_' by '.' to change global stuff into a member of a class
 		//don't replace '_' after 2 consecutive capital letters
 		int i = name.indexOf('_');
+		//check if the first part matches any class we've got in this file, if yes remove it
+		if (i > 0) {
+			String s = name.substring(0,i);
+			if (interfaces.get(s) != null) {
+				name = name.substring(i + 1);
+				i = name.indexOf('_');
+			}
+		}
 		while (i > 0 && name.substring(i - 1, i + 1).matches("[a-z0-9]_")) {
 			name = name.substring(0,i) + '.' + name.substring(i + 1);
 			i = name.indexOf('_');
@@ -493,7 +505,12 @@ public class ConverterObjc2Java {
 		                		translatedName = translateKeyword(name);
 		                		String n = translatedName;
 		                		translatedName = translateMethod(translatedName);
-		                		if (!translatedName.startsWith("<<")) { //"<<" => need swap value for parameter
+                				if (translatedName.equals("[")) {
+                    				ret.append(value);
+	                				//preserve original name via comment
+                					ret.append("/*" + oname + "*/");		                				
+                    				break;
+                				} else if (!translatedName.startsWith("<<")) { //"<<" => need swap value for parameter
 		                			//empty => omit the method name, == '-' omit the call alltogether
 		                			if (translatedName.length() == 0) {
 		                				//if we are not part of VARIABLE_ASSIGNMENT or VALUE we comment out the call
@@ -539,9 +556,15 @@ public class ConverterObjc2Java {
 	                    break;
 	                case ObjcParser.METHOD_PARAMS:
 	                	String params = parseMethodParams(tr);
-	                	if (translatedName != null) { //=> need to swap value for params
-	                		ret.append(params).append('.').append(translatedName.substring(2)); //skip "<<" at the start of the string
-	                		params = value;
+	                	if (translatedName != null) {//=> extra dealing with params 
+	                		if (translatedName.equals("[")) {
+	                    		ret.append('[').append(params).append(']');
+	                			break;
+	                		} else {
+	                			//=> need to swap value for params
+	                			ret.append(params).append('.').append(translatedName.substring(2)); //skip "<<" at the start of the string
+	                			params = value;
+	                		}
 	                	}
                 		ret.append('(').append(params).append(')');
 	                	break;
@@ -653,13 +676,13 @@ public class ConverterObjc2Java {
     	CommonTree tr = null;
     	Object node = value.getFirstChildWithType(ObjcLexer.NUMBER);
     	if (node != null) {
-    		tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "int "));
+    		tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "static int "));
     	} else {
         	node = value.getFirstChildWithType(ObjcLexer.BOOL);    		
         	if (node != null) {
-        		tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "boolean "));
+        		tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "static boolean "));
         	} else {
-        		tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "String "));
+        		tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "static String "));
         	}
     	}
     	tree.insertChild(0, tr); //before name
@@ -890,14 +913,15 @@ public class ConverterObjc2Java {
 		ret.append(" {");
 		if (!onTheSameLine) {
 			iBlockCount++;
+			newLines(1,ret);
 		}
-		newLines(1,ret);
 		int i = 0;
         for (Object val : tree.getChildren()) {
         	CommonTree tr = (CommonTree)val;
         	if (tr.token.getType() == ObjcParser.ARRAY_INIT) {
         		if (tr.getChildIndex() > 0) {
         			ret.append(',');
+        			newLines(1,ret);
         		}
         		processArrayInit(tr,ret,true);
         	} else {
