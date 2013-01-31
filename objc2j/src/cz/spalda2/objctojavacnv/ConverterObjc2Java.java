@@ -47,16 +47,19 @@ public class ConverterObjc2Java {
     	methodTranslation = new HashMap<String, String>();
     	methodTranslation.put("alloc", "new");
     	methodTranslation.put("retain", "");
-    	methodTranslation.put("release", " = null");
+    	methodTranslation.put("release", " = null"); //the leading space is important here
     	methodTranslation.put("autorelease", "");
     	methodTranslation.put("isKindOfClass", "<<isInstance"); //<< => swap value and parameter
     	methodTranslation.put("class()", "class");
     	methodTranslation.put("integerValue", "intValue");
     	//dictionary->map methods
     	methodTranslation.put("objectForKey", "get");
+    	methodTranslation.put("removeObjectForKey","remove");
+    	methodTranslation.put("allKeys","keySet");    	
     	//array->map methods
-//    	methodTranslation.put("objectAtIndex", "[");
     	methodTranslation.put("objectAtIndex", "get");
+    	methodTranslation.put("addObject", "add");
+    	methodTranslation.put("removeObject", "remove");
     	//object->object methods
     	methodTranslation.put("isEqual", "equals");
     	//NSString -> String methods
@@ -64,8 +67,15 @@ public class ConverterObjc2Java {
     	methodTranslation.put("NSAssert","Assert.assertFalse");
     	methodTranslation.put("assert","Assert.assertFalse");
     	methodTranslation.put("stringWithFormat", "format");
+    	methodTranslation.put("appendString","+=");
+    	methodTranslation.put("appendFormat"," += String.format"); //leading space is important
     	methodTranslation.put("stringByAppendingString","concat");
-    	methodTranslation.put("stringByAppendingFormat"," + String.format");
+    	methodTranslation.put("stringByAppendingFormat"," + String.format"); //the leading space is important here
+    	methodTranslation.put("stringByReplacingOccurrencesOfRegex","replace");
+    	methodTranslation.put("stringByReplacingAll","replaceAll");
+    	methodTranslation.put("substringFromIndex","substring");
+    	methodTranslation.put("hasPrefix","startsWith");
+    	methodTranslation.put("hasSuffix","endsWith");
     };
 
     private static final Map<String, String> keywordTranslation;
@@ -81,11 +91,14 @@ public class ConverterObjc2Java {
     	keywordTranslation.put("NSDictionary", "Map<Object,Object>"); //this needs manual when it comes to calls like NSDictionary.class
     	keywordTranslation.put("NSMutableDictionary", "Map<Object,Object>");
     	keywordTranslation.put("NSString", "String");
+    	keywordTranslation.put("NSMutableString", "String");
     	keywordTranslation.put("NSNumber", "Number");
     	keywordTranslation.put("NSInteger", "int");
     	keywordTranslation.put("NSUInteger", "unsigned int");
     	keywordTranslation.put("NSArray", "Vector<Object>");
     	keywordTranslation.put("NSMutableArray", "Vector<Object>");
+    	keywordTranslation.put("NSException", "Exception");
+    	keywordTranslation.put("NSDate", "Date");
     	keywordTranslation.put("BOOL", "boolean");
     	keywordTranslation.put("self", "this");
     	keywordTranslation.put("IBAction", "void");    	
@@ -93,7 +106,7 @@ public class ConverterObjc2Java {
     	keywordTranslation.put("&", "");
     	keywordTranslation.put("\n", "");
     	keywordTranslation.put("extern", "public");
-    	keywordTranslation.put("const", "final");
+    	keywordTranslation.put("const", "final"); //TODO this may result in 'final' being placed after <type> which is invalid in java
     	keywordTranslation.put("@try", "try");
     	keywordTranslation.put("@throw", "throw");
     	keywordTranslation.put("@catch", "catch");
@@ -168,6 +181,13 @@ public class ConverterObjc2Java {
 		}
     }
     
+    void undoNewLines(StringBuffer ret) {
+    	char ch;
+		while (ret.length() > 0 && ((ch = ret.charAt(ret.length() - 1)) == '\n' || ch == '\t')) {
+			ret.deleteCharAt(ret.length() - 1);
+		}
+    }
+
     boolean isNodeWithChildern(Object node) {
     	return CommonTree.class.isInstance(node) && ((CommonTree)node).getChildren() != null;
     }
@@ -505,7 +525,7 @@ public class ConverterObjc2Java {
 		                		translatedName = translateKeyword(name);
 		                		String n = translatedName;
 		                		translatedName = translateMethod(translatedName);
-                				if (translatedName.equals("[")) {
+                				if (translatedName.equals("[") || translatedName.startsWith("+")) {
                     				ret.append(value);
 	                				//preserve original name via comment
                 					ret.append("/*" + oname + "*/");		                				
@@ -560,6 +580,9 @@ public class ConverterObjc2Java {
 	                		if (translatedName.equals("[")) {
 	                    		ret.append('[').append(params).append(']');
 	                			break;
+	                		} else if (translatedName.startsWith("+")) {
+	                    		ret.append(translatedName).append(params);
+	                    		break;
 	                		} else {
 	                			//=> need to swap value for params
 	                			ret.append(params).append('.').append(translatedName.substring(2)); //skip "<<" at the start of the string
@@ -852,19 +875,25 @@ public class ConverterObjc2Java {
 	            switch (tr.token.getType()) {
 		            case ObjcParser.BLOCK_MULTI:
 		            case ObjcParser.BLOCK_SINGLE:
-		            	ret.append(' ');
+		            	ret.append("try");
 		            	processBlock(tr,ret);
-		            	ret.append(' ');
+		            	//ret.append(' ');
 		            	break;
 	                case ObjcParser.CATCH_STMT:
-	                	ret.append("catch (");
-	                	processPlainNode(tr.getChild(0),ret);
+	                	undoNewLines(ret);
+	                	ret.append(" catch (");
+	                	parseFallthroughNode(tr.getChild(0),ret);
 	                	ret.append(' ');
-	                	processPlainNode(tr.getChild(1),ret);
+	                	parseFallthroughNode(tr.getChild(1),ret);
 	                	ret.append(')');
+	                	Object o = tr.getChildCount() > 2 ? tr.getChild(2) : null;
+	                	if (o != null && CommonTree.class.isInstance(o)) {
+	                		processBlock((CommonTree)o,ret);
+	                	}
 	                	break;
 	                case ObjcParser.FINALLY_STMT:
-		            	ret.append(' ');
+	                	undoNewLines(ret);
+		            	ret.append(" finally");
 		            	processBlock((CommonTree)tr.getChild(0),ret);
 	                	break;
 	                default:
@@ -1498,9 +1527,7 @@ public class ConverterObjc2Java {
 			    		Object o = tree.getChild(idx);
 			    		if (CommonTree.class.isInstance(o) && ((CommonTree)o).token.getType() == ObjcLexer.ELSE_STMT) {
 			    			//else follows => undo possible new line added when closing previous block
-			    			while ((ch = ret.charAt(ret.length() - 1)) == '\n' || ch == '\t') {
-			    				ret.deleteCharAt(ret.length() - 1);
-			    			}
+			    			undoNewLines(ret);
 			    			n = 0;
 			    		}
 			    	}
