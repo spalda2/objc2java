@@ -28,6 +28,7 @@ public class ConverterObjc2Java {
 	boolean iIgnorePlainNodesBrackets = false;
 	boolean iIgnorePlainNodesCurrledBrackets = false;
 	boolean iIgnorePlainNodesNewLineOnSemicolon = false;
+	boolean iPlainNodesSlashAsSemicolon = false;
 //	boolean iNoNewLines = false;
 	
 	String iGlobalScope = null;
@@ -54,7 +55,9 @@ public class ConverterObjc2Java {
     	methodTranslation.put("integerValue", "intValue");
     	//dictionary->map methods
     	methodTranslation.put("objectForKey", "get");
+    	methodTranslation.put("valueForKey", "get");
     	methodTranslation.put("removeObjectForKey","remove");
+    	methodTranslation.put("removeAllObjects","clear");
     	methodTranslation.put("allKeys","keySet");    	
     	//array->map methods
     	methodTranslation.put("objectAtIndex", "get");
@@ -85,6 +88,7 @@ public class ConverterObjc2Java {
     	keywordTranslation.put("NULL", "null");
     	keywordTranslation.put("YES", "true");
     	keywordTranslation.put("NO", "false");
+    	keywordTranslation.put("#define", "/*#define*/");    	
     	keywordTranslation.put("@selector", "this.getClass().getMethod"); //this need manual completion as it needs a look at the method params to complete method signature
     	keywordTranslation.put("id", "Object"); //for lack of anything else
     	keywordTranslation.put("NSObject", "Object"); //TODO convert stuff like (void\\s\*) to Object
@@ -92,6 +96,8 @@ public class ConverterObjc2Java {
     	keywordTranslation.put("NSMutableDictionary", "Map<Object,Object>");
     	keywordTranslation.put("NSString", "String");
     	keywordTranslation.put("NSMutableString", "String");
+    	keywordTranslation.put("NSRecursiveLock", "ReentrantLock");
+    	keywordTranslation.put("NSLock", "Lock");
     	keywordTranslation.put("NSNumber", "Number");
     	keywordTranslation.put("NSInteger", "int");
     	keywordTranslation.put("NSUInteger", "unsigned int");
@@ -120,6 +126,10 @@ public class ConverterObjc2Java {
     	keywordTranslation.put("@synthetize", "");
     	keywordTranslation.put("@synchronized", "synchronized");
     	keywordTranslation.put("@class", "");
+    	//the 2 translation below is a bit simplification but hey.....
+    	keywordTranslation.put("count","size()");
+    	keywordTranslation.put("length","length()");
+    	//simplification end...
     	keywordTranslation.put("\"C\"", "");
     	//Android specific translation
     	keywordTranslation.put("viewDidLoad", "@Override\nonCreate");
@@ -130,6 +140,7 @@ public class ConverterObjc2Java {
     	keywordTranslation.put("viewDidUnload", "@Override\nonDestroy");
     	//MH specific translation
     	keywordTranslation.put("MHSystem_File","File");
+    	keywordTranslation.put("NSError", "MHUtils.MHError");
     };
 
     String translateMethod(String name) {
@@ -237,6 +248,9 @@ public class ConverterObjc2Java {
     	}
     	if (iIgnorePlainNodesCurrledBrackets && str.matches("[{}]")) {
     		return;
+    	}
+    	if (iPlainNodesSlashAsSemicolon && str.equals("\\")) {
+    		str = ";";
     	}
     	if (str.length() > 1 || str.matches("[^&:*]")) { //cannot ignore '*' cose it could be an operator
     		if (str.startsWith("@\"")) { //NSString
@@ -693,7 +707,39 @@ public class ConverterObjc2Java {
     	tree.token.setType(ObjcParser.FIELD);
     	CommonTree value = (CommonTree)tree.getFirstChildWithType(ObjcLexer.VALUE);
     	if (value == null) {
-    		//ignore the define
+        	value = (CommonTree)tree.getFirstChildWithType(ObjcLexer.METHOD_CALL);
+        	if (value != null) {
+        		iPlainNodesSlashAsSemicolon = true;
+        		ret.append("//TODO CONV #define turned to function definition with typeless params");
+        		newLines(1,ret);
+            	String method = translateClassicalMethod(value);
+            	ret.append("void ").append(method).append(" {");
+        		newLines(1,ret);
+                for (Object child : tree.getChildren()) {
+                	if (isNodeWithChildern(child)) {
+                		CommonTree tr = (CommonTree) child;
+        	            switch (tr.token.getType()) {
+    		            case ObjcParser.BLOCK_MULTI:
+    		            case ObjcParser.BLOCK_SINGLE:
+    		            	processBlock(tr,ret);
+    		            	break;
+    	                case ObjcParser.METHOD_CALL:
+    	                	//already processed
+    	                	break;
+    	                default:
+    	                	parseFallthroughNode(tr,ret);
+    	                	break;
+        	            }
+    	            } else {
+    	            	processPlainNode(child,ret);
+    	            }
+                }
+                ret.append(';');
+                newLines(1,ret);
+                ret.append('}');
+                newLines(1,ret);
+                iPlainNodesSlashAsSemicolon = false;
+        	}
     		return;
     	}
     	CommonTree tr = null;
@@ -1473,10 +1519,10 @@ public class ConverterObjc2Java {
 	        	CommonTree tr = (CommonTree) child;
 	            switch (tr.token.getType()) {
 	                case ObjcParser.BREAK_STMT:
-	                	ret.append("break;");
+	                	ret.append("break");
 	                	break;
 	                case ObjcParser.CONTINUE_STMT:
-	                	ret.append("continue;");
+	                	ret.append("continue");
 	                	break;
 	                default:
 	                	parseFallthroughNode(tr,ret);
@@ -1505,8 +1551,8 @@ public class ConverterObjc2Java {
 	    	iBlockCount++;
 	    	if (type == ObjcLexer.BLOCK_SINGLE) {
 	    		newLines(1,ret);
-		    	iBlockCount--;
 		    	processInnerBlock(tree,ret);
+		    	iBlockCount--;
 	    	} else {
 	    		//first child node here is '{' => add it and remove the node
     			int ch;
@@ -1717,7 +1763,7 @@ public class ConverterObjc2Java {
         iBlockCount--;
     }
     
-    void addIMPLEMENTS_INTERFACESandFinishHeader(CommonTree tree, StringBuffer ret) {
+    void addIMPLEMENTS_INTERFACESandFinishHeader(CommonTree tree, StringBuffer ret, String keyWord) {
 		if (tree != null) {
 			String implementsIntf = null;
 	        for (Object o : tree.getChildren()) {
@@ -1725,7 +1771,7 @@ public class ConverterObjc2Java {
 	        	if (implementsIntf != null) {
 	        		ret.append(',');
 	        	} else {
-	        		ret.append("implements ");		        	        		
+	        		ret.append(keyWord);		
 	        	}
 	    		implementsIntf = intr.getChild(0).toString();
 	    		ret.append(implementsIntf).append(' ');
@@ -1772,7 +1818,7 @@ public class ConverterObjc2Java {
 		                	iJavaCode.append("extends ").append(name).append(' ');
 	                		ctr =(CommonTree) tr.getFirstChildWithType(ObjcParser.IMPLEMENTS_INTERFACES);
 	                	}
-	                	addIMPLEMENTS_INTERFACESandFinishHeader(ctr,iJavaCode);
+	                	addIMPLEMENTS_INTERFACESandFinishHeader(ctr,iJavaCode,"implements ");
 	                	break;
 	                case ObjcParser.GROUP_MODIFIER:
 	                	scope = tr.getChild(0).toString();
@@ -1840,11 +1886,11 @@ public class ConverterObjc2Java {
 	            		iJavaCode.append(' ').append(iCurrentClassName).append(' ');
                 		Object ctr = tree.getFirstChildWithType(ObjcParser.IMPLEMENTS_INTERFACES);
                 		if (ctr == null) {
-                			addIMPLEMENTS_INTERFACESandFinishHeader(null,iJavaCode);
+                			addIMPLEMENTS_INTERFACESandFinishHeader(null,iJavaCode,"extends ");
                 		}
 	                	break;
 	                case ObjcParser.IMPLEMENTS_INTERFACES: //always present
-	                	addIMPLEMENTS_INTERFACESandFinishHeader(tr,iJavaCode);
+	                	addIMPLEMENTS_INTERFACESandFinishHeader(tr,iJavaCode,"extends ");
 	                	break;
 	                case ObjcParser.METHOD:
 	                	//all method of interface are made public

@@ -223,7 +223,7 @@ block
 block_multiline
 	:		
 		'{'
-			block_internal*		
+			block_internal_macro*		
 		'}'
 	;
 
@@ -254,6 +254,11 @@ block_singleline
   | comments
 	;
 
+block_internal_macro
+  : '\\'
+  | block_internal
+  ;
+  
 block_internal
   : (clasical_method_call_predicate)=> classical_method_call_wrapper
   | (object_access_simple_wrapper increment_decrement)=> object_access_simple_wrapper increment_decrement
@@ -482,10 +487,15 @@ cast_unary_expression
 
 cast_expression
   : (type_cast_wrapper)=> type_cast_wrapper simple_expression_value_access
-  | ('(' type_cast_wrapper simple_expression_value_access ')' access_wrapper)=> '(' type_cast_wrapper simple_expression_value_access ')' (access_wrapper name)+
+  | ('(' type_cast_wrapper simple_expression_value_access ')' access_wrapper)=> '(' type_cast_wrapper simple_expression_value_access ')' (access_wrapper simple_name_or_classical_function_call)+
   | simple_expression_value_access
   ;
 
+simple_name_or_classical_function_call
+  : (name '(') => name ('(' classical_method_params_push? ')')
+  | name
+  ;
+  
 simple_expression_value_access
   : selector_wrapper '(' name (':' (name ':')*)? ')'
   | (simple_expression_value (access_wrapper name)* '(')=> simple_expression_value (access_wrapper name)* ('(' classical_method_params_push? ')')
@@ -588,11 +598,11 @@ lvalue
   
 
 break_stmt
-  : 'break' ';' -> ^(BREAK_STMT)
+  : 'break' -> ^(BREAK_STMT)
   ;
   
 continue_stmt
-  : 'continue' ';' ->^(CONTINUE_STMT)
+  : 'continue' ->^(CONTINUE_STMT)
   ;
   
 /*-------------------------------------------------------------------
@@ -777,7 +787,7 @@ classical_type_declaration
 type_declaration
   : (type_decl_protocol_predicate)=> type_declaration_protocol
   | (func_pointer_predicate)=> func_pointer
-  | type_declaration_struct '&'?
+  | type_declaration_struct '&'?'*'?
   | type_declaration_enum '&'?
   | type_declaration_union '&'?
   | type_declaration_plane '&'?
@@ -911,10 +921,15 @@ prefix  : ID -> ^(PARAM_PREFIX ID);
 
 //works for 1 line defines only
 define_declaration
-  : (DEFINE_LITERAL name element_value)=>DEFINE_LITERAL name element_value -> ^(DEFINE name element_value)
+  : (DEFINE_LITERAL classical_method_call_wrapper '\\') => define_as_function
+  | (DEFINE_LITERAL name element_value)=>DEFINE_LITERAL name element_value -> ^(DEFINE name element_value)
   | DEFINE_LITERAL name  -> ^(DEFINE name)
   ;
   
+define_as_function
+  : DEFINE_LITERAL classical_method_call_wrapper ('\\' '{'? block_singleline_wrapper '}'?)+ -> ^(DEFINE classical_method_call_wrapper block_singleline_wrapper+)
+  ;
+
 /*------------------------------------------------------------------
  * LEXER RULES
  *------------------------------------------------------------------*/

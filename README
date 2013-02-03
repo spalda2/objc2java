@@ -16,7 +16,11 @@ Limitations:
 - it doesn't bother with categories declarations as it expects the functions to be implemented somewhere
 - it doesn't merge categories either
 - it doesn't create separate files in case it finds more interfaces in one .mm/.m, .h file pairs
-- it only copes with 1 line #define
+- it only copes with 1 line #define extept when macro has a parameters then it turns it in sort of typeless function
+- it preferrably wants all macros to be defined outside @interface,@iplementation,etc problems:
+	- i haven't found a simple way to terminate macro by \n which is a whitespace on hidde channel
+	- the syntax to alter whitespaces per rule (e.g. options = {ignore=...}; ) has disappeared in ANTLR 3.x apparently
+	- i figured i would need to start writing gramma functions to handle that which i was too lazy to do:)
 - it doesn't cope with macro expansion and treats it as a C function call if it sees that left bracket follows
 	- leads to recognition exception if macro "parameter" contains anything else but expression
 - the gramma is just to keep me happy and
