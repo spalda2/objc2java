@@ -57,17 +57,19 @@ public class ConverterObjc2Java {
     	methodTranslation.put("objectForKey", "get");
     	methodTranslation.put("valueForKey", "get");
     	methodTranslation.put("removeObjectForKey","remove");
-    	methodTranslation.put("removeAllObjects","clear");
+    	methodTranslation.put("removeAllObjects","clear"); //works for Vector/List as well
     	methodTranslation.put("allKeys","keySet");    	
     	//array->map methods
     	methodTranslation.put("objectAtIndex", "get");
     	methodTranslation.put("addObject", "add");
     	methodTranslation.put("removeObject", "remove");
+    	methodTranslation.put("removeObjectAtIndex", "removeElementAt");
+    	//methodTranslation.put("removeAllObjects","removeAll");
     	//object->object methods
     	methodTranslation.put("isEqual", "equals");
     	//NSString -> String methods
     	methodTranslation.put("isEqualToString", "equals");
-    	methodTranslation.put("NSAssert","Assert.assertFalse");
+    	methodTranslation.put("NSAssert","Assert.assertTrue");
     	methodTranslation.put("assert","Assert.assertFalse");
     	methodTranslation.put("stringWithFormat", "format");
     	methodTranslation.put("appendString","+=");
@@ -77,6 +79,7 @@ public class ConverterObjc2Java {
     	methodTranslation.put("stringByReplacingOccurrencesOfRegex","replace");
     	methodTranslation.put("stringByReplacingAll","replaceAll");
     	methodTranslation.put("substringFromIndex","substring");
+    	methodTranslation.put("characterAtIndex","charAt");
     	methodTranslation.put("hasPrefix","startsWith");
     	methodTranslation.put("hasSuffix","endsWith");
     };
@@ -141,6 +144,8 @@ public class ConverterObjc2Java {
     	//MH specific translation
     	keywordTranslation.put("MHSystem_File","File");
     	keywordTranslation.put("NSError", "MHUtils.MHError");
+    	keywordTranslation.put("NSNotFound", "MHConstants.MHNotFound");
+    	
     };
 
     String translateMethod(String name) {

@@ -431,7 +431,7 @@ method_params_push
 	:	method_param_push (((prefix ':') | ',') method_param_push)* -> ^(METHOD_PARAMS method_param_push+);
 
 method_param_push
-  : element_value multi_comment? -> ^(METHOD_PARAM element_value multi_comment?)
+  : comments? element_value comments? -> ^(METHOD_PARAM comments? element_value comments?)
   ; 
 
 method_msg
@@ -958,7 +958,7 @@ PREPROCESSOR_DECLARATION
 	: '#' ~('d') ~('\r' | '\n')* ('\r' | '\n')+ { skip(); }
 	; 	
 
-NUMBER_LITERAL  : (DIGIT+ ('.' DIGIT+)? 'f'?)
+NUMBER_LITERAL  : (DIGIT+ ('L' | ('.' DIGIT+)? 'f'?))
 	| ('0x' (('a'..'f')|('A'..'F')|DIGIT)+);
 
 WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+  { $channel = HIDDEN; } ;
@@ -973,8 +973,8 @@ CHAR_LITERAL
 
 fragment EscapeSequence 
   : '\\'
-    ( 
-      'n' 
+    ( '0'
+  | 'n' 
   | 'r' 
   | 't'
   | '\'' 
