@@ -48,6 +48,7 @@ public class ConverterObjc2Java {
     	methodTranslation = new HashMap<String, String>();
     	methodTranslation.put("alloc", "new");
     	methodTranslation.put("retain", "");
+    	methodTranslation.put("mutableCopy", "");
     	methodTranslation.put("release", " = null"); //the leading space is important here
     	methodTranslation.put("autorelease", "");
     	methodTranslation.put("isKindOfClass", "<<isInstance"); //<< => swap value and parameter
@@ -62,6 +63,7 @@ public class ConverterObjc2Java {
     	//array->map methods
     	methodTranslation.put("objectAtIndex", "get");
     	methodTranslation.put("addObject", "add");
+    	methodTranslation.put("setObject", ">>put"); //>> => swap parameters
     	methodTranslation.put("removeObject", "remove");
     	methodTranslation.put("removeObjectAtIndex", "removeElementAt");
     	//methodTranslation.put("removeAllObjects","removeAll");
@@ -82,6 +84,9 @@ public class ConverterObjc2Java {
     	methodTranslation.put("characterAtIndex","charAt");
     	methodTranslation.put("hasPrefix","startsWith");
     	methodTranslation.put("hasSuffix","endsWith");
+    	methodTranslation.put("componentsSeparatedByString","split");
+    	//MH specific translations
+    	methodTranslation.put("MHUtils_MHLog_I","MHUtils.MHLog.i");
     };
 
     private static final Map<String, String> keywordTranslation;
@@ -394,7 +399,7 @@ public class ConverterObjc2Java {
 	            	parseBlockCall(tr,ret);
 	            	break;
 	            case ObjcParser.PARAMS:
-	            	String params = parseMethodParams(tr);
+	            	String params = parseMethodParams(tr,false);
 	            	ret.append('(').append(params).append(')');
 	            	break;
 	            case ObjcParser.OP:
@@ -458,13 +463,23 @@ public class ConverterObjc2Java {
         }
     }
     
-    String parseMethodParams(CommonTree tree) {
+    String parseMethodParams(CommonTree tree,boolean bReorderParams) {
     	int type = tree.token.getType();
     	if (type != ObjcLexer.METHOD_PARAMS && type != ObjcLexer.PARAMS) {
     		return null;
     	}
     	StringBuffer ret = new StringBuffer();
-        for (Object child : tree.getChildren()) {
+    	int limit = tree.getChildCount();
+    	int step = 1;
+    	int start = 0;
+    	if (bReorderParams) {
+        	limit = -1;
+        	step = -1;
+        	start = tree.getChildCount() - 1;
+    	}
+    	while (start != limit) {
+    		Object child = tree.getChild(start);
+    		start += step;
         	if (isNodeWithChildern(child)) {
 	        	CommonTree tr = (CommonTree) child;
 	            switch (tr.token.getType()) {
@@ -497,6 +512,7 @@ public class ConverterObjc2Java {
     	String className = null;
     	String value = null;
     	String translatedName = null;
+    	boolean bSwapParams = false;
         for (Object child : tree.getChildren()) {
         	if (isNodeWithChildern(child)) {
 	        	CommonTree tr = (CommonTree) child;
@@ -567,6 +583,10 @@ public class ConverterObjc2Java {
 		                					} else if (translatedName.startsWith(" +")) {
 			                					ret.append(translatedName);
 		                					} else {
+		                						if (translatedName.startsWith(">>")) {
+		                							bSwapParams = true;
+		                							translatedName = translatedName.substring(2);
+		                						}
 			                					ret.append('.');
 			                					name = translatedName;
 					    	            		if (tree.getFirstChildWithType(ObjcParser.METHOD_PARAMS) == null) {
@@ -594,7 +614,7 @@ public class ConverterObjc2Java {
 	                	}
 	                    break;
 	                case ObjcParser.METHOD_PARAMS:
-	                	String params = parseMethodParams(tr);
+	                	String params = parseMethodParams(tr,bSwapParams);
 	                	if (translatedName != null) {//=> extra dealing with params 
 	                		if (translatedName.equals("[")) {
 	                    		ret.append('[').append(params).append(']');
@@ -632,7 +652,7 @@ public class ConverterObjc2Java {
 	                	ret.append(name);
 	                	break;
 		            case ObjcParser.PARAMS:
-		            	String params = parseMethodParams(tr);
+		            	String params = parseMethodParams(tr,false);
 		            	ret.append(params);
 		            	break;
 	                default:
@@ -663,7 +683,7 @@ public class ConverterObjc2Java {
     	if (tr == null) {
     		iJavaCode.append("();");
     	} else {
-        	params = parseMethodParams(tr);
+        	params = parseMethodParams(tr,false);
         	iJavaCode.append('(').append(params).append(");");
     	}
     	iBlockCount--;
@@ -1063,7 +1083,7 @@ public class ConverterObjc2Java {
 	                	parseValueInternal(tr,ret);
 	                	break;
 		            case ObjcParser.PARAMS:
-		            	String params = parseMethodParams(tr);
+		            	String params = parseMethodParams(tr,false);
 		            	iJavaCode.append('(').append(params).append(')');
 		            	break;
 		            case ObjcParser.BLOCK_MULTI:
@@ -1681,7 +1701,7 @@ public class ConverterObjc2Java {
 	            		}
 	                	break;
 	                case ObjcParser.METHOD_PARAMS:
-	                	String params = parseMethodParams(tr);
+	                	String params = parseMethodParams(tr,false);
 	                	iJavaCode.append('(').append(params).append(')');
 	                	break;
 	                case ObjcParser.BLOCK_MULTI:

@@ -118,7 +118,8 @@ code	:
 	;
 	
 code_internal
-	:	implementation_wrapper
+  : (type_declaration field_name) => variable_declaration_wrapper
+	|	implementation_wrapper
 	| forward_class_declaration
   | protocol_declaration_wrapper 
   | interface_declaration_wrapper 
@@ -126,7 +127,7 @@ code_internal
   | define_declaration
   | typedef_declaration_wrapper
   | static_declaration_wrapper
-  | variable_declaration_wrapper
+  | type_declaration_struct_enum_union_anonymous
   | comments
   | ';'
 	;
@@ -457,7 +458,7 @@ array_init
   
 element_value_or_array_init
   : '{' array_init? '}'  -> ^(ARRAY_INIT array_init?)
-  | element_value
+  | comments? element_value
   ;
   
 increment_decrement
@@ -648,8 +649,15 @@ protocol_declaration_wrapper
   : protocol_declaration -> ^(PROTOCOL protocol_declaration);
 
 typedef_declaration_wrapper
-  : 'typedef' typedef_declaration -> ^(TYPEDEF typedef_declaration);
+  : 'typedef' typedef_declaration -> ^(TYPEDEF typedef_declaration)
+  ;
 
+type_declaration_struct_enum_union_anonymous
+  : type_declaration_struct_full
+  | type_declaration_enum_full
+  | type_declaration_union_full
+  ;
+  
 typedef_declaration
   : typedef_internal typedef_name (',' typedef_name)* ';';
   
@@ -817,18 +825,30 @@ type_declaration_enum_simple
   : 'enum' typedef_name ->^(ENUM typedef_name)
   ;
 
+type_declaration_struct_full
+  : 'struct' typedef_name? struct_wrapper ->^(STRUCT_DEC typedef_name? struct_wrapper)
+  ; 
+
+type_declaration_union_full
+  : 'union' typedef_name? struct_wrapper ->^(UNION_DEC typedef_name? struct_wrapper)
+  ; 
+
+type_declaration_enum_full
+  : 'enum' typedef_name? enum_wrapper ->^(ENUM_DEC typedef_name? enum_wrapper)
+  ;
+  
 type_declaration_struct
-  : ('struct' typedef_name? '{')=> 'struct' typedef_name? struct_wrapper ->^(STRUCT_DEC typedef_name? struct_wrapper)
+  : ('struct' typedef_name? '{')=> type_declaration_struct_full
   | type_declaration_struct_simple
   ; 
 
 type_declaration_union
-  : ('union' typedef_name? '{')=> 'union' typedef_name? struct_wrapper ->^(UNION_DEC typedef_name? struct_wrapper)
+  : ('union' typedef_name? '{')=> type_declaration_union_full
   | type_declaration_union_simple
   ; 
 
 type_declaration_enum
-  : ('enum' typedef_name? '{')=> 'enum' typedef_name? enum_wrapper ->^(ENUM_DEC typedef_name? enum_wrapper)
+  : ('enum' typedef_name? '{')=> type_declaration_enum_full
   | type_declaration_enum_simple
   ;
 
@@ -877,7 +897,8 @@ knownTypes
   ;
   
 field_name
-  : ID array_size* (field_crap)? -> ^(FIELD_NAME ID array_size*);     
+  : ID array_size* (field_crap)? -> ^(FIELD_NAME ID array_size*)
+  ;     
 
 array_size
   : '[' (NUMBER_LITERAL | ID)? ']';
