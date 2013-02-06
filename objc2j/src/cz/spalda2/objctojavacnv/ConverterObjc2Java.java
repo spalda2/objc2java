@@ -56,6 +56,7 @@ public class ConverterObjc2Java {
     	methodTranslation.put("integerValue", "intValue");
     	//dictionary->map methods
     	methodTranslation.put("objectForKey", "get");
+    	methodTranslation.put("setObject", ">>put"); //>> => swap parameters
     	methodTranslation.put("valueForKey", "get");
     	methodTranslation.put("removeObjectForKey","remove");
     	methodTranslation.put("removeAllObjects","clear"); //works for Vector/List as well
@@ -63,9 +64,9 @@ public class ConverterObjc2Java {
     	//array->map methods
     	methodTranslation.put("objectAtIndex", "get");
     	methodTranslation.put("addObject", "add");
-    	methodTranslation.put("setObject", ">>put"); //>> => swap parameters
     	methodTranslation.put("removeObject", "remove");
     	methodTranslation.put("removeObjectAtIndex", "removeElementAt");
+    	methodTranslation.put("replaceObjectAtIndex", "set");
     	//methodTranslation.put("removeAllObjects","removeAll");
     	//object->object methods
     	methodTranslation.put("isEqual", "equals");
