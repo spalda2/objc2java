@@ -86,8 +86,12 @@ public class ConverterObjc2Java {
     	methodTranslation.put("hasPrefix","startsWith");
     	methodTranslation.put("hasSuffix","endsWith");
     	methodTranslation.put("componentsSeparatedByString","split");
+    	methodTranslation.put("isMatchedByRegex","matches");
     	//MH specific translations
     	methodTranslation.put("MHUtils_MHLog_I","MHUtils.MHLog.i");
+    	methodTranslation.put("lastPathComponent","<<MHUtils.MHString.lastPathComponent"); //<< => swap value and parameter
+    	methodTranslation.put("timeIntervalSince1970","<<MHUtils.MHDate.timeIntervalSince1970");
+    	methodTranslation.put("stringByDeletingPathExtension","<<MHUtils.MHString.stringByDeletingPathExtension");
     };
 
     private static final Map<String, String> keywordTranslation;
@@ -610,6 +614,10 @@ public class ConverterObjc2Java {
 	                					ret.append("/*" + oname + "*/");		                				
 		                			}
 		                			translatedName = null;
+		                		} else if (tree.getFirstChildWithType(ObjcParser.METHOD_PARAMS) == null) {
+		                			//if we need to swap value and param and we don't have any param then
+		                			ret.append(translatedName.substring(2)).append('(').append(value).append(')');
+		                			translatedName = null;
 		                		}
 		                	}
 	                	}
@@ -729,6 +737,18 @@ public class ConverterObjc2Java {
     	}
     }
     
+    Object findFirstNodeWithType(int type, CommonTree tree) {
+    	if (tree.getChildren() != null) {
+	        for (Object child : tree.getChildren()) {
+	        	if (CommonTree.class.isInstance(child)) {
+		        	CommonTree tr = (CommonTree) child;
+		        	return tr.token.getType() == type ? tr : findFirstNodeWithType(type, tr);
+	        	}
+	        }
+    	}
+        return null;
+    }
+
     void processDefine(CommonTree tree, StringBuffer ret) {
     	tree.token.setType(ObjcParser.FIELD);
     	CommonTree value = (CommonTree)tree.getFirstChildWithType(ObjcLexer.VALUE);
@@ -769,11 +789,11 @@ public class ConverterObjc2Java {
     		return;
     	}
     	CommonTree tr = null;
-    	Object node = value.getFirstChildWithType(ObjcLexer.NUMBER);
+    	Object node = findFirstNodeWithType(ObjcLexer.NUMBER,value);
     	if (node != null) {
     		tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "static int "));
     	} else {
-        	node = value.getFirstChildWithType(ObjcLexer.BOOL);    		
+        	node = findFirstNodeWithType(ObjcLexer.BOOL,value);    		
         	if (node != null) {
         		tr = new CommonTree(new CommonToken(ObjcLexer.TYPE_PLAIN, "static boolean "));
         	} else {
@@ -1141,7 +1161,7 @@ public class ConverterObjc2Java {
     
     void processDo(CommonTree tree, StringBuffer ret) {
     	int type = tree.token.getType();
-    	if (type != ObjcLexer.SWITCH_STMT) {
+    	if (type != ObjcLexer.DO_STMT) {
     		return;
     	}
     	
