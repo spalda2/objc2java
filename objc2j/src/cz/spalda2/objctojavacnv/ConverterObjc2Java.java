@@ -82,6 +82,7 @@ public class ConverterObjc2Java {
     	methodTranslation.put("stringByReplacingOccurrencesOfRegex","replace");
     	methodTranslation.put("stringByReplacingAll","replaceAll");
     	methodTranslation.put("substringFromIndex","substring");
+    	methodTranslation.put("substringToIndex","substring(0,"); //ending ',' means the rest of the parameters follow
     	methodTranslation.put("characterAtIndex","charAt");
     	methodTranslation.put("hasPrefix","startsWith");
     	methodTranslation.put("hasSuffix","endsWith");
@@ -141,7 +142,7 @@ public class ConverterObjc2Java {
     	keywordTranslation.put("@class", "");
     	//the 2 translation below is a bit simplification but hey.....
     	keywordTranslation.put("count","size()");
-    	keywordTranslation.put("length","length()");
+    	//keywordTranslation.put("length","length()"); this one is too much
     	//simplification end...
     	keywordTranslation.put("\"C\"", "");
     	//Android specific translation
@@ -257,7 +258,9 @@ public class ConverterObjc2Java {
     }
 
     void processFragment(Object node, String str, StringBuffer ret) {
-		str = translateKeyword(str);
+    	if (!str.startsWith("@\"") && !str.startsWith("\"")) {
+    		str = translateKeyword(str);
+    	}
     	if (iIgnorePlainNodesBrackets && str.matches("[()]")) {
     		return;
     	}
@@ -613,7 +616,11 @@ public class ConverterObjc2Java {
 		                				//preserve original name via comment
 	                					ret.append("/*" + oname + "*/");		                				
 		                			}
-		                			translatedName = null;
+		                			if (translatedName.endsWith(",")) {
+		                				translatedName = ",";
+		                			} else {
+		                				translatedName = null;
+		                			}
 		                		} else if (tree.getFirstChildWithType(ObjcParser.METHOD_PARAMS) == null) {
 		                			//if we need to swap value and param and we don't have any param then
 		                			ret.append(translatedName.substring(2)).append('(').append(value).append(')');
@@ -630,6 +637,9 @@ public class ConverterObjc2Java {
 	                			break;
 	                		} else if (translatedName.startsWith("+")) {
 	                    		ret.append(translatedName).append(params);
+	                    		break;
+	                    	} else if (translatedName.equals(",")) {
+	                    		ret.append(params).append(')');
 	                    		break;
 	                		} else {
 	                			//=> need to swap value for params
