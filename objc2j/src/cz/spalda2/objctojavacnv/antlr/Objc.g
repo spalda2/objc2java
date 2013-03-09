@@ -49,6 +49,7 @@ tokens {
   STATIC;
   STATIC_VARIABLE;
   STRING;
+  STRING_OBJC;
   SYNCHRONIZED;
   SYNTHETIZE;
   SWITCH_STMT;
@@ -250,8 +251,8 @@ block_singleline
   | break_stmt
   | continue_stmt
 	|	goto_stmt
-	| method_msg
   | variable_assignment_wrapper
+	| method_msg ((access_wrapper name)* op_assign element_value)?
   | comments
 	;
 
@@ -281,7 +282,7 @@ block_internal
 	| continue_stmt
 	|	goto_stmt
 	| block_multiline_wrapper
-  | method_msg
+  | method_msg ((access_wrapper name)* op_assign element_value)?
   | comments
 	;
 
@@ -457,7 +458,7 @@ array_init
   ;
   
 element_value_or_array_init
-  : '{' array_init? '}'  -> ^(ARRAY_INIT array_init?)
+  : '{' array_init? '}' comments? -> ^(ARRAY_INIT array_init? comments?)
   | comments? element_value
   ;
   
@@ -499,6 +500,7 @@ simple_name_or_classical_function_call
   
 simple_expression_value_access
   : selector_wrapper '(' name (':' (name ':')*)? ')'
+  | '@protocol' '(' name ')' ->  ^(DIRECTIVE name)
   | (simple_expression_value (access_wrapper name)* '(')=> simple_expression_value (access_wrapper name)* ('(' classical_method_params_push? ')')
   | simple_expression_value2 (access_wrapper name)*
   ;
@@ -506,11 +508,11 @@ simple_expression_value_access
 simple_expression_value
   : ('&'? name '[')=> '&'? name '[' element_value ']' -> ^(ARRAY_VALUE name element_value)
   | (('&'|'*') name) => ('&'|'*') name
-	|	STRING_LITERAL -> ^(STRING STRING_LITERAL)
-	| STRING_OBJC -> ^(STRING STRING_OBJC)
+	|	string
+	| string_objc
 	| CHAR_LITERAL -> ^(CHAR CHAR_LITERAL)
 	|	NUMBER_LITERAL -> ^(NUMBER NUMBER_LITERAL)
-	| BOOL_LITERAL -> ^(BOOL BOOL_LITERAL)
+	| bool -> ^(BOOL bool)
   | name
 	;
 
@@ -951,9 +953,31 @@ define_as_function
   : DEFINE_LITERAL classical_method_call_wrapper ('\\' '{'? block_singleline_wrapper '}'?)+ -> ^(DEFINE classical_method_call_wrapper block_singleline_wrapper+)
   ;
 
+string
+  : STRING_LITERAL -> ^(STRING STRING_LITERAL)
+  ;
+  
+string_objc
+  : '@' STRING_LITERAL -> ^(STRING_OBJC STRING_LITERAL)
+  ;
+
+bool
+  : ('YES' | 'NO' | 'true' | 'false')
+  ;
+
 /*------------------------------------------------------------------
  * LEXER RULES
  *------------------------------------------------------------------*/
+
+/*
+STRING_LITERAL
+  :   '"' StringBody ('\\' '\r'? '\n' StringBody)* '"'
+  ;
+*/
+
+STRING_LITERAL
+  :   '"' StringBody ('\n' StringBody)* '"'
+  ;
 
 SINGLE_COMMENT_LIT
   : '//' ~('\r' | '\n')* ('\r'? '\n')+;
@@ -984,14 +1008,14 @@ NUMBER_LITERAL  : (DIGIT+ ('L' | ('.' DIGIT+)? 'f'?))
 
 WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+  { $channel = HIDDEN; } ;
 
-STRING_LITERAL
-      :   '"' ( EscapeSequence | (options {greedy=false;} : ~('\u0000'..'\u001f' | '\\' | '"' ) ) )* '"'
-      ;
-
 CHAR_LITERAL
       :   '\'' ( EscapeSequence | (' '..'z')) '\''
       ;
 
+fragment StringBody
+      :   (('\\\\' | '\\"') | (options {greedy=false;} : ~('\u0000'..'\u001f' | '"' ) ) )*
+      ;
+      
 fragment EscapeSequence 
   : '\\'
     ( '0'
@@ -1011,12 +1035,6 @@ fragment UnicodeEscape
 
 fragment HexDigit 
   :   ('0'..'9'|'a'..'f'|'A'..'F');
-
-STRING_OBJC
-	: '@' STRING_LITERAL;
-
-BOOL_LITERAL
-  : ('YES' | 'NO' | 'true' | 'false');
   
 ID
   : LETTER (DIGIT|LETTER)*;

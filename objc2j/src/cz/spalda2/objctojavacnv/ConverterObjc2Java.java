@@ -232,6 +232,9 @@ public class ConverterObjc2Java {
         		ret.append(tr.getChild(0).toString()); //this will append \n as well as a part of da comment
         		newLines(0,ret); //add desired number of \t
         		return;
+        	} else if (type == ObjcParser.STRING_OBJC) {
+        		//let it fall through
+        		//processPlainNode(tr.getChild(0),ret);
         	}
     	}
     	if (node != null) {
@@ -258,7 +261,7 @@ public class ConverterObjc2Java {
     }
 
     void processFragment(Object node, String str, StringBuffer ret) {
-    	if (!str.startsWith("@\"") && !str.startsWith("\"")) {
+    	if (!str.startsWith("\"")) {
     		str = translateKeyword(str);
     	}
     	if (iIgnorePlainNodesBrackets && str.matches("[()]")) {
@@ -271,10 +274,12 @@ public class ConverterObjc2Java {
     		str = ";";
     	}
     	if (str.length() > 1 || str.matches("[^&:*]")) { //cannot ignore '*' cose it could be an operator
-    		if (str.startsWith("@\"")) { //NSString
+    		if (str.startsWith("\"")) { //String
     			//replace obj c formating %@ by %s ?
     			str = str.replaceAll("%@", "%s");
-        		ret.append(str.substring(1));
+    			//and make multiline string const def singleline
+    			str = str.replaceAll("\\\n", "");
+        		ret.append(str);
     		} else if (str.equals("}")) {
     			//we take it as an end of a block
     			iBlockCount--;
@@ -1566,6 +1571,10 @@ public class ConverterObjc2Java {
 	                	break;
 	                case ObjcParser.FOR_STMT:
 	                	processFor(tr, ret);
+	                	break;
+	                case ObjcParser.VALUE:
+	                	ret.append(' ');
+	                	parseValueInternal(tr,ret);
 	                	break;
 	                default:
 	                	parseFallthroughNode(tr,ret);

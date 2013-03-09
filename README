@@ -26,6 +26,7 @@ Limitations:
 - the gramma is just to keep me happy and
 	- doesn't include any operator precedence or any other stuff of that sort useless for this type of conversion
 	- due to the above it produces 5 warnings when compiled with ANTLR which i couldn't be bothered to fix:)
+- there seem to be a bug in ANTLR in a way it treats '\' char as something special and hnece it wouldn't parse string const split over multiple lines. so i ended up allowing '\' in string efectively forgeting about any 'proper' escaping which produced another 6th warning but worked.
 - i'm sure you'll find plenty of others
 
 Usage:
