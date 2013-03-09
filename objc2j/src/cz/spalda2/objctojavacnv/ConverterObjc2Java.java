@@ -278,7 +278,7 @@ public class ConverterObjc2Java {
     			//replace obj c formating %@ by %s ?
     			str = str.replaceAll("%@", "%s");
     			//and make multiline string const def singleline
-    			str = str.replaceAll("\\\n", "");
+    			str = str.replaceAll("\\\\\n", "");
         		ret.append(str);
     		} else if (str.equals("}")) {
     			//we take it as an end of a block
