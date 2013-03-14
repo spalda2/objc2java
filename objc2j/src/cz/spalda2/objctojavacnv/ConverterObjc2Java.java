@@ -79,7 +79,7 @@ public class ConverterObjc2Java {
     	methodTranslation.put("appendFormat"," += String.format"); //leading space is important
     	methodTranslation.put("stringByAppendingString","concat");
     	methodTranslation.put("stringByAppendingFormat"," + String.format"); //the leading space is important here
-    	methodTranslation.put("stringByReplacingOccurrencesOfRegex","replace");
+    	methodTranslation.put("stringByReplacingOccurrencesOfRegex","replaceAll");
     	methodTranslation.put("stringByReplacingAll","replaceAll");
     	methodTranslation.put("substringFromIndex","substring");
     	methodTranslation.put("substringToIndex","substring(0,"); //ending ',' means the rest of the parameters follow

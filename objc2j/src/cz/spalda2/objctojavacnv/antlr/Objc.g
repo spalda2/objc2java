@@ -994,7 +994,7 @@ SINGLE_COMMENT
 // 	: '/*' .* '*/' ('\r'? '\n')? { skip(); };
 
 IF0_COMMENT options { greedy = false; }
-  : '#if 0' .* ('#endif') ('\r'? '\n')? { skip(); };
+  : '#if 0' .* ('#endif'|'#else') ('\r'? '\n')? { skip(); };
 
 DEFINE_LITERAL
   : '#define';
