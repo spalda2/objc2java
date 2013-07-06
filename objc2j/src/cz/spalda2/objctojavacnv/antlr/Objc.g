@@ -527,7 +527,7 @@ op2_wrapper
   : op2 -> ^(OP op2)
   ;
   
-op2	:	('|' | '&' | '<<' | '>>' | '+' | '-' | '*' | '&&' | '||' | '<' | '>' | '<=' | '>=' | '==' | '!=' | '^' | '=' | '/');
+op2	:	('|' | '&' | '<<' | '>>' | '+' | '-' | '*' | '&&' | '||' | '<' | '>' | '<=' | '>=' | '==' | '!=' | '^' | '=' | '/' | '%');
 
 op_assign_wrapper
   : op_assign -> ^(OP op_assign)
@@ -616,6 +616,9 @@ extern_declaration_wrapper
   
 extern_declaration
   : 'extern' field_declaration;
+
+optional_prefix
+  : '@optional' | '@required';
   
 declarations
   : optional_prefix? method_declaration -> ^(METHOD method_declaration)
@@ -625,11 +628,7 @@ declarations
   
 field_declaration_wrapper
   : field_declaration -> ^(FIELD field_declaration);
-  
-  
-optional_prefix
-  : '@optional';
-  
+    
 ns_inline
   : 'NS_INLINE';  
 
