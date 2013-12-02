@@ -591,6 +591,7 @@ cast_lvalue
 
 lvalue_access
   : lvalue (access_wrapper name)*
+  | '(' lvalue ')' (access_wrapper name)*
   ;
   
 lvalue
