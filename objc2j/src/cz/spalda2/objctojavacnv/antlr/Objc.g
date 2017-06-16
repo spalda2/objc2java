@@ -151,11 +151,12 @@ multi_comment
  *------------------------------------------------------------------*/
  
  extern_wrapper
- 	:	extern -> ^(EXTERN)
+ 	:	 extern_c -> ^(EXTERN)
  	;
  
- extern	:	'extern'  '"C"'  '(' ~(')') ')'
- 	;
+ extern_c	
+    :	'extern'  '"C"'  '(' ~(')') ')'
+    ;
  	
 implementation_wrapper
  	:	implementation -> ^(IMPLEMENTATION implementation);
@@ -192,9 +193,26 @@ static_declaration_wrapper
 
 block_call_predicate
   : '^('
+  | '^' ID '('
   | ('^' '{')
   ;
+
+block_type_decl_predicate
+    : type_dec_internal ('(^'')')
+    ;
   
+block_type_decl
+    : type_dec_internal ('(^'')''(' block_params? ')')
+    ;
+    
+block_decl_predicate
+    : type_dec_internal ('(^' ID ')')
+    ;
+
+block_decl
+    : type_dec_internal ('(^' ID ')''(' block_params? ')''=' block_call)
+    ;
+    
 block_call_wrapper
   : block_call -> ^(BLOCK_CALL block_call)
   ;
@@ -202,6 +220,7 @@ block_call_wrapper
 block_call
   : ('^' '{' block_internal* '}') -> ^(BLOCK_MULTI '{' block_internal* '}')
   | ('^(' block_params? ')') block_multiline_wrapper 
+  | ('^' ID '(' block_params? ')') block_multiline_wrapper 
   ;
 
 synchronized_call_wrapper
@@ -441,24 +460,24 @@ method_msg
   ;
 
 questionmark_if_stmt
-  : ('?' element_value ':' element_value) -> ^(QUESTION_MARK_IF element_value element_value)
+  : ('?' element_value ':' comments? element_value) -> ^(QUESTION_MARK_IF element_value element_value)
   ;
   
 element_value
-	:	simple_expression -> ^(VALUE simple_expression)
-	;	
+    : simple_expression -> ^(VALUE simple_expression) 
+    ;	
 	
 element_value_or_semicolon
   : (';' | element_value)
   ;
   
 array_init
-//options {greedy=false;}
-  : element_value_or_array_init (',' element_value_or_array_init)*
+//options {greedy=false;} 
+  : comments? element_value_or_array_init (',' element_value_or_array_init)*
   ;
   
 element_value_or_array_init
-  : '{' array_init? '}' comments? -> ^(ARRAY_INIT array_init? comments?)
+  : '{' array_init? '}' comments? -> ^(ARRAY_INIT comments? array_init?)
   | comments? element_value
   ;
   
@@ -488,7 +507,7 @@ cast_unary_expression
   ;
 
 cast_expression
-  : (type_cast_wrapper)=> type_cast_wrapper simple_expression_value_access
+  : (type_cast_wrapper)=> type_cast_wrapper increment_decrement? simple_expression_value_access
   | ('(' type_cast_wrapper simple_expression_value_access ')' access_wrapper)=> '(' type_cast_wrapper simple_expression_value_access ')' (access_wrapper simple_name_or_classical_function_call)+
   | simple_expression_value_access
   ;
@@ -499,10 +518,11 @@ simple_name_or_classical_function_call
   ;
   
 simple_expression_value_access
-  : selector_wrapper '(' name (':' (name ':')*)? ')'
+  : (block_call_predicate) => block_call_wrapper
+  | selector_wrapper '(' name (':' (name ':')*)? ')'
   | '@protocol' '(' name ')' ->  ^(DIRECTIVE name)
   | (simple_expression_value (access_wrapper name)* '(')=> simple_expression_value (access_wrapper name)* ('(' classical_method_params_push? ')')
-  | simple_expression_value2 (access_wrapper name)*
+  | simple_expression_value2 (access_wrapper simple_expression_value)*
   ;
   
 simple_expression_value
@@ -516,9 +536,8 @@ simple_expression_value
   | name
 	;
 
-simple_expression_value2
-  : (block_call_predicate) => block_call_wrapper
-  | simple_expression_value
+simple_expression_value2 
+  : simple_expression_value
   | method_msg
   | '(' element_value ')'
   ;
@@ -612,11 +631,15 @@ continue_stmt
 /*-------------------------------------------------------------------
 * HEADER FILE RULES
 *--------------------------------------------------------------------*/    
+extern
+    : 'extern' | 'MH_EXPORT'
+    ;
+    
 extern_declaration_wrapper
   : extern_declaration -> ^(EXTERN extern_declaration); 
   
 extern_declaration
-  : 'extern' field_declaration;
+  : extern field_declaration;
 
 optional_prefix
   : '@optional' | '@required';
@@ -770,7 +793,8 @@ fields_declarations
   : field_declaration+ -> ^(FIELD field_declaration)+;
   
 field_declaration
-  : ((type_declaration field_name) (',' field_name)* (((classical_method_params (';' | block_multiline_wrapper)) | (op_assign_wrapper element_value_or_array_init ';')) | ';'))
+  : (block_decl_predicate)=> block_decl
+  | ((type_declaration field_name) (',' field_name)* (((classical_method_params (';' | block_multiline_wrapper)) | (op_assign_wrapper element_value_or_array_init ';')) | ';'))
   ;
 
 field_declaration_simple
@@ -797,6 +821,7 @@ classical_type_declaration
 type_declaration
   : (type_decl_protocol_predicate)=> type_declaration_protocol
   | (func_pointer_predicate)=> func_pointer
+  | (block_type_decl_predicate)=> block_type_decl
   | type_declaration_struct '&'?'*'?
   | type_declaration_enum '&'?
   | type_declaration_union '&'?
@@ -804,7 +829,7 @@ type_declaration
   ; 
 
 type_declaration_plane
-  : 'volatile'? 'const'? 'unsigned'? type_dec ('const' '*'?)? -> ^(TYPE_PLAIN 'volatile'? type_dec 'const'?)
+  : '__block'? 'volatile'? 'const'? 'unsigned'? type_dec ('*' 'const' '*'?)? -> ^(TYPE_PLAIN 'volatile'? type_dec 'const'?)
   ; 
 
 type_decl_protocol_predicate
@@ -861,7 +886,7 @@ enum_wrapper
   ;
   
 enum_element
-  : name (op_assign_wrapper element_value)? ','? ->^(ENUM_FIELD name (op_assign_wrapper element_value)?)
+  : ','? name (op_assign_wrapper element_value)? ','? ->^(ENUM_FIELD name (op_assign_wrapper element_value)?)
   | comments
   ;
   
@@ -883,7 +908,7 @@ type_dec_wrapper
   : type_dec -> ^(TYPE_PLAIN type_dec)
   ;
   
-type_dec: type_dec_internal '*'* (array_size)*
+type_dec: type_dec_internal('<' ID '*' '>')? '*'* (array_size)*
   ;
   
 type_dec_internal
