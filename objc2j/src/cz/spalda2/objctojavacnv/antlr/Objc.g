@@ -331,6 +331,7 @@ for_classic_stmt
 for_stmt_body
   : (name ';')=> name for_classic_stmt ')' block
   | (name 'in')=> name for_in_stmt ')' block
+  | (';')=> for_classic_stmt ')' block
   | (object_access op_assign) => variable_assignment_wrapper for_classic_stmt ')' block
   | field_declaration_simple ((op_assign_wrapper element_value for_classic_stmt) | for_in_stmt) ')' block
   ;
@@ -615,15 +616,15 @@ object_access_wrapper
   ;
 
 object_access
-	: cast_lvalue
-	;
+   : cast_lvalue
+   ;
 	
 cast_lvalue
   : (type_cast_name)=> type_cast_wrapper lvalue_access
   | ('(' type_cast_name)=> '(' type_cast_wrapper lvalue_access ')' (access_wrapper name)+
   | lvalue_access
   ;
-
+  	
 lvalue_access
   : lvalue (access_wrapper lvalue)*
   | '(' lvalue ')' (access_wrapper lvalue)*
