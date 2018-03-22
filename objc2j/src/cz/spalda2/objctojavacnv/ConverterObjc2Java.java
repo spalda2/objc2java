@@ -1474,7 +1474,8 @@ public class ConverterObjc2Java {
         boolean readOnly = false;
         for (Object child : tree.getChildren()) {
         	if (CommonTree.class.isInstance(child)) {
-	            switch (((CommonTree) child).token.getType()) {
+        		final int ot = ((CommonTree) child).token.getType();
+	            switch (ot) {
 	                case ObjcParser.TYPE_PLAIN:
 	                	StringBuffer b = new StringBuffer();
 		            	parseTypePlain((CommonTree) child,b);

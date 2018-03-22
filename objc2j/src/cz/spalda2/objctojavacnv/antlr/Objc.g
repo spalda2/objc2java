@@ -198,19 +198,19 @@ block_call_predicate
   ;
 
 block_type_decl_predicate
-    : type_dec_internal ('(^'')')
+    : type_dec ('(^'')')
     ;
   
 block_type_decl
-    : type_dec_internal ('(^'')''(' block_params? ')')
+    : type_dec ('(^'')''(' block_params? ')')
     ;
     
 block_decl_predicate
-    : type_dec_internal ('(^' ID ')')
+    : type_dec ('(^' ID ')')
     ;
 
 block_decl
-    : type_dec_internal ('(^' ID ')''(' block_params? ')''=' block_call)
+    : type_dec_wrapper ('(^' field_name ')''(' block_params? ')' (('=' block_call) | ';'))
     ;
     
 block_call_wrapper
@@ -259,6 +259,7 @@ block_singleline_wrapper
 block_singleline
 	: (clasical_method_call_predicate)=> classical_method_call_wrapper
 	| synchronized_call_wrapper
+	| externC_stmt
 	| do_stmt
 	|	if_stmt
 	| else_stmt
@@ -290,6 +291,7 @@ block_internal
 	|	throw_stmt_wrapper
 	|	static_declaration_wrapper
 	|	do_stmt
+  | externC_stmt
 	|	if_stmt
 	| else_stmt
 	|	switch_stmt
@@ -302,6 +304,7 @@ block_internal
 	|	goto_stmt
 	| block_multiline_wrapper
   | method_msg ((access_wrapper name)* op_assign element_value)?
+  | autorelease_stmt
   | comments
 	;
 
@@ -355,6 +358,10 @@ switch_body
   | block_singleline_wrapper
   ;
   
+autorelease_stmt
+  : '@autoreleasepool' block
+  ;
+  
 case_stmt
   : 'case' name_number ':' -> ^(CASE_STMT name_number)
   ;
@@ -395,6 +402,10 @@ throw_stmt
 	:	'@throw' element_value ';'
 	;
 
+externC_stmt
+  : 'extern "C"' block
+  ;
+  
 name
 	: ID -> ^(NAME ID)
 	;
@@ -460,7 +471,8 @@ method_msg
   ;
 
 questionmark_if_stmt
-  : ('?' element_value ':' comments? element_value) -> ^(QUESTION_MARK_IF element_value element_value)
+  : ('?:' comments? element_value) -> ^(QUESTION_MARK_IF element_value element_value)
+  | ('?' element_value comments? ':' comments? element_value) -> ^(QUESTION_MARK_IF element_value element_value)
   ;
   
 element_value
@@ -473,7 +485,7 @@ element_value_or_semicolon
   
 array_init
 //options {greedy=false;} 
-  : comments? element_value_or_array_init (',' element_value_or_array_init)*
+  : comments? element_value_or_array_init (',' comments? element_value_or_array_init)*
   ;
   
 element_value_or_array_init
@@ -521,8 +533,12 @@ simple_expression_value_access
   : (block_call_predicate) => block_call_wrapper
   | selector_wrapper '(' name (':' (name ':')*)? ')'
   | '@protocol' '(' name ')' ->  ^(DIRECTIVE name)
-  | (simple_expression_value (access_wrapper name)* '(')=> simple_expression_value (access_wrapper name)* ('(' classical_method_params_push? ')')
-  | simple_expression_value2 (access_wrapper simple_expression_value)*
+  | simple_expression_value_access2
+  ;
+
+simple_expression_value_access2
+  : (simple_expression_value (access_wrapper name)* '(')=> simple_expression_value (access_wrapper name)* ('(' classical_method_params_push? ')')
+  | simple_expression_value2 (access_wrapper simple_expression_value)* (('+='|'-=') simple_expression_value)?
   ;
   
 simple_expression_value
@@ -603,14 +619,14 @@ object_access
 	;
 	
 cast_lvalue
-  : (type_cast_wrapper)=> type_cast_wrapper lvalue_access
-  | ('(' type_cast_wrapper)=> '(' type_cast_wrapper lvalue_access ')' (access_wrapper name)+
+  : (type_cast_name)=> type_cast_wrapper lvalue_access
+  | ('(' type_cast_name)=> '(' type_cast_wrapper lvalue_access ')' (access_wrapper name)+
   | lvalue_access
   ;
 
 lvalue_access
-  : lvalue (access_wrapper name)*
-  | '(' lvalue ')' (access_wrapper name)*
+  : lvalue (access_wrapper lvalue)*
+  | '(' lvalue ')' (access_wrapper lvalue)*
   ;
   
 lvalue
@@ -645,7 +661,8 @@ optional_prefix
   : '@optional' | '@required';
   
 declarations
-  : optional_prefix? method_declaration -> ^(METHOD method_declaration)
+  : optional_prefix
+  | method_declaration -> ^(METHOD method_declaration)
   | property_prefix optional_prefix? field_declaration -> ^(PROPERTY property_prefix field_declaration)
   | comments
   ;
@@ -684,7 +701,8 @@ type_declaration_struct_enum_union_anonymous
   ;
   
 typedef_declaration
-  : typedef_internal typedef_name (',' typedef_name)* ';';
+  : (block_decl_predicate) => block_decl
+  | typedef_internal typedef_name (',' typedef_name)* ';';
   
 func_pointer_predicate
   : '(' '*' type_declaration_plane ')'
@@ -829,15 +847,15 @@ type_declaration
   ; 
 
 type_declaration_plane
-  : '__block'? 'volatile'? 'const'? 'unsigned'? type_dec ('*' 'const' '*'?)? -> ^(TYPE_PLAIN 'volatile'? type_dec 'const'?)
+  : '__block'? 'volatile'? 'const'? 'unsigned'? 'inout'? '__weak'? 'nullable'? type_dec ('*' 'const' '*'?)? -> ^(TYPE_PLAIN 'volatile'? type_dec 'const'?)
   ; 
 
 type_decl_protocol_predicate
-  : ('id' '<')
+  : ('__weak'? 'id' '<')
   ;
   
 type_declaration_protocol
-  : 'id' '<' type_dec_internal '>' -> ^(TYPE_PLAIN type_dec_internal)
+  : '__weak'? 'id' '<' type_dec_internal '>' -> ^(TYPE_PLAIN type_dec_internal)
   ; 
 
 type_declaration_struct_simple
@@ -908,7 +926,13 @@ type_dec_wrapper
   : type_dec -> ^(TYPE_PLAIN type_dec)
   ;
   
-type_dec: type_dec_internal('<' ID '*' '>')? '*'* (array_size)*
+ /*>> chars without space confuse the hell out of lexer*/
+type_dec_template
+  : ('<'+ 'id') => '<'+ 'id' '<' ID '>'+
+  | ('<'+ ID '*') => '<'+ ID '*' '>'+
+  ;
+  
+type_dec: 'IBOutlet'? type_dec_internal type_dec_template? '*'* (array_size)*
   ;
   
 type_dec_internal
@@ -919,7 +943,7 @@ type_dec_internal
 knownTypes
   : 'int'
   | 'id'
-  | 'long'+ 'int'?
+  | 'long'+ 'int'? ('const' '*')?
   | 'short'+ 'int'?
   ;
   
@@ -970,8 +994,14 @@ prefix  : ID -> ^(PARAM_PREFIX ID);
 //works for 1 line defines only
 define_declaration
   : (DEFINE_LITERAL classical_method_call_wrapper '\\') => define_as_function
+  | (DEFINE_LITERAL classical_method_call_wrapper '(') => define_as_line
+  | (DEFINE_LITERAL classical_method_call_wrapper) -> ^(DEFINE classical_method_call_wrapper)
   | (DEFINE_LITERAL name element_value)=>DEFINE_LITERAL name element_value -> ^(DEFINE name element_value)
   | DEFINE_LITERAL name  -> ^(DEFINE name)
+  ;
+
+define_as_line
+  : DEFINE_LITERAL classical_method_call_wrapper '(' simple_expression ')' -> ^(DEFINE classical_method_call_wrapper '(' simple_expression ')')
   ;
   
 define_as_function
@@ -1038,7 +1068,7 @@ CHAR_LITERAL
       ;
 
 fragment StringBody
-      :   (('\\\\' | '\\"') | (options {greedy=false;} : ~('\u0000'..'\u001f' | '"' ) ) )*
+      :   (('\\\\' | '\\"' | '\t') | (options {greedy=false;} : ~('\u0000'..'\u001e' | '"' ) ) )*
       ;
       
 fragment EscapeSequence 
@@ -1062,7 +1092,7 @@ fragment HexDigit
   :   ('0'..'9'|'a'..'f'|'A'..'F');
   
 ID
-  : LETTER (DIGIT|LETTER)*;
+  : LETTER (DIGIT|LETTER|'.'|'#')*;
 
 fragment DIGIT  : '0'..'9' ;
 fragment LETTER	: ('a'..'z' | 'A'..'Z' | '_');  
