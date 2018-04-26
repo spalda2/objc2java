@@ -224,11 +224,12 @@ public class ConverterObjc2Java {
     	if (CommonTree.class.isInstance(node)) {
     		CommonTree tr = (CommonTree)node;
     		int type = tr.token.getType();
-        	if (type == ObjcParser.IF0_COMMENT) {
-        		ret.append("\n/*").append(((CommonTree)node).getChild(0).toString()).append("\n*/");
-        		newLines(1,ret);
-        		return;
-        	} else if (type == ObjcParser.SINGLE_COMMENT || type == ObjcParser.MULTI_COMMENT) {
+//        	if (type == ObjcParser.IF0_COMMENT) {
+//        		ret.append("\n/*").append(((CommonTree)node).getChild(0).toString()).append("\n*/");
+//        		newLines(1,ret);
+//        		return;
+//        	} else
+        	if (type == ObjcParser.SINGLE_COMMENT || type == ObjcParser.MULTI_COMMENT) {
         		ret.append(tr.getChild(0).toString()); //this will append \n as well as a part of da comment
         		newLines(0,ret); //add desired number of \t
         		return;
@@ -824,8 +825,8 @@ public class ConverterObjc2Java {
     	processVarOrField(tree,ret);
     }
     
-    private void addClassHeader(CommonTree tree, StringBuffer ret, String name) {
-		ret.append("static class ");
+    private void addClassHeader(String header, CommonTree tree, StringBuffer ret, String name) {
+		ret.append(header);
 		if (name == null) {
 			Object o = tree.getFirstChildWithType(ObjcParser.TYPEDEF_NAME);
     		if (o != null) {
@@ -846,10 +847,21 @@ public class ConverterObjc2Java {
 		ret.append('}');
     }
     
+    private String child2String(Object child) {
+    	String str;
+    	if (isNodeWithChildern(child)) {
+        	CommonTree tr2 = (CommonTree) child;
+        	str = tr2.getChild(0).toString();
+    	} else {
+    		str = child.toString();
+    	}
+    	return str;
+    }
+    
     void processEnum(CommonTree tree, StringBuffer ret, String name) {
     	int type = tree.token.getType();
     	if (type == ObjcParser.ENUM_DEC) {
-    		addClassHeader(tree,ret,name);
+    		addClassHeader("public static enum ",tree,ret,name);
     	}
         for (Object child : tree.getChildren()) {
         	if (isNodeWithChildern(child)) {
@@ -863,12 +875,12 @@ public class ConverterObjc2Java {
 		            	break;
 	                case ObjcParser.ENUM_FIELD:
 	                	//turn it into final public int
-	                	ret.append("final public int ");
-	                	String str = tr.getChild(0).toString();
+	                	//ret.append("final public static int ");
+	                	String str = child2String(tr.getChild(0));
 	                	ret.append(str);
 	                	if (tr.getChildCount() > 2) {
 	                		//pick operator and value
-	                		str = tr.getChild(1).toString();
+	                		str = child2String(tr.getChild(1));
 	                		str = translateKeyword(str);
 		                	ret.append(' ').append(str).append(' ');
 		                	parseValueInternal((CommonTree)tr.getChild(2),ret);
@@ -894,7 +906,7 @@ public class ConverterObjc2Java {
     void processStructUnion(CommonTree tree, StringBuffer ret, String name) {
     	int type = tree.token.getType();
     	if (type == ObjcParser.STRUCT_DEC || type == ObjcParser.UNION_DEC) {
-    		addClassHeader(tree,ret,name);
+    		addClassHeader("static class ",tree,ret,name);
     		tree = (CommonTree)tree.getFirstChildWithType(ObjcParser.STRUCT);
     	}
         for (Object child : tree.getChildren()) {
@@ -1512,8 +1524,10 @@ public class ConverterObjc2Java {
 	        ret.append(name).append(" = a").append(name).append(";}");
         }        
         InterfaceInfo inf = interfaces.get(iCurrentClassName);
-        //this must not be null as we are inside of an interface righ now
-        inf.iMethods.put(name, info);
+        //if this is null then we are inside protocol def
+        if (inf != null) {
+        	inf.iMethods.put(name, info);
+        }
 
         newLines(1,ret);
     }
@@ -1962,6 +1976,10 @@ public class ConverterObjc2Java {
 	                	//all method of interface are made public
 	                	iJavaCode.append("public ");
 	                	translateMethodImplementationOrDeclaration(tr);
+	                	break;
+	                case ObjcParser.PROPERTY:
+	                	//turn it into a public method
+	                	processProperty(tr,iJavaCode);
 	                	break;
 	                default:
 	                	parseFallthroughNode(tr,iJavaCode);

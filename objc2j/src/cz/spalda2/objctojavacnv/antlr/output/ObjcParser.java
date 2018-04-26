@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g 2018-03-22 18:07:53
+// $ANTLR 3.4 /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g 2018-04-26 17:07:34
 
 package cz.spalda2.objctojavacnv.antlr.output;
 
@@ -1841,7 +1841,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: name, ID
+            // elements: ID, name
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -2916,7 +2916,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: block_internal, 213, 217
+                    // elements: 217, block_internal, 213
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -6325,7 +6325,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: switch_body, element_value
+            // elements: element_value, switch_body
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -6887,7 +6887,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: block, element_value
+            // elements: element_value, block
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -9527,7 +9527,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: element_value, comments, comments
+            // elements: comments, comments, element_value
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -9688,7 +9688,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: method_params_push, element_value, method_name
+            // elements: element_value, method_name, method_params_push
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -10500,7 +10500,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: array_init, comments
+                    // elements: comments, array_init
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -12263,7 +12263,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: element_value, name
+                    // elements: name, element_value
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -14440,7 +14440,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: element_value, name
+                    // elements: name, element_value
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -15185,7 +15185,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_field_declaration.add(field_declaration457.getTree());
 
                     // AST REWRITE
-                    // elements: field_declaration, property_prefix
+                    // elements: property_prefix, field_declaration
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -18784,7 +18784,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: category, ID
+            // elements: ID, category
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -19055,7 +19055,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: ID, implements_interfaces
+            // elements: implements_interfaces, ID
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -19617,7 +19617,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_field_name.add(field_name579.getTree());
 
             // AST REWRITE
-            // elements: type_declaration, field_name
+            // elements: field_name, type_declaration
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -21062,7 +21062,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: 211, 184, type_dec
+            // elements: 184, type_dec, 211
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -21728,7 +21728,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_struct_wrapper.add(struct_wrapper639.getTree());
 
             // AST REWRITE
-            // elements: typedef_name, struct_wrapper
+            // elements: struct_wrapper, typedef_name
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -21858,7 +21858,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_struct_wrapper.add(struct_wrapper642.getTree());
 
             // AST REWRITE
-            // elements: typedef_name, struct_wrapper
+            // elements: struct_wrapper, typedef_name
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -21988,7 +21988,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_enum_wrapper.add(enum_wrapper645.getTree());
 
             // AST REWRITE
-            // elements: enum_wrapper, typedef_name
+            // elements: typedef_name, enum_wrapper
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -22670,7 +22670,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // AST REWRITE
-                    // elements: op_assign_wrapper, element_value, name
+                    // elements: element_value, name, op_assign_wrapper
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -22694,14 +22694,14 @@ public TreeAdaptor getTreeAdaptor() {
                         adaptor.addChild(root_1, stream_name.nextTree());
 
                         // /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g:908:75: ( op_assign_wrapper element_value )?
-                        if ( stream_op_assign_wrapper.hasNext()||stream_element_value.hasNext() ) {
+                        if ( stream_element_value.hasNext()||stream_op_assign_wrapper.hasNext() ) {
                             adaptor.addChild(root_1, stream_op_assign_wrapper.nextTree());
 
                             adaptor.addChild(root_1, stream_element_value.nextTree());
 
                         }
-                        stream_op_assign_wrapper.reset();
                         stream_element_value.reset();
+                        stream_op_assign_wrapper.reset();
 
                         adaptor.addChild(root_0, root_1);
                         }
@@ -25248,7 +25248,7 @@ public TreeAdaptor getTreeAdaptor() {
             if ( state.backtracking==0 ) stream_param_name.add(param_name723.getTree());
 
             // AST REWRITE
-            // elements: param_name, 135, type_declaration, 121, 119, prefix
+            // elements: 119, 121, type_declaration, 135, param_name, prefix
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -25655,7 +25655,7 @@ public TreeAdaptor getTreeAdaptor() {
                     if ( state.backtracking==0 ) stream_element_value.add(element_value732.getTree());
 
                     // AST REWRITE
-                    // elements: name, element_value
+                    // elements: element_value, name
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -25828,7 +25828,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: simple_expression, classical_method_call_wrapper, 121, 119
+            // elements: 119, 121, simple_expression, classical_method_call_wrapper
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -26029,7 +26029,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: block_singleline_wrapper, classical_method_call_wrapper
+            // elements: classical_method_call_wrapper, block_singleline_wrapper
             // token labels: 
             // rule labels: retval
             // token list labels: 
