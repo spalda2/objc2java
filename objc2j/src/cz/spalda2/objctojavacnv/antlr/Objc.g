@@ -139,11 +139,11 @@ comments
   ;
   
 single_comment
-  : SINGLE_COMMENT_LIT ->^(SINGLE_COMMENT SINGLE_COMMENT_LIT)
+  : S_C_LIT ->^(SINGLE_COMMENT S_C_LIT)
   ;
   
 multi_comment
-  : MULTI_COMMENT_LIT -> ^(MULTI_COMMENT MULTI_COMMENT_LIT)
+  : M_C_LIT -> ^(MULTI_COMMENT M_C_LIT)
   ;
   
 /*------------------------------------------------------------------
@@ -413,7 +413,7 @@ name
 
 name_number
   : ID -> ^(NAME ID)
-  | '-'? NUMBER_LITERAL -> ^(NUMBER '-'? NUMBER_LITERAL)
+  | '-'? NR_LIT -> ^(NUMBER '-'? NR_LIT)
   ;
   
 variable_declaration_wrapper
@@ -461,14 +461,14 @@ classical_method_params_push
   ;
 
 method_params_push
-	:	method_param_push (((prefix ':') | ',') method_param_push)* -> ^(METHOD_PARAMS method_param_push+);
+	:	method_param_push (','? ((prefix ':') | ',') method_param_push)* -> ^(METHOD_PARAMS method_param_push+);
 
 method_param_push
   : comments? element_value comments? -> ^(METHOD_PARAM comments? element_value comments?)
   ; 
 
 method_msg
-  : '[' element_value method_name (':' method_params_push)? ']' ->^(METHOD_MSG element_value method_name method_params_push?)
+  : (('[' element_value) | '@{')  method_name (':' method_params_push)? (']' | '}') ->^(METHOD_MSG element_value? method_name method_params_push?)
   ;
 
 questionmark_if_stmt
@@ -477,7 +477,8 @@ questionmark_if_stmt
   ;
   
 element_value
-    : simple_expression -> ^(VALUE simple_expression) 
+    : '@(' simple_expression ')' -> ^(VALUE simple_expression) 
+    | simple_expression -> ^(VALUE simple_expression)
     ;	
 	
 element_value_or_semicolon
@@ -547,8 +548,8 @@ simple_expression_value
   | (('&'|'*') name) => ('&'|'*') name
 	|	string
 	| string_objc
-	| CHAR_LITERAL -> ^(CHAR CHAR_LITERAL)
-	|	NUMBER_LITERAL -> ^(NUMBER NUMBER_LITERAL)
+	| C_LIT -> ^(CHAR C_LIT)
+	|	NR_LIT -> ^(NUMBER NR_LIT)
 	| bool -> ^(BOOL bool)
   | name
 	;
@@ -953,10 +954,10 @@ field_name
   ;     
 
 array_size
-  : '[' (NUMBER_LITERAL | ID)? ']';
+  : '[' (NR_LIT | ID)? ']';
 
 field_crap
-  : ':' NUMBER_LITERAL;
+  : ':' NR_LIT;
   
 method_declaration
   : method_modifier_wrapper method_declaration_variants;
@@ -1010,11 +1011,11 @@ define_as_function
   ;
 
 string
-  : STRING_LITERAL -> ^(STRING STRING_LITERAL)
+  : STR_LIT -> ^(STRING STR_LIT)
   ;
   
 string_objc
-  : '@' STRING_LITERAL -> ^(STRING_OBJC STRING_LITERAL)
+  : '@' STR_LIT -> ^(STRING_OBJC STR_LIT)
   ;
 
 bool
@@ -1026,20 +1027,24 @@ bool
  *------------------------------------------------------------------*/
 
 /*
-STRING_LITERAL
+STR_LIT
   :   '"' StringBody ('\\' '\r'? '\n' StringBody)* '"'
   ;
 */
 
-STRING_LITERAL
+STR_LIT
   :   '"' StringBody ('\n' StringBody)* '"'
   ;
 
-SINGLE_COMMENT_LIT
+S_C_LIT
   : '//' ~('\r' | '\n')* ('\r'? '\n')+;
 
-MULTI_COMMENT_LIT options { greedy = false; }
-  : '/*' .* '*/' ('\r'? '\n')?;
+M_C_LIT options { greedy = false; }
+  : '/*' .* '*/' ('\r'? '\n')?
+  ;
+
+//D_LIT options { greedy = false; }
+//  : '@{' .* '}' ('\r'? '\n')?;
 
 /* 
 SINGLE_COMMENT
@@ -1049,8 +1054,8 @@ SINGLE_COMMENT
 //MULTI_COMMENT options { greedy = false; }
 // 	: '/*' .* '*/' ('\r'? '\n')? { skip(); };
 
-IF0_COMMENT options { greedy = false; }
-  : '#if 0' .* ('#endif'|'#else') ('\r'? '\n')? { skip(); };
+//IF0_COMMENT options { greedy = false; }
+//  : '#if 0' .* ('#endif'|'#else') ('\r'? '\n')? { skip(); };
 
 DEFINE_LITERAL
   : '#define';
@@ -1059,12 +1064,12 @@ PREPROCESSOR_DECLARATION
 	: '#' ~('d') ~('\r' | '\n')* ('\r' | '\n')+ { skip(); }
 	; 	
 
-NUMBER_LITERAL  : (DIGIT+ ('L' | ('.' DIGIT+)? 'f'?))
+NR_LIT  : (DIGIT+ ('L' | ('.' DIGIT+)? 'f'?))
 	| ('0x' (('a'..'f')|('A'..'F')|DIGIT)+);
 
 WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+  { $channel = HIDDEN; } ;
 
-CHAR_LITERAL
+C_LIT
       :   '\'' ( EscapeSequence | (' '..'z')) '\''
       ;
 

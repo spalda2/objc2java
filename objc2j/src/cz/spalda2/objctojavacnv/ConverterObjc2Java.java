@@ -562,7 +562,10 @@ public class ConverterObjc2Java {
 	                		}
 	                	} else {
 	                		String name = ((CommonTree) child).getChild(0).toString();
-	                		if (value.equals("super") && iCurrentClassName.equals(iCurrentMethodName) && name.startsWith("init")) {
+	                		if (value == null) {
+	                			//happens when parsing @{ notation
+	                			ret.append("HaspMap");
+	                		} else if (value.equals("super") && iCurrentClassName.equals(iCurrentMethodName) && name.startsWith("init")) {
 		                		//here we ignore METHOD_NAME since we assume it's a call to super class constructor
 		                		ret.append(value);
 	    	            		if (tree.getFirstChildWithType(ObjcParser.METHOD_PARAMS) == null) {
