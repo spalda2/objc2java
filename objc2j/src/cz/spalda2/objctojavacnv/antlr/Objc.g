@@ -461,7 +461,7 @@ classical_method_params_push
   ;
 
 method_params_push
-	:	method_param_push (','? ((prefix ':') | ',') method_param_push)* -> ^(METHOD_PARAMS method_param_push+);
+	:	method_param_push (((','? prefix ':') | ',') method_param_push)* -> ^(METHOD_PARAMS method_param_push+);
 
 method_param_push
   : comments? element_value comments? -> ^(METHOD_PARAM comments? element_value comments?)
@@ -546,11 +546,11 @@ simple_expression_value_access2
 simple_expression_value
   : ('&'? name '[')=> '&'? name '[' element_value ']' -> ^(ARRAY_VALUE name element_value)
   | (('&'|'*') name) => ('&'|'*') name
-	|	string
-	| string_objc
-	| C_LIT -> ^(CHAR C_LIT)
-	|	NR_LIT -> ^(NUMBER NR_LIT)
-	| bool -> ^(BOOL bool)
+  | string
+  | string_objc
+  | C_LIT -> ^(CHAR C_LIT)
+  | NR_LIT -> ^(NUMBER NR_LIT)
+  | bool -> ^(BOOL bool)
   | name
 	;
 

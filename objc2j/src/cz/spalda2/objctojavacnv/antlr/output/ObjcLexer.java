@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g 2018-06-05 14:47:20
+// $ANTLR 3.4 /Users/spalda2/workspace/objc2java/objc2j/src/cz/spalda2/objctojavacnv/antlr/Objc.g 2018-06-05 19:17:17
 
 package cz.spalda2.objctojavacnv.antlr.output;
 
